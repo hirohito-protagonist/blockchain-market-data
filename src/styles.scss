@@ -1,2 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 @import './../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+  overflow: hidden;
+}
+
+.c-sidebar {
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  left: 0;
+  // z-index: 100; /* Behind the navbar */
+  padding: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+
+
+.c-sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.c-main {
+  overflow-x: hidden;
+  overflow-y: auto;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+}
