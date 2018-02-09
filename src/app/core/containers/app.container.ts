@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 
 import { fromLayoutActions } from './../actions/index.action';
 import { fromLayoutReducer, CoreState, getActiveLayoutView } from './../reducers/index.reducer';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -17,20 +18,12 @@ import { fromLayoutReducer, CoreState, getActiveLayoutView } from './../reducers
     </nav>
     <div class="container-fluid c-main">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light c-sidebar">
-          <div class="c-sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item" (click)="changeView(layoutView.ExchangeRate)">Exchange Rate</li>
-              <li class="nav-item" (click)="changeView(layoutView.Statistic)">Statistics</li>
-            </ul>
-          </div>
-        </nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-              <h2>{{ activeView }}</h2>
-          </div>
-        </main>
+        <bmd-core-sidebar-view
+          class="col-md-2 d-none d-md-block bg-light c-sidebar"
+          (changeView)="changeView($event)"></bmd-core-sidebar-view>
+        <bmd-core-content-view
+          class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"
+          [activeView]="activeView$ | async"></bmd-core-content-view>
       </div>
     </div>
   `,
@@ -38,15 +31,11 @@ import { fromLayoutReducer, CoreState, getActiveLayoutView } from './../reducers
 })
 export class CoreAppContainerComponent {
 
-  layoutView = fromLayoutReducer.LayoutView;
-
-  activeView = '';
+  activeView$: Observable<fromLayoutReducer.LayoutView>;
 
   constructor(public store: Store<CoreState>) {
 
-    store.select(getActiveLayoutView).subscribe((view) => {
-      this.activeView = view;
-    });
+    this.activeView$ = store.select(getActiveLayoutView);
   }
 
   changeView(view: fromLayoutReducer.LayoutView) {
