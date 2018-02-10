@@ -12,7 +12,7 @@ describe('Core layout store state', () => {
       const result = reducer(void(0), action);
 
       expect(result).toEqual({
-        activeView: 'Exchange rate'
+        activeView: LayoutView.ExchangeRate
       });
     });
   });
@@ -24,13 +24,13 @@ describe('Core layout store state', () => {
       const state1 = reducer(void(0), new fromLayoutActions.ChangeView(LayoutView.Statistic));
 
       expect(state1).toEqual({
-        activeView: 'Statistic'
+        activeView: LayoutView.Statistic
       });
 
       const state2 = reducer(state1, new fromLayoutActions.ChangeView(LayoutView.ExchangeRate));
 
       expect(state2).toEqual({
-        activeView: 'Exchange rate'
+        activeView: LayoutView.ExchangeRate
       });
     });
   });
