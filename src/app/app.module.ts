@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreModule, CoreAppContainerComponent } from './core/core.module';
+import { ExchangeRatesModule } from './exchange-rates/exchange-rates.module';
 
 import { reducers, metaReducers } from './store';
 
@@ -13,7 +14,8 @@ import { reducers, metaReducers } from './store';
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    ExchangeRatesModule.forRoot()
   ],
   bootstrap: [ CoreAppContainerComponent ]
 })

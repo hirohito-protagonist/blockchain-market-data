@@ -13,5 +13,7 @@ import { fromLayoutReducer } from './../../reducers/index.reducer';
 })
 export class CoreContentViewComponent {
 
+  layoutView = fromLayoutReducer.LayoutView;
+
   @Input() activeView: fromLayoutReducer.LayoutView;
 }
