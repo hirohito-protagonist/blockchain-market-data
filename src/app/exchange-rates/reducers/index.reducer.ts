@@ -1,3 +1,5 @@
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+
 import * as fromMarketPrices from './market-prices.reducer';
 
 export {
@@ -11,3 +13,8 @@ export interface ExchangeRatesState {
 export const reducers = {
   marketPrices: fromMarketPrices.reducer
 };
+
+
+const getExchangeRatesState = createFeatureSelector('exchangeRates');
+const getMarketPricesState = createSelector(getExchangeRatesState, (s: ExchangeRatesState) => s.marketPrices);
+export const getMarketPricesData = createSelector(getMarketPricesState, (s: fromMarketPrices.MarketPricesState) => s.data);

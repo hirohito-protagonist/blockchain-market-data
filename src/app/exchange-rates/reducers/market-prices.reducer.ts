@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { fromMarketPricesAction } from './../actions/index.action';
 
 export interface MarketPrices {
   [key: string]: {
@@ -22,9 +23,26 @@ const initialState: MarketPricesState = {
   lastUpdate: null
 };
 
-export function reducer(state: MarketPricesState = initialState, action: Action): MarketPricesState {
+export function reducer(state: MarketPricesState = initialState, action: fromMarketPricesAction.MarketPricesType): MarketPricesState {
 
   switch (action.type) {
+
+    case fromMarketPricesAction.MarketPricesActions.Request: {
+
+      return Object.assign({}, state, {
+        isFetching: true,
+        data: {}
+      });
+    }
+
+    case fromMarketPricesAction.MarketPricesActions.Response: {
+
+      return Object.assign({}, state, {
+        isFetching: false,
+        data: action.payload.response,
+        lastUpdate: action.payload.timestamp
+      });
+    }
 
     default: {
 
