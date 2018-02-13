@@ -7,24 +7,21 @@ import { Store } from '@ngrx/store';
 import { fromMarketPrices, getMarketPricesData, ExchangeRatesState } from './../reducers/index.reducer';
 
 import { fromMarketPricesAction } from './../actions/index.action';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'bmd-exchange-rates-container',
   template: `
-    <h2>Feature Exchange rate</h2>
-    {{ data | json }}
+    <bmd-market-prices-view [prices]="data$ | async"></bmd-market-prices-view>
   `
 })
 export class ExchangeRatesContainerComponent implements OnInit {
 
-  data;
+  data$: Observable<fromMarketPrices.MarketPrices>;
 
   constructor(private store: Store<ExchangeRatesState>) {
 
-    this.store.select(getMarketPricesData).subscribe((d) => {
-
-      this.data = d;
-    });
+    this.data$ = this.store.select(getMarketPricesData);
   }
 
   ngOnInit(): void {

@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers/index.reducer';
 
 import { ExchangeRatesContainerComponent } from './containers/exchange-rates.container';
+import { MarketPricesViewComponent } from './views/market-prices/market-prices.view';
 
 import { MarketPricesEffects } from './effects/market-prices.effect';
 
@@ -25,7 +26,7 @@ class RootExchangeRateModule {}
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ ExchangeRatesContainerComponent ],
+  declarations: [ ExchangeRatesContainerComponent, MarketPricesViewComponent ],
   exports: [ ExchangeRatesContainerComponent ]
 })
 export class ExchangeRatesModule {
