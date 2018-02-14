@@ -1,14 +1,14 @@
 import { Action } from '@ngrx/store';
 import { fromLayoutReducer } from './../reducers/index.reducer';
 
-export enum LayoutActions {
+export enum ActionTypes {
   ChangeView = '[Core Layout] Change View'
 }
 
 export class ChangeView implements Action {
-  readonly type = LayoutActions.ChangeView;
+  readonly type = ActionTypes.ChangeView;
   constructor(public payload: fromLayoutReducer.LayoutView) {}
 }
 
-export type LayoutActionType = ChangeView;
+export type ActionType = ChangeView;
 

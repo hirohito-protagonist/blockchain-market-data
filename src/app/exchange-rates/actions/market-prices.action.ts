@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { fromMarketPrices } from './../reducers/index.reducer';
 
-export enum MarketPricesActions {
+export enum ActionTypes {
   Request = '[Exchange rates] Market prices request',
   Response = '[Exchange rates] Market prices response',
   FetchData = '[Exchange rates] Market prices fetch data'
@@ -9,15 +9,15 @@ export enum MarketPricesActions {
 
 
 export class FetchData implements Action {
-  readonly type = MarketPricesActions.FetchData;
+  readonly type = ActionTypes.FetchData;
 }
 
 export class Request implements Action {
-  readonly type = MarketPricesActions.Request;
+  readonly type = ActionTypes.Request;
 }
 
 export class Response implements Action {
-  readonly type = MarketPricesActions.Response;
+  readonly type = ActionTypes.Response;
   payload: { response: fromMarketPrices.MarketPrices; timestamp: number; } = {
     response: {},
     timestamp: Date.now()
@@ -28,4 +28,4 @@ export class Response implements Action {
   }
 }
 
-export type MarketPricesType = Request | Response | FetchData;
+export type ActionType = Request | Response | FetchData;

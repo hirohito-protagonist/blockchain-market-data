@@ -23,11 +23,11 @@ const initialState: MarketPricesState = {
   lastUpdate: null
 };
 
-export function reducer(state: MarketPricesState = initialState, action: fromMarketPricesAction.MarketPricesType): MarketPricesState {
+export function reducer(state: MarketPricesState = initialState, action: fromMarketPricesAction.ActionType): MarketPricesState {
 
   switch (action.type) {
 
-    case fromMarketPricesAction.MarketPricesActions.Request: {
+    case fromMarketPricesAction.ActionTypes.Request: {
 
       return Object.assign({}, state, {
         isFetching: true,
@@ -35,7 +35,7 @@ export function reducer(state: MarketPricesState = initialState, action: fromMar
       });
     }
 
-    case fromMarketPricesAction.MarketPricesActions.Response: {
+    case fromMarketPricesAction.ActionTypes.Response: {
 
       return Object.assign({}, state, {
         isFetching: false,

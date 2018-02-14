@@ -7,7 +7,7 @@ describe('Core layout store state', () => {
 
     it('should return default state', () => {
 
-      const action = { type: void(0) } as fromLayoutActions.LayoutActionType;
+      const action = { type: void(0) } as fromLayoutActions.ActionType;
 
       const result = reducer(void(0), action);
 

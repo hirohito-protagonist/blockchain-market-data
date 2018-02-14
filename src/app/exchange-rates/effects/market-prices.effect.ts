@@ -11,13 +11,13 @@ export class MarketPricesEffects {
 
   @Effect()
   requestData$: Observable<Action> = this.action$.pipe(
-    ofType(fromMarketPricesAction.MarketPricesActions.FetchData),
+    ofType(fromMarketPricesAction.ActionTypes.FetchData),
     map(() => new fromMarketPricesAction.Request())
   );
 
   @Effect()
   responseData$: Observable<Action> = this.action$.pipe(
-    ofType(fromMarketPricesAction.MarketPricesActions.FetchData),
+    ofType(fromMarketPricesAction.ActionTypes.FetchData),
     switchMap(() => this.exchangeRatesService.ticker()),
     map((response: TickerResponse) => new fromMarketPricesAction.Response(response))
   );

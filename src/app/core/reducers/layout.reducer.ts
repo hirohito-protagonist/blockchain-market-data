@@ -14,11 +14,11 @@ const initialState: LayoutState = {
   activeView: LayoutView.ExchangeRate
 };
 
-export function reducer(state: LayoutState = initialState, action: fromLayoutActions.LayoutActionType): LayoutState {
+export function reducer(state: LayoutState = initialState, action: fromLayoutActions.ActionType): LayoutState {
 
   switch (action.type) {
 
-    case fromLayoutActions.LayoutActions.ChangeView: {
+    case fromLayoutActions.ActionTypes.ChangeView: {
 
       return Object.assign({}, state, {
         activeView: action.payload
