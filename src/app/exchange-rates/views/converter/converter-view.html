@@ -1,0 +1,25 @@
+<div *ngIf="convert.lastUpdate" class="alert alert-primary" role="alert">
+  Last update: {{ convert.lastUpdate | date: 'yyyy-MM-dd HH:mm:ss' }}
+</div>
+<div class="form-row align-items-center">
+  <div class="col-auto">
+    <div class="input-group mb-2">
+      <input class="form-control" type="number" placeholder="200" #value (change)="updateConvert('value', $event.target.value)">
+    </div>
+  </div>
+
+  <div class="col-auto">
+    <div class="input-group mb-2">
+      <input class="form-control" type="text" placeholder="USD" #currency (change)="updateConvert('currency', $event.target.value)">
+    </div>
+  </div>
+
+  <div class="col-auto">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">BTC</div>
+      </div>
+      <input class="form-control" [attr.value]="convert.convert.btc" type="text" placeholder="?"  disabled="disabled">
+    </div>
+  </div>
+</div>
