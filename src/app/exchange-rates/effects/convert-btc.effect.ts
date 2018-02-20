@@ -20,7 +20,7 @@ export class ConvertBtcEffects {
   responseData$: Observable<Action> = this.action$.pipe(
     ofType(fromConvertBtcAction.ActionTypes.Convert),
     switchMap((action: fromConvertBtcAction.Convert) =>
-      this.exchangeRatesService.tobtc(action.payload.currency, String(action.payload.value)).pipe(
+      this.exchangeRatesService.tobtc(action.payload.currency, (action.payload.value as number)).pipe(
         catchError(() => of(0))
       )
     ),
