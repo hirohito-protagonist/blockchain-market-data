@@ -18,9 +18,12 @@ import { fromConvertBtc } from './../../reducers/index.reducer';
 export class ConverterViewComponent {
 
   @Input() convert: fromConvertBtc.ConvertBtcState;
+  @Input() currencies: { currency: string; symbol: string; }[];
   @Output() convertToBtc = new EventEmitter<fromConvertBtc.ConvertToBTC>();
   @ViewChild('value') inputValue: ElementRef;
   @ViewChild('currency') inputCurrency: ElementRef;
+
+  currencySymbol = '';
 
   updateConvert(type: string, value: string) {
 
@@ -34,6 +37,10 @@ export class ConverterViewComponent {
         value: this.inputValue.nativeElement.value,
         currency: value
       });
+      this.currencySymbol = this.currencies.reduce((previous, current) => {
+
+        return current.currency === value ? current.symbol : previous;
+      }, '');
     }
   }
 }

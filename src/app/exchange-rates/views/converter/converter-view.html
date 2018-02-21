@@ -4,13 +4,19 @@
 <div class="form-row align-items-center">
   <div class="col-auto">
     <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">{{ currencySymbol }}</div>
+      </div>
       <input class="form-control" type="number" placeholder="200" #value (change)="updateConvert('value', $event.target.value)">
     </div>
   </div>
 
   <div class="col-auto">
     <div class="input-group mb-2">
-      <input class="form-control" type="text" placeholder="USD" #currency (change)="updateConvert('currency', $event.target.value)">
+      <select class="form-control" #currency (change)="updateConvert('currency', $event.target.value)">
+        <option value="">currency</option>
+        <option [attr.value]="currency.currency" *ngFor="let currency of currencies">{{ currency.currency }}</option>
+      </select>
     </div>
   </div>
 

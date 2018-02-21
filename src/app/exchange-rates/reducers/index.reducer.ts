@@ -24,3 +24,14 @@ const getMarketPricesState = createSelector(getExchangeRatesState, (s: ExchangeR
 export const getMarketPricesData = createSelector(getMarketPricesState, (s: fromMarketPrices.MarketPricesState) => s.data);
 
 export const getConvertBtcState = createSelector(getExchangeRatesState, (s: ExchangeRatesState) => s.convertBtc);
+
+export const getCurrencies = createSelector(getMarketPricesData, (d: fromMarketPrices.MarketPrices) => {
+
+  return Object.keys(d).map((currency: string) => {
+
+    return {
+      currency: currency,
+      symbol: d[currency].symbol
+    };
+  });
+});

@@ -4,7 +4,14 @@ import {
 } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { fromMarketPrices, fromConvertBtc, getMarketPricesData, getConvertBtcState, ExchangeRatesState } from './../reducers/index.reducer';
+import {
+  fromMarketPrices,
+  fromConvertBtc,
+  getCurrencies,
+  getMarketPricesData,
+  getConvertBtcState,
+  ExchangeRatesState
+} from './../reducers/index.reducer';
 
 import { fromMarketPricesAction, fromConvertBtcAction } from './../actions/index.action';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +19,10 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'bmd-exchange-rates-container',
   template: `
-    <bmd-converter-view [convert]="convert$ | async" (convertToBtc)="convertToBtc($event)"></bmd-converter-view>
+    <bmd-converter-view
+      [currencies]="currencies$ | async"
+      [convert]="convert$ | async"
+      (convertToBtc)="convertToBtc($event)"></bmd-converter-view>
     <bmd-market-prices-view [prices]="data$ | async"></bmd-market-prices-view>
   `
 })
@@ -20,10 +30,12 @@ export class ExchangeRatesContainerComponent implements OnInit {
 
   data$: Observable<fromMarketPrices.MarketPrices>;
   convert$: Observable<fromConvertBtc.ConvertBtcState>;
+  currencies$: Observable<{ currency: string; symbol: string; }[]>;
 
   constructor(private store: Store<ExchangeRatesState>) {
 
     this.data$ = this.store.select(getMarketPricesData);
+    this.currencies$ = this.store.select(getCurrencies);
     this.convert$ = this.store.select(getConvertBtcState);
   }
 
