@@ -29,19 +29,21 @@ export function reducer(state: MarketPricesState = initialState, action: fromMar
 
     case fromMarketPricesAction.ActionTypes.Request: {
 
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true,
         data: {}
-      });
+      };
     }
 
     case fromMarketPricesAction.ActionTypes.Response: {
 
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         data: action.payload.response,
         lastUpdate: action.payload.timestamp
-      });
+      };
     }
 
     default: {
