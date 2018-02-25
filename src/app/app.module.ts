@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { CoreModule, CoreAppContainerComponent } from './core/core.module';
 import { ExchangeRatesModule } from './exchange-rates/exchange-rates.module';
+import { BlockchainDataModule } from './blockchain-data/blockchain-data.module';
 
 import { reducers, metaReducers } from './store';
 
@@ -17,7 +18,8 @@ import { reducers, metaReducers } from './store';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     CoreModule.forRoot(),
-    ExchangeRatesModule.forRoot()
+    ExchangeRatesModule.forRoot(),
+    BlockchainDataModule.forRoot()
   ],
   bootstrap: [ CoreAppContainerComponent ]
 })
