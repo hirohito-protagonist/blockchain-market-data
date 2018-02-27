@@ -20,7 +20,7 @@ export class DataServiceEffects {
   @Effect()
   responseToBTCData$: Observable<Action> = this.action$.pipe(
     ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === 'tobtc'),
+    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === fromDataServiceAction.DataServiceType.ToBTC),
     switchMap((action: fromBlockchainDataAction.FetchData) =>
       this.exchangeRatesService.tobtc(action.payload.query.currency, (action.payload.query.value as number)).pipe(
         map((response: number) => of([action, response])),

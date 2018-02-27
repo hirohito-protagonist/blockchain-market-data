@@ -1,25 +1,33 @@
 import { Action } from '@ngrx/store';
 import { fromDataServiceAction } from './../actions/index.action';
 
+type DataServiceResponse = any;
+type DataServiceQuery = any;
+
+interface DataServiceNode<R, Q> {
+  isFetching: boolean;
+  response: R;
+  lastUpdate: number;
+  query: Q;
+}
+
 
 export interface DataServiceState {
-  [key: string]: {
-    isFetching: boolean;
-    response: any;
-    lastUpdate: number;
-  };
+  [key: string]: DataServiceNode<DataServiceResponse, DataServiceQuery>;
 }
 
 const initialState: DataServiceState = {
-  ticker: {
+  [fromDataServiceAction.DataServiceType.Ticker]: {
     isFetching: false,
     response: null,
-    lastUpdate: 0
+    lastUpdate: 0,
+    query: null
   },
-  tobtc: {
+  [fromDataServiceAction.DataServiceType.ToBTC]: {
     isFetching: false,
     response: null,
-    lastUpdate: 0
+    lastUpdate: 0,
+    query: null
   }
 };
 
