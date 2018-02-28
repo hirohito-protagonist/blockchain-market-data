@@ -6,6 +6,7 @@ import { fromConvertBtcAction } from './../actions/index.action';
 import { map, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { ExchangeRatesService } from './../../shared/blockchain-api/blockchain-api.module';
+import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
 
 @Injectable()
 export class ConvertBtcEffects {
@@ -25,6 +26,15 @@ export class ConvertBtcEffects {
       )
     ),
     map((response: number) => new fromConvertBtcAction.Response(response))
+  );
+
+  @Effect()
+  convertToBTC$: Observable<Action> = this.action$.pipe(
+    ofType(fromConvertBtcAction.ActionTypes.Convert),
+    map((action: fromConvertBtcAction.Convert) => new fromBlockchainDataAction.FetchData({
+      key: DataServiceType.ToBTC,
+      query: action.payload
+    }))
   );
 
   constructor(private action$: Actions, private exchangeRatesService: ExchangeRatesService) {}

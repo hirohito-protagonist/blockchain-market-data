@@ -13,7 +13,10 @@ export class DataServiceEffects {
   @Effect()
   requestData$: Observable<Action> = this.action$.pipe(
     ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    map((action: fromBlockchainDataAction.FetchData) => new fromDataServiceAction.Request({ key: action.payload.key }))
+    map((action: fromBlockchainDataAction.FetchData) => new fromDataServiceAction.Request({
+      key: action.payload.key,
+      query: action.payload.query
+    }))
   );
 
 
@@ -23,10 +26,11 @@ export class DataServiceEffects {
     filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === fromDataServiceAction.DataServiceType.ToBTC),
     switchMap((action: fromBlockchainDataAction.FetchData) =>
       this.exchangeRatesService.tobtc(action.payload.query.currency, (action.payload.query.value as number)).pipe(
-        map((response: number) => of([action, response])),
+        map((response: number) => [action, response]),
         catchError(() => of([action, 0]))
       )
     ),
+    tap(console.log)
     map((result) => new fromDataServiceAction.Response({ key: result[0].payload.key, response: result[1] }))
   );
 

@@ -13,7 +13,7 @@ export enum ActionTypes {
 export class Request implements Action {
   readonly type = ActionTypes.Request;
 
-  constructor(public payload: { key: DataServiceType; }) {}
+  constructor(public payload: { key: DataServiceType; query: any; }) {}
 }
 
 export class Response implements Action {

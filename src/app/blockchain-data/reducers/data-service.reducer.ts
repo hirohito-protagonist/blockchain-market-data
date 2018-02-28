@@ -46,7 +46,8 @@ export function reducer(state: DataServiceState = initialState, action: fromData
           [node]: {
             ...state[node],
             isFetching: true,
-            response: null
+            response: null,
+            query: action.payload.query
           }
         };
       }
