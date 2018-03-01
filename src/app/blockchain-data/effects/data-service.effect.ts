@@ -30,8 +30,12 @@ export class DataServiceEffects {
         catchError(() => of([action, 0]))
       )
     ),
-    tap(console.log)
-    map((result) => new fromDataServiceAction.Response({ key: result[0].payload.key, response: result[1] }))
+    map(([action, response]) => {
+      return new fromDataServiceAction.Response({
+        key: (action as fromBlockchainDataAction.FetchData).payload.key,
+        response
+      });
+    })
   );
 
   constructor(private action$: Actions, private exchangeRatesService: ExchangeRatesService) {}

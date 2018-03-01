@@ -50,28 +50,4 @@ describe('ConvertBtcEffects', () => {
     service = TestBed.get(ExchangeRatesService);
   });
 
-  it('should create request action on convert event', () => {
-
-    const action = new fromConvertBtcAction.Convert({ currency: 'USD', value: 200 });
-    const completion = new fromConvertBtcAction.Request();
-
-    actions$.stream = hot('-a', { a: action });
-    const expected = cold('-b', { b: completion });
-
-    expect(effects.requestData$).toBeObservable(expected);
-  });
-
-  it('should create response action and fetch data on convert event', () => {
-
-    const responseData = 123;
-    const action = new fromConvertBtcAction.Convert({ currency: 'USD', value: 200 });
-    const completion = new fromConvertBtcAction.Response(123);
-
-    actions$.stream = hot('-a', { a: action });
-    const response = cold('-a|', { a: responseData });
-    const expected = cold('--b', { b: completion });
-    spyOn(service, 'tobtc').and.returnValue(response);
-
-    expect(effects.responseData$).toBeObservable(expected);
-  });
 });

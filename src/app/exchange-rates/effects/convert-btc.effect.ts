@@ -12,23 +12,6 @@ import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-da
 export class ConvertBtcEffects {
 
   @Effect()
-  requestData$: Observable<Action> = this.action$.pipe(
-    ofType(fromConvertBtcAction.ActionTypes.Convert),
-    map(() => new fromConvertBtcAction.Request())
-  );
-
-  @Effect()
-  responseData$: Observable<Action> = this.action$.pipe(
-    ofType(fromConvertBtcAction.ActionTypes.Convert),
-    switchMap((action: fromConvertBtcAction.Convert) =>
-      this.exchangeRatesService.tobtc(action.payload.currency, (action.payload.value as number)).pipe(
-        catchError(() => of(0))
-      )
-    ),
-    map((response: number) => new fromConvertBtcAction.Response(response))
-  );
-
-  @Effect()
   convertToBTC$: Observable<Action> = this.action$.pipe(
     ofType(fromConvertBtcAction.ActionTypes.Convert),
     map((action: fromConvertBtcAction.Convert) => new fromBlockchainDataAction.FetchData({

@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { fromConvertBtc } from './../../reducers/index.reducer';
+import { ConvertToBTC, ConvertBtcState } from './../../reducers/index.reducer';
 
 @Component({
   selector: 'bmd-converter-view',
@@ -17,9 +17,9 @@ import { fromConvertBtc } from './../../reducers/index.reducer';
 })
 export class ConverterViewComponent {
 
-  @Input() convert: fromConvertBtc.ConvertBtcState;
+  @Input() convert: ConvertBtcState;
   @Input() currencies: { currency: string; symbol: string; }[];
-  @Output() convertToBtc = new EventEmitter<fromConvertBtc.ConvertToBTC>();
+  @Output() convertToBtc = new EventEmitter<ConvertToBTC>();
   @ViewChild('value') inputValue: ElementRef;
   @ViewChild('currency') inputCurrency: ElementRef;
 

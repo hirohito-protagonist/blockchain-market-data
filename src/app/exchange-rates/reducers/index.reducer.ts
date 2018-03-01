@@ -2,22 +2,33 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType } from './../../blockchain-data/blockchain-data.module';
 import * as fromMarketPrices from './market-prices.reducer';
-import * as fromConvertBtc from './convert-btc.reducer';
 
 export {
-  fromMarketPrices,
-  fromConvertBtc
+  fromMarketPrices
 };
 
 export interface ExchangeRatesState {
   marketPrices: fromMarketPrices.MarketPricesState;
-  convertBtc: fromConvertBtc.ConvertBtcState;
 }
 
 export const reducers = {
-  marketPrices: fromMarketPrices.reducer,
-  convertBtc: fromConvertBtc.reducer
+  marketPrices: fromMarketPrices.reducer
 };
+
+export interface ConvertToBTC {
+  value: string|number;
+  currency: string;
+}
+
+interface ConvertToBtcData extends ConvertToBTC {
+  btc: number;
+}
+
+export interface ConvertBtcState {
+  isFetching: boolean;
+  convert: ConvertToBtcData;
+  lastUpdate: number;
+}
 
 
 const getExchangeRatesState = createFeatureSelector('exchangeRates');
