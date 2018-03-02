@@ -15,21 +15,6 @@ export const reducers = {
   marketPrices: fromMarketPrices.reducer
 };
 
-export interface ConvertToBTC {
-  value: string|number;
-  currency: string;
-}
-
-interface ConvertToBtcData extends ConvertToBTC {
-  btc: number;
-}
-
-export interface ConvertBtcState {
-  isFetching: boolean;
-  convert: ConvertToBtcData;
-  lastUpdate: number;
-}
-
 
 const getExchangeRatesState = createFeatureSelector('exchangeRates');
 const getMarketPricesState = createSelector(getExchangeRatesState, (s: ExchangeRatesState) => s.marketPrices);

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { fromDataServiceAction } from './../actions/index.action';
+import { DataServiceType } from './../blockchain-data.type';
 
 type DataServiceResponse = any;
 type DataServiceQuery = any;
@@ -17,13 +18,13 @@ export interface DataServiceState {
 }
 
 const initialState: DataServiceState = {
-  [fromDataServiceAction.DataServiceType.Ticker]: {
+  [DataServiceType.Ticker]: {
     isFetching: false,
     response: null,
     lastUpdate: 0,
     query: null
   },
-  [fromDataServiceAction.DataServiceType.ToBTC]: {
+  [DataServiceType.ToBTC]: {
     isFetching: false,
     response: null,
     lastUpdate: 0,

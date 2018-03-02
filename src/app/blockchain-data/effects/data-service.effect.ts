@@ -5,6 +5,7 @@ import { Action } from '@ngrx/store';
 import { fromDataServiceAction, fromBlockchainDataAction } from './../actions/index.action';
 import { map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { DataServiceType } from './../blockchain-data.type';
 import { ExchangeRatesService } from './../../shared/blockchain-api/blockchain-api.module';
 
 @Injectable()
@@ -23,7 +24,7 @@ export class DataServiceEffects {
   @Effect()
   responseToBTCData$: Observable<Action> = this.action$.pipe(
     ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === fromDataServiceAction.DataServiceType.ToBTC),
+    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.ToBTC),
     switchMap((action: fromBlockchainDataAction.FetchData) =>
       this.exchangeRatesService.tobtc(action.payload.query.currency, (action.payload.query.value as number)).pipe(
         map((response: number) => [action, response]),

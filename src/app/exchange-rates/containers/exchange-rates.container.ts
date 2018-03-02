@@ -6,13 +6,12 @@ import {
 import { Store } from '@ngrx/store';
 import {
   fromMarketPrices,
-  ConvertBtcState,
-  ConvertToBTC,
   getCurrencies,
   getMarketPricesData,
   getConvertBtcState,
   ExchangeRatesState
 } from './../reducers/index.reducer';
+import {  ConvertBtcState, ConvertToBTC } from './../exchange-rates.type';
 
 import { fromMarketPricesAction, fromConvertBtcAction } from './../actions/index.action';
 import { Observable } from 'rxjs/Observable';

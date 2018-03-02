@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { DataServiceType } from './data-service.action';
+import { DataServiceType } from './../blockchain-data.type';
 
 export enum ActionTypes {
   FetchData = '[Blockchain data] fetch data'

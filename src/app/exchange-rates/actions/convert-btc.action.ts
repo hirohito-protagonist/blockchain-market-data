@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ConvertToBTC } from './../reducers/index.reducer';
+import { ConvertToBTC } from './../exchange-rates.type';
 
 export enum ActionTypes {
   Convert = '[Exchange rates] Convert to BTC'

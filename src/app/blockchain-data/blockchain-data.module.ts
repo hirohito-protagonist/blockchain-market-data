@@ -7,7 +7,8 @@ import { reducers, lastUpdate, response, getServiceDataNode } from './reducers/i
 
 import { BlockchainApiModule } from './../shared/blockchain-api/blockchain-api.module';
 
-import { fromBlockchainDataAction, DataServiceType  } from './actions/index.action';
+import { fromBlockchainDataAction } from './actions/index.action';
+import { DataServiceType } from './blockchain-data.type';
 import { DataServiceEffects } from './effects/data-service.effect';
 
 const fromBlockchainDataSelectors = { lastUpdate, response, getServiceDataNode };

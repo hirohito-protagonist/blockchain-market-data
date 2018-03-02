@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { ConvertToBTC, ConvertBtcState } from './../../reducers/index.reducer';
+import { ConvertToBTC, ConvertBtcState } from './../../exchange-rates.type';
 
 @Component({
   selector: 'bmd-converter-view',

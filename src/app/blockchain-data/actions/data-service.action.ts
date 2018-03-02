@@ -1,9 +1,5 @@
 import { Action } from '@ngrx/store';
-
-export enum DataServiceType {
-  Ticker = 'ticker',
-  ToBTC = 'tobtc'
-}
+import { DataServiceType } from './../blockchain-data.type';
 
 export enum ActionTypes {
   Request = '[Blockchain data] data service request',
