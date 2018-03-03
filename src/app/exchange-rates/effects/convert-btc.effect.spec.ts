@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { ConvertBtcEffects } from './convert-btc.effect';
 import { ExchangeRatesService, TickerResponse } from './../../shared/blockchain-api/blockchain-api.module';
 import { fromConvertBtcAction } from './../actions/index.action';
+import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
 
 export class TestActions extends Actions {
 
@@ -50,4 +51,20 @@ describe('ConvertBtcEffects', () => {
     service = TestBed.get(ExchangeRatesService);
   });
 
+  it('should dispatch action to fetch data on convert action', () => {
+
+    const action = new fromConvertBtcAction.Convert({ currency: 'USD', value: 200 });
+    const completion = new fromBlockchainDataAction.FetchData({
+      key: DataServiceType.ToBTC,
+      query: {
+        currency: 'USD',
+        value: 200
+      }
+    });
+
+    actions$.stream = hot('-a', { a: action });
+    const expected = cold('-b', { b: completion });
+
+    expect(effects.convertToBTC$).toBeObservable(expected);
+  });
 });
