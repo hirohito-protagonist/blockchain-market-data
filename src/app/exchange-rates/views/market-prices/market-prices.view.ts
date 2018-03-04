@@ -6,7 +6,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-import { fromMarketPrices } from './../../reducers/index.reducer';
+import { MarketPrices } from './../../exchange-rates.type';
 
 @Component({
   selector: 'bmd-market-prices-view',
@@ -17,7 +17,7 @@ export class MarketPricesViewComponent implements OnChanges {
 
   currencies = [];
 
-  @Input() prices: fromMarketPrices.MarketPrices;
+  @Input() prices: MarketPrices;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.currencies = Object.keys(this.prices);

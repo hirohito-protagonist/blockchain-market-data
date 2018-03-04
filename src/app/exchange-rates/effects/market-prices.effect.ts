@@ -4,7 +4,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { fromMarketPricesAction } from './../actions/index.action';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { ExchangeRatesService, TickerResponse } from './../../shared/blockchain-api/blockchain-api.module';
+import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
 
 @Injectable()
 export class MarketPricesEffects {
@@ -12,15 +12,11 @@ export class MarketPricesEffects {
   @Effect()
   requestData$: Observable<Action> = this.action$.pipe(
     ofType(fromMarketPricesAction.ActionTypes.FetchData),
-    map(() => new fromMarketPricesAction.Request())
+    map(() => new fromBlockchainDataAction.FetchData({
+      key: DataServiceType.Ticker,
+      query: null
+    }))
   );
 
-  @Effect()
-  responseData$: Observable<Action> = this.action$.pipe(
-    ofType(fromMarketPricesAction.ActionTypes.FetchData),
-    switchMap(() => this.exchangeRatesService.ticker()),
-    map((response: TickerResponse) => new fromMarketPricesAction.Response(response))
-  );
-
-  constructor(private action$: Actions, private exchangeRatesService: ExchangeRatesService) {}
+  constructor(private action$: Actions) {}
 }

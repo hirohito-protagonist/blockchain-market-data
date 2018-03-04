@@ -49,30 +49,4 @@ describe('MarketPricesEffects', () => {
     actions$ = TestBed.get(Actions);
     service = TestBed.get(ExchangeRatesService);
   });
-
-  it('should create request action on fetch data event', () => {
-
-    const action = new fromMarketPricesAction.FetchData();
-    const completion = new fromMarketPricesAction.Request();
-
-    actions$.stream = hot('-a', { a: action });
-    const expected = cold('-b', { b: completion });
-
-    expect(effects.requestData$).toBeObservable(expected);
-  });
-
-  it('should create response action and fetch data on fetch data event', () => {
-
-    spyOn(Date, 'now').and.returnValue(123);
-    const responseData = {} as TickerResponse;
-    const action = new fromMarketPricesAction.FetchData();
-    const completion = new fromMarketPricesAction.Response(responseData);
-
-    actions$.stream = hot('-a', { a: action });
-    const response = cold('-a|', { a: responseData });
-    const expected = cold('--b', { b: completion });
-    spyOn(service, 'ticker').and.returnValue(response);
-
-    expect(effects.responseData$).toBeObservable(expected);
-  });
 });

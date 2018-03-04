@@ -1,24 +1,21 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType } from './../../blockchain-data/blockchain-data.module';
-import * as fromMarketPrices from './market-prices.reducer';
-
-export {
-  fromMarketPrices
-};
+import { MarketPrices } from './../exchange-rates.type';
 
 export interface ExchangeRatesState {
-  marketPrices: fromMarketPrices.MarketPricesState;
+  version: string;
 }
 
 export const reducers = {
-  marketPrices: fromMarketPrices.reducer
+  version: () => '1.0.0'
 };
 
 
-const getExchangeRatesState = createFeatureSelector('exchangeRates');
-const getMarketPricesState = createSelector(getExchangeRatesState, (s: ExchangeRatesState) => s.marketPrices);
-export const getMarketPricesData = createSelector(getMarketPricesState, (s: fromMarketPrices.MarketPricesState) => s.data);
+export const getMarketPricesData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Ticker), (s) => {
+
+  return s.response || {};
+});
 
 export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.ToBTC), (s) => {
 
@@ -33,7 +30,7 @@ export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.get
   };
 });
 
-export const getCurrencies = createSelector(getMarketPricesData, (d: fromMarketPrices.MarketPrices) => {
+export const getCurrencies = createSelector(getMarketPricesData, (d: MarketPrices) => {
 
   return Object.keys(d).map((currency: string) => {
 

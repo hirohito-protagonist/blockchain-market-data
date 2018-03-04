@@ -39,5 +39,23 @@ export class DataServiceEffects {
     })
   );
 
+  @Effect()
+  responseTcikerData$: Observable<Action> = this.action$.pipe(
+    ofType(fromBlockchainDataAction.ActionTypes.FetchData),
+    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.Ticker),
+    switchMap((action: fromBlockchainDataAction.FetchData) =>
+      this.exchangeRatesService.ticker().pipe(
+        map((response) => [action, response]),
+        catchError(() => of([action, 0]))
+      )
+    ),
+    map(([action, response]) => {
+      return new fromDataServiceAction.Response({
+        key: (action as fromBlockchainDataAction.FetchData).payload.key,
+        response
+      });
+    })
+  );
+
   constructor(private action$: Actions, private exchangeRatesService: ExchangeRatesService) {}
 }

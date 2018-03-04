@@ -5,13 +5,12 @@ import {
 
 import { Store } from '@ngrx/store';
 import {
-  fromMarketPrices,
   getCurrencies,
   getMarketPricesData,
   getConvertBtcState,
   ExchangeRatesState
 } from './../reducers/index.reducer';
-import {  ConvertBtcState, ConvertToBTC } from './../exchange-rates.type';
+import {  ConvertBtcState, ConvertToBTC, MarketPrices } from './../exchange-rates.type';
 
 import { fromMarketPricesAction, fromConvertBtcAction } from './../actions/index.action';
 import { Observable } from 'rxjs/Observable';
@@ -28,7 +27,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ExchangeRatesContainerComponent implements OnInit {
 
-  data$: Observable<fromMarketPrices.MarketPrices>;
+  data$: Observable<MarketPrices>;
   convert$: Observable<ConvertBtcState>;
   currencies$: Observable<{ currency: string; symbol: string; }[]>;
 

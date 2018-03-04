@@ -12,3 +12,13 @@ export interface ConvertBtcState {
   convert: ConvertToBtcData;
   lastUpdate: number;
 }
+
+export interface MarketPrices {
+  [key: string]: {
+    '15m': number;
+    'last': number;
+    'buy': number;
+    'sell': number;
+    'symbol': string;
+  };
+}
