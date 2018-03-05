@@ -6,9 +6,10 @@ import { cold, hot } from 'jasmine-marbles';
 import { empty } from 'rxjs/observable/empty';
 import { Observable } from 'rxjs/Observable';
 
-import { MarketPricesEffects } from './market-prices.effect';
-import { fromMarketPricesAction } from './../actions/index.action';
-import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
+import { DataServiceEffects } from './data-service.effect';
+import { ExchangeRatesService, TickerResponse } from './../../shared/blockchain-api/blockchain-api.module';
+import { fromBlockchainDataAction, fromDataServiceAction } from './../actions/index.action';
+import { DataServiceType } from '../blockchain-data.type';
 
 export class TestActions extends Actions {
 
@@ -28,29 +29,32 @@ export function getActions() {
 }
 
 
-describe('MarketPricesEffects', () => {
+describe('DataServiceEffects', () => {
 
-  let effects: MarketPricesEffects;
+  let effects: DataServiceEffects;
   let actions$: TestActions;
+  let service: ExchangeRatesService;
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
       imports: [ HttpClientModule ],
       providers: [
-        MarketPricesEffects,
+        DataServiceEffects,
+        ExchangeRatesService,
         { provide: Actions, useFactory: getActions }
       ]
     });
 
-    effects = TestBed.get(MarketPricesEffects);
+    effects = TestBed.get(DataServiceEffects);
     actions$ = TestBed.get(Actions);
+    service = TestBed.get(ExchangeRatesService);
   });
 
-  it('should dispatch action on fetch market prices data action', () => {
+  it('should dispatch request data action on fetch action', () => {
 
-    const action = new fromMarketPricesAction.FetchData();
-    const completion = new fromBlockchainDataAction.FetchData({
+    const action = new fromBlockchainDataAction.FetchData({ key: DataServiceType.Ticker, query: null });
+    const completion = new fromDataServiceAction.Request({
       key: DataServiceType.Ticker,
       query: null
     });
