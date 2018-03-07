@@ -5,7 +5,7 @@ import { Action } from '@ngrx/store';
 import { fromDataServiceAction, fromBlockchainDataAction } from './../actions/index.action';
 import { map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { DataServiceType } from './../blockchain-data.type';
+import { DataServiceType, DataResponseType } from './../blockchain-data.type';
 import { ExchangeRatesService } from './../../shared/blockchain-api/blockchain-api.module';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class DataServiceEffects {
     map(([action, response]) => {
       return new fromDataServiceAction.Response({
         key: (action as fromBlockchainDataAction.FetchData).payload.key,
-        response
+        response: (response as DataResponseType)
       });
     })
   );
@@ -45,14 +45,14 @@ export class DataServiceEffects {
     filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.Ticker),
     switchMap((action: fromBlockchainDataAction.FetchData) =>
       this.exchangeRatesService.ticker().pipe(
-        map((response) => [action, response]),
+        map((response) => [action, (response as DataResponseType)]),
         catchError(() => of([action, 0]))
       )
     ),
     map(([action, response]) => {
       return new fromDataServiceAction.Response({
         key: (action as fromBlockchainDataAction.FetchData).payload.key,
-        response
+        response: (response as DataResponseType)
       });
     })
   );

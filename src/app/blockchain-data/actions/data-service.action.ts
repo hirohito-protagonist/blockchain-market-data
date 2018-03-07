@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { DataServiceType } from './../blockchain-data.type';
+import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
 export enum ActionTypes {
   Request = '[Blockchain data] data service request',
@@ -9,13 +9,13 @@ export enum ActionTypes {
 export class Request implements Action {
   readonly type = ActionTypes.Request;
 
-  constructor(public payload: { key: DataServiceType; query: any; }) {}
+  constructor(public payload: { key: DataServiceType; query: QueryType; }) {}
 }
 
 export class Response implements Action {
   readonly type = ActionTypes.Response;
 
-  constructor(public payload: { key: DataServiceType; response: any; }) {}
+  constructor(public payload: { key: DataServiceType; response: DataResponseType; }) {}
 }
 
 export type ActionType = Request | Response;

@@ -34,7 +34,7 @@ export class ConverterViewComponent {
       });
     } else if (type === 'currency') {
       this.convertToBtc.emit({
-        value: this.inputValue.nativeElement.value,
+        value: (this.inputValue.nativeElement.value as string),
         currency: value
       });
       this.currencySymbol = this.currencies.reduce((previous, current) => {

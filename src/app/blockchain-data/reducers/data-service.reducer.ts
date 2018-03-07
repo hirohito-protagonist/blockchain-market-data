@@ -1,9 +1,6 @@
 import { Action } from '@ngrx/store';
 import { fromDataServiceAction } from './../actions/index.action';
-import { DataServiceType } from './../blockchain-data.type';
-
-type DataServiceResponse = any;
-type DataServiceQuery = any;
+import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
 interface DataServiceNode<R, Q> {
   isFetching: boolean;
@@ -12,9 +9,8 @@ interface DataServiceNode<R, Q> {
   query: Q;
 }
 
-
 export interface DataServiceState {
-  [key: string]: DataServiceNode<DataServiceResponse, DataServiceQuery>;
+  [key: string]: DataServiceNode<DataResponseType, QueryType>;
 }
 
 const initialState: DataServiceState = {

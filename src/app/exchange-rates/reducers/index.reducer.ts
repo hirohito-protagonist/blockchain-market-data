@@ -14,7 +14,7 @@ export const reducers = {
 
 export const getMarketPricesData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Ticker), (s) => {
 
-  return s.response || {};
+  return (s.response as MarketPrices) || {};
 });
 
 export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.ToBTC), (s) => {
@@ -24,7 +24,7 @@ export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.get
     convert: {
       value: s.query ? s.query.value : '',
       currency: s.query ? s.query.currency : '',
-      btc: s.response
+      btc: (s.response as number)
     },
     lastUpdate: s.lastUpdate
   };

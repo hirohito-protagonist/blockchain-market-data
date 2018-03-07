@@ -1,5 +1,5 @@
 export interface ConvertToBTC {
-  value: string|number;
+  value: number | string;
   currency: string;
 }
 
