@@ -6,7 +6,7 @@ import { fromDataServiceAction, fromBlockchainDataAction } from './../actions/in
 import { map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { DataServiceType, DataResponseType } from './../blockchain-data.type';
-import { ExchangeRatesService } from './../../shared/blockchain-api/blockchain-api.module';
+import { ExchangeRatesService } from './../services/exchange-rates.service';
 
 @Injectable()
 export class DataServiceEffects {

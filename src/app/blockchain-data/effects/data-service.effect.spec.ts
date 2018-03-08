@@ -7,7 +7,7 @@ import { empty } from 'rxjs/observable/empty';
 import { Observable } from 'rxjs/Observable';
 
 import { DataServiceEffects } from './data-service.effect';
-import { ExchangeRatesService, TickerResponse } from './../../shared/blockchain-api/blockchain-api.module';
+import { ExchangeRatesService } from './../services/exchange-rates.service';
 import { fromBlockchainDataAction, fromDataServiceAction } from './../actions/index.action';
 import { DataServiceType } from '../blockchain-data.type';
 

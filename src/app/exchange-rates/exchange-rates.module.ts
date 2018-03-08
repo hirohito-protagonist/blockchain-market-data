@@ -13,12 +13,9 @@ import { ConverterViewComponent } from './views/converter/converter-view';
 import { MarketPricesEffects } from './effects/market-prices.effect';
 import { ConvertBtcEffects } from './effects/convert-btc.effect';
 
-import { BlockchainApiModule } from './../shared/blockchain-api/blockchain-api.module';
-
 
 @NgModule({
   imports: [
-    BlockchainApiModule,
     StoreModule.forFeature('exchangeRates', reducers),
     EffectsModule.forFeature([MarketPricesEffects, ConvertBtcEffects])
   ]

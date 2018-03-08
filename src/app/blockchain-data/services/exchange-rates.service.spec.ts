@@ -1,7 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { BlockchainApiModule, ExchangeRatesService, TickerResponse } from './blockchain-api.module';
+import { ExchangeRatesService } from './exchange-rates.service';
+import { fromBlockchainDataMarketPriceEntity } from './../entities/index.entity';
 
 describe('ExchangeRatesService', () => {
 
@@ -12,8 +13,10 @@ describe('ExchangeRatesService', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
-        BlockchainApiModule
+        HttpClientTestingModule
+      ],
+      providers: [
+        ExchangeRatesService
       ]
     });
 
@@ -30,7 +33,7 @@ describe('ExchangeRatesService', () => {
 
     it('should return market prices', () => {
 
-      const testData: TickerResponse = {
+      const testData: fromBlockchainDataMarketPriceEntity.MarketPricesEntities = {
         'USD' : { '15m' : 478.68, 'last' : 478.68, 'buy' : 478.55, 'sell' : 478.68,  'symbol' : '$' }
       };
 

@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { fromBlockchainDataMarketPriceEntity } from './../entities/index.entity';
 
-export interface TickerResponse {
-  [key: string]: {
-    '15m': number;
-    'last': number;
-    'buy': number;
-    'sell': number;
-    'symbol': string;
-  };
-}
 
 @Injectable()
 export class ExchangeRatesService {
@@ -19,9 +11,9 @@ export class ExchangeRatesService {
 
   constructor(private http: HttpClient) {}
 
-  ticker(): Observable<TickerResponse> {
+  ticker(): Observable<fromBlockchainDataMarketPriceEntity.MarketPricesEntities> {
 
-    return this.http.get<TickerResponse>(`${this.API_Path}ticker?cors=true`);
+    return this.http.get<fromBlockchainDataMarketPriceEntity.MarketPricesEntities>(`${this.API_Path}ticker?cors=true`);
   }
 
   tobtc(currency: string, value: number): Observable<number> {

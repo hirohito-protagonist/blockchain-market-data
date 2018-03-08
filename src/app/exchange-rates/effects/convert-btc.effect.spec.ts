@@ -7,7 +7,6 @@ import { empty } from 'rxjs/observable/empty';
 import { Observable } from 'rxjs/Observable';
 
 import { ConvertBtcEffects } from './convert-btc.effect';
-import { ExchangeRatesService, TickerResponse } from './../../shared/blockchain-api/blockchain-api.module';
 import { fromConvertBtcAction } from './../actions/index.action';
 import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
 
@@ -33,7 +32,6 @@ describe('ConvertBtcEffects', () => {
 
   let effects: ConvertBtcEffects;
   let actions$: TestActions;
-  let service: ExchangeRatesService;
 
   beforeEach(() => {
 
@@ -41,14 +39,12 @@ describe('ConvertBtcEffects', () => {
       imports: [ HttpClientModule ],
       providers: [
         ConvertBtcEffects,
-        ExchangeRatesService,
         { provide: Actions, useFactory: getActions }
       ]
     });
 
     effects = TestBed.get(ConvertBtcEffects);
     actions$ = TestBed.get(Actions);
-    service = TestBed.get(ExchangeRatesService);
   });
 
   it('should dispatch action to fetch data on convert action', () => {

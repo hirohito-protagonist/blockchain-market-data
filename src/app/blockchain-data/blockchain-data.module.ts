@@ -1,11 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { reducers, lastUpdate, response, getServiceDataNode } from './reducers/index.reducer';
 
-import { BlockchainApiModule } from './../shared/blockchain-api/blockchain-api.module';
+import { ExchangeRatesService } from './services/exchange-rates.service';
 
 import { fromBlockchainDataAction } from './actions/index.action';
 import { DataServiceType } from './blockchain-data.type';
@@ -22,7 +23,7 @@ export {
 
 @NgModule({
   imports: [
-    BlockchainApiModule,
+    HttpClientModule,
     StoreModule.forFeature('blockchain-data', reducers),
     EffectsModule.forFeature([ DataServiceEffects ])
   ]
@@ -33,7 +34,9 @@ export class BlockchainDataModule {
 
     return {
       ngModule: BlockchainDataModule,
-      providers: []
+      providers: [
+        ExchangeRatesService
+      ]
     };
   }
 }
