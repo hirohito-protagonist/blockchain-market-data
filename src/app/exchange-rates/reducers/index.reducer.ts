@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { fromBlockchainDataSelectors, DataServiceType } from './../../blockchain-data/blockchain-data.module';
+import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
 import { MarketPrices } from './../exchange-rates.type';
 
 export interface ExchangeRatesState {

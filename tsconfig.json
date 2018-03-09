@@ -8,6 +8,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "baseUrl": "./src",
+    "paths": {
+      "@bmd/core": ["app/core/core.module.ts"],
+      "@bmd/blockchain-data": ["app/blockchain-data/blockchain-data.module.ts"],
+      "@bmd/exchange-rates": ["app/exchange-rates/exchange-rates.module.ts"],
+    },
     "typeRoots": [
       "node_modules/@types"
     ],

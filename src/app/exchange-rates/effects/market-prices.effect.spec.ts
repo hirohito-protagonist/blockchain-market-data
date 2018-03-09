@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { MarketPricesEffects } from './market-prices.effect';
 import { fromMarketPricesAction } from './../actions/index.action';
-import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
+import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 export class TestActions extends Actions {
 

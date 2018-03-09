@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { CoreModule, CoreAppContainerComponent } from './core/core.module';
-import { ExchangeRatesModule } from './exchange-rates/exchange-rates.module';
-import { BlockchainDataModule } from './blockchain-data/blockchain-data.module';
+import { CoreModule, CoreAppContainerComponent } from '@bmd/core';
+import { ExchangeRatesModule } from '@bmd/exchange-rates';
+import { BlockchainDataModule } from '@bmd/blockchain-data';
 
 import { reducers, metaReducers } from './store';
 

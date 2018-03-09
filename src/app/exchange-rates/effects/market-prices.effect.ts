@@ -4,7 +4,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { fromMarketPricesAction } from './../actions/index.action';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
+import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 @Injectable()
 export class MarketPricesEffects {
