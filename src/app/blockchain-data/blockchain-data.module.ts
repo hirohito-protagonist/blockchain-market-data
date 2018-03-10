@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers, lastUpdate, response, getServiceDataNode } from './reducers/index.reducer';
 
 import { ExchangeRatesService } from './services/exchange-rates.service';
+import { StatisticsService } from './services/statistics.service';
 
 import { fromBlockchainDataAction } from './actions/index.action';
 import { DataServiceType } from './blockchain-data.type';
@@ -35,7 +36,8 @@ export class BlockchainDataModule {
     return {
       ngModule: BlockchainDataModule,
       providers: [
-        ExchangeRatesService
+        ExchangeRatesService,
+        StatisticsService
       ]
     };
   }
