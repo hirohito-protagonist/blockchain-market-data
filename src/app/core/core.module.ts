@@ -8,6 +8,7 @@ import { CoreSidebarViewComponent } from './views/sidebar-view/sidebar.view';
 import { CoreContentViewComponent } from './views/content-view/content.view';
 
 import { ExchangeRatesModule } from './../exchange-rates/exchange-rates.module';
+import { StatisticsModule } from './../statistics/statistics.module';
 
 export {
   CoreAppContainerComponent
@@ -19,6 +20,7 @@ import { reducers } from './reducers/index.reducer';
   imports: [
     CommonModule,
     ExchangeRatesModule,
+    StatisticsModule,
     StoreModule.forFeature('core', reducers)
   ],
   declarations: [

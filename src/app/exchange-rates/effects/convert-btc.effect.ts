@@ -5,7 +5,7 @@ import { Action } from '@ngrx/store';
 import { fromConvertBtcAction } from './../actions/index.action';
 import { map, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { fromBlockchainDataAction, DataServiceType } from './../../blockchain-data/blockchain-data.module';
+import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 @Injectable()
 export class ConvertBtcEffects {
