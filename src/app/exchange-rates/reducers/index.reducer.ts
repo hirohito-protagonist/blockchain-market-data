@@ -7,8 +7,12 @@ export interface ExchangeRatesState {
   version: string;
 }
 
+export function featureVersion() {
+  return '1.0.0';
+}
+
 export const reducers = {
-  version: () => '1.0.0'
+  version: featureVersion
 };
 
 

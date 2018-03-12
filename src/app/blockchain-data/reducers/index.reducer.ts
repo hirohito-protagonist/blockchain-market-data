@@ -4,10 +4,16 @@ import { DataServiceType } from './../blockchain-data.type';
 
 interface DataServiceState {
   data: fromDataService.DataServiceState;
+  version: string;
+}
+
+export function featureVersion() {
+  return '1.0.0';
 }
 
 export const reducers = {
-  data: fromDataService.reducer
+  data: fromDataService.reducer,
+  version: featureVersion
 };
 
 const getFeatureRootState = createFeatureSelector('blockchain-data');

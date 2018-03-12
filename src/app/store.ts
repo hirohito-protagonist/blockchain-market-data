@@ -13,9 +13,12 @@ export interface State {
   version: string;
 }
 
+export function appVersion(): string {
+  return '1.0.0';
+}
 
 export const reducers: ActionReducerMap<State> = {
-  version: () => '1.0.0'
+  version: appVersion
 };
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {

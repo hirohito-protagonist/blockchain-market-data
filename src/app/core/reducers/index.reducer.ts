@@ -5,11 +5,18 @@ export {
   fromLayoutReducer
 };
 
+
 export interface CoreState {
   layout: fromLayoutReducer.LayoutState;
+  version: string;
+}
+
+export function featureVersion() {
+  return '1.0.0';
 }
 
 export const reducers = {
+  version: featureVersion,
   layout: fromLayoutReducer.reducer
 };
 

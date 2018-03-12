@@ -20,7 +20,7 @@ import { ConvertBtcEffects } from './effects/convert-btc.effect';
     EffectsModule.forFeature([MarketPricesEffects, ConvertBtcEffects])
   ]
 })
-class RootExchangeRateModule {}
+export class RootExchangeRateModule {}
 
 
 @NgModule({
