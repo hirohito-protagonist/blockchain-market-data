@@ -7,6 +7,7 @@ import { map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { DataServiceType, DataResponseType } from './../blockchain-data.type';
 import { ExchangeRatesService } from './../services/exchange-rates.service';
+import { StatisticsService } from './../services/statistics.service';
 
 @Injectable()
 export class DataServiceEffects {
@@ -57,5 +58,27 @@ export class DataServiceEffects {
     })
   );
 
-  constructor(private action$: Actions, private exchangeRatesService: ExchangeRatesService) {}
+  @Effect()
+  responseStatsData$: Observable<Action> = this.action$.pipe(
+    ofType(fromBlockchainDataAction.ActionTypes.FetchData),
+    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.Stats),
+    switchMap((action: fromBlockchainDataAction.FetchData) =>
+      this.statisticsService.stats().pipe(
+        map((response) => [action, (response as DataResponseType)]),
+        catchError(() => of([action, 0]))
+      )
+    ),
+    map(([action, response]) => {
+      return new fromDataServiceAction.Response({
+        key: (action as fromBlockchainDataAction.FetchData).payload.key,
+        response: (response as DataResponseType)
+      });
+    })
+  );
+
+  constructor(
+    private action$: Actions,
+    private exchangeRatesService: ExchangeRatesService,
+    private statisticsService: StatisticsService
+  ) {}
 }

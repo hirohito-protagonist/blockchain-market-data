@@ -1,8 +1,12 @@
-import { fromBlockchainDataMarketPriceEntity } from './entities/index.entity';
+import {
+  fromBlockchainDataMarketPriceEntity,
+  fromBlockchainDataStatisticsEntity
+} from './entities/index.entity';
 
 export enum DataServiceType {
   Ticker = 'ticker',
-  ToBTC = 'tobtc'
+  ToBTC = 'tobtc',
+  Stats = 'stats'
 }
 
 export interface BTCQuery {
@@ -12,4 +16,5 @@ export interface BTCQuery {
 
 export type QueryType = BTCQuery | null;
 
-export type DataResponseType = fromBlockchainDataMarketPriceEntity.MarketPricesEntities | number;
+export type DataResponseType = fromBlockchainDataMarketPriceEntity.MarketPricesEntities |
+fromBlockchainDataStatisticsEntity.StatisticEntity | number;

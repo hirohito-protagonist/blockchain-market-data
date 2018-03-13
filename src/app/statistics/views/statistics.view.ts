@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: '<bmd-statistics-view></bmd-statistics-view>',
-  template: ` stats data`
+  template: ` stats data {{ stats | json }}`
 })
 export class StatisticsViewComponent {
 
+  @Input() stats: any;
 }

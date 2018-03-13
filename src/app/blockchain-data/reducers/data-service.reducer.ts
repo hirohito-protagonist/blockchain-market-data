@@ -25,6 +25,12 @@ const initialState: DataServiceState = {
     response: null,
     lastUpdate: 0,
     query: null
+  },
+  [DataServiceType.Stats]: {
+    isFetching: false,
+    response: null,
+    lastUpdate: 0,
+    query: null
   }
 };
 

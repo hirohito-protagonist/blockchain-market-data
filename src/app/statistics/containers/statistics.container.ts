@@ -1,9 +1,31 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+
+import { Store } from '@ngrx/store';
+import {
+  StatisticsState,
+  getStatistics
+} from './../reducers/index.reducer';
+import { Observable } from 'rxjs/Observable';
+
+import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 @Component({
   selector: 'bmd-statistics-container',
-  template: `<bmd-statistics-view></bmd-statistics-view>`
+  template: `<bmd-statistics-view [stats]="stats$ | async"></bmd-statistics-view>`
 })
-export class StatisticsContainerComponent {
+export class StatisticsContainerComponent implements OnInit {
 
+  stats$: Observable<any>;
+
+  constructor(private store: Store<StatisticsState>) {
+
+    this.stats$ = this.store.select(getStatistics);
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(new fromBlockchainDataAction.FetchData({ key: DataServiceType.Stats, query: null }));
+  }
 }

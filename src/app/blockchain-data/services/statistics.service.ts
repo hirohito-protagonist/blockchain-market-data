@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { fromBlockchainDataStatiscticsEntity } from './../entities/index.entity';
+import { fromBlockchainDataStatisticsEntity } from './../entities/index.entity';
 
 
 @Injectable()
@@ -11,9 +11,9 @@ export class StatisticsService {
 
   constructor(private http: HttpClient) {}
 
-  stats(): Observable<fromBlockchainDataStatiscticsEntity.StatisticEntity> {
+  stats(): Observable<fromBlockchainDataStatisticsEntity.StatisticEntity> {
 
-    return this.http.get<fromBlockchainDataStatiscticsEntity.StatisticEntity>(`${this.API_Path}stats?cors=true`);
+    return this.http.get<fromBlockchainDataStatisticsEntity.StatisticEntity>(`${this.API_Path}stats?cors=true`);
   }
 
   pools(timespan: string = '4days'): Observable<{ [key: string]: number; }> {

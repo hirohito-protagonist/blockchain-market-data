@@ -1,7 +1,7 @@
 import * as fromBlockchainDataMarketPriceEntity from './market-price.entity';
-import * as fromBlockchainDataStatiscticsEntity from './statistic.entity';
+import * as fromBlockchainDataStatisticsEntity from './statistic.entity';
 
 export {
   fromBlockchainDataMarketPriceEntity,
-  fromBlockchainDataStatiscticsEntity
+  fromBlockchainDataStatisticsEntity
 };
