@@ -1,8 +1,13 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
   selector: '<bmd-statistics-view></bmd-statistics-view>',
-  template: ` stats data {{ stats | json }}`
+  templateUrl: './statistics.view.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatisticsViewComponent {
 
