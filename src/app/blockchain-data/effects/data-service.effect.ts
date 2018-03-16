@@ -21,59 +21,36 @@ export class DataServiceEffects {
     }))
   );
 
-
   @Effect()
-  responseToBTCData$: Observable<Action> = this.action$.pipe(
-    ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.ToBTC),
-    switchMap((action: fromBlockchainDataAction.FetchData) =>
-      this.exchangeRatesService.tobtc(action.payload.query.currency, (action.payload.query.value as number)).pipe(
-        map((response: number) => [action, response]),
-        catchError(() => of([action, 0]))
-      )
-    ),
-    map(([action, response]) => {
-      return new fromDataServiceAction.Response({
-        key: (action as fromBlockchainDataAction.FetchData).payload.key,
-        response: (response as DataResponseType)
-      });
-    })
+  responseToBTCData$: Observable<Action> = this.responseData$(
+    DataServiceType.ToBTC,
+    (action: fromBlockchainDataAction.FetchData) => this.exchangeRatesService.tobtc(
+      action.payload.query.currency,
+      (action.payload.query.value as number)
+    ).pipe(
+      map((response: number) => [action, response]),
+      catchError(() => of([action, 0]))
+    )
   );
 
   @Effect()
-  responseTcikerData$: Observable<Action> = this.action$.pipe(
-    ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.Ticker),
-    switchMap((action: fromBlockchainDataAction.FetchData) =>
-      this.exchangeRatesService.ticker().pipe(
-        map((response) => [action, (response as DataResponseType)]),
-        catchError(() => of([action, 0]))
-      )
-    ),
-    map(([action, response]) => {
-      return new fromDataServiceAction.Response({
-        key: (action as fromBlockchainDataAction.FetchData).payload.key,
-        response: (response as DataResponseType)
-      });
-    })
+  responseTcikerData$: Observable<Action> = this.responseData$(
+    DataServiceType.Ticker,
+    (action: fromBlockchainDataAction.FetchData) =>
+    this.exchangeRatesService.ticker().pipe(
+      map((response) => [action, (response as DataResponseType)]),
+      catchError(() => of([action, 0]))
+    )
   );
 
   @Effect()
-  responseStatsData$: Observable<Action> = this.action$.pipe(
-    ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === DataServiceType.Stats),
-    switchMap((action: fromBlockchainDataAction.FetchData) =>
-      this.statisticsService.stats().pipe(
-        map((response) => [action, (response as DataResponseType)]),
-        catchError(() => of([action, 0]))
-      )
-    ),
-    map(([action, response]) => {
-      return new fromDataServiceAction.Response({
-        key: (action as fromBlockchainDataAction.FetchData).payload.key,
-        response: (response as DataResponseType)
-      });
-    })
+  responseStatsData$: Observable<Action> = this.responseData$(
+    DataServiceType.Stats,
+    (action: fromBlockchainDataAction.FetchData) =>
+    this.statisticsService.stats().pipe(
+      map((response) => [action, (response as DataResponseType)]),
+      catchError(() => of([action, 0]))
+    )
   );
 
   constructor(
@@ -81,4 +58,18 @@ export class DataServiceEffects {
     private exchangeRatesService: ExchangeRatesService,
     private statisticsService: StatisticsService
   ) {}
+
+  responseData$(serviceType: DataServiceType, fn: Function): Observable<Action> {
+    return this.action$.pipe(
+      ofType(fromBlockchainDataAction.ActionTypes.FetchData),
+      filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === serviceType),
+      switchMap((action: fromBlockchainDataAction.FetchData) => fn(action)),
+      map(([action, response]) => {
+        return new fromDataServiceAction.Response({
+          key: (action as fromBlockchainDataAction.FetchData).payload.key,
+          response: (response as DataResponseType)
+        });
+      })
+    );
+  }
 }
