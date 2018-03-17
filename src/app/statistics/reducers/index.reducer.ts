@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
+import { StatisticsInfo } from './../statistics.type';
 
 export interface StatisticsState {
   version: string;
@@ -17,5 +18,5 @@ export const reducers = {
 
 export const getStatistics = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats), (s) => {
 
-  return s.response || {};
+  return (s.response as StatisticsInfo) || ({} as StatisticsInfo);
 });

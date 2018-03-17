@@ -10,7 +10,9 @@ import {
 } from './../reducers/index.reducer';
 import { Observable } from 'rxjs/Observable';
 
+import { StatisticsInfo } from './../statistics.type';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
+
 
 @Component({
   selector: 'bmd-statistics-container',
@@ -18,7 +20,7 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
 })
 export class StatisticsContainerComponent implements OnInit {
 
-  stats$: Observable<any>;
+  stats$: Observable<StatisticsInfo>;
 
   constructor(private store: Store<StatisticsState>) {
 

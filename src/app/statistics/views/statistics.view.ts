@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
+import { StatisticsInfo } from './../statistics.type';
+
 @Component({
   selector: '<bmd-statistics-view></bmd-statistics-view>',
   templateUrl: './statistics.view.html',
@@ -11,5 +13,5 @@ import {
 })
 export class StatisticsViewComponent {
 
-  @Input() stats: any;
+  @Input() stats: StatisticsInfo;
 }
