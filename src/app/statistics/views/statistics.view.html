@@ -1,8 +1,13 @@
-<div class="alert alert-info" role="alert">
-  {{ stats.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}
-</div>
 
 <div class="container">
+  <div class="row">
+    <div class="col pb-2">
+      <button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
+      <span class="alert alert-light" role="alert">
+          Last update: {{ stats.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}
+      </span>
+    </div>
+  </div>
   <div class="row">
 
     <div class="col">

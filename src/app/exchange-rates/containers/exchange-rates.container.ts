@@ -22,7 +22,7 @@ import { Observable } from 'rxjs/Observable';
       [currencies]="currencies$ | async"
       [convert]="convert$ | async"
       (convertToBtc)="convertToBtc($event)"></bmd-converter-view>
-    <bmd-market-prices-view [prices]="data$ | async"></bmd-market-prices-view>
+    <bmd-market-prices-view [prices]="data$ | async" (refresh)="requestMarkerPrices()"></bmd-market-prices-view>
   `
 })
 export class ExchangeRatesContainerComponent implements OnInit {
@@ -39,10 +39,14 @@ export class ExchangeRatesContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new fromMarketPricesAction.FetchData());
+    this.requestMarkerPrices();
   }
 
   convertToBtc(convert: ConvertToBTC) {
     this.store.dispatch(new fromConvertBtcAction.Convert(convert));
+  }
+
+  requestMarkerPrices() {
+    this.store.dispatch(new fromMarketPricesAction.FetchData());
   }
 }

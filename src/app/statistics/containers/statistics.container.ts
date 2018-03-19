@@ -16,7 +16,7 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
 
 @Component({
   selector: 'bmd-statistics-container',
-  template: `<bmd-statistics-view [stats]="stats$ | async"></bmd-statistics-view>`
+  template: `<bmd-statistics-view [stats]="stats$ | async" (refresh)="requestStatistics()"></bmd-statistics-view>`
 })
 export class StatisticsContainerComponent implements OnInit {
 
@@ -28,6 +28,10 @@ export class StatisticsContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.requestStatistics();
+  }
+
+  requestStatistics() {
     this.store.dispatch(new fromBlockchainDataAction.FetchData({ key: DataServiceType.Stats, query: null }));
   }
 }

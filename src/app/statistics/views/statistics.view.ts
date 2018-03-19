@@ -1,6 +1,8 @@
 import {
   Component,
   Input,
+  Output,
+  EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
 
@@ -14,4 +16,6 @@ import { StatisticsInfo } from './../statistics.type';
 export class StatisticsViewComponent {
 
   @Input() stats: StatisticsInfo;
+
+  @Output() refresh = new EventEmitter<void>();
 }
