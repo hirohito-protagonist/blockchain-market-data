@@ -21,17 +21,45 @@ describe('Data service reducer', () => {
 
   describe('[Blockchain data] data service request action', () => {
 
-    it('should set isFetching as true and update query', () => {
+    [
+      {
+        serviceType: DataServiceType.ToBTC,
+        query: { currency: 'USD', value: 200 },
+        expected: {
+          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'tobtc': { isFetching: true, response: null, lastUpdate: 0, query: { currency: 'USD', value: 200 } },
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        }
+      },
+      {
+        serviceType: DataServiceType.Stats,
+        query: null,
+        expected: {
+          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'stats': { isFetching: true, response: null, lastUpdate: 0, query: null }
+        }
+      },
+      {
+        serviceType: DataServiceType.Ticker,
+        query: null,
+        expected: {
+          'ticker': { isFetching: true, response: null, lastUpdate: 0, query: null },
+          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        }
+      }
+    ].forEach((testData) => {
 
-      const action = new fromDataServiceAction.Request({ key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 } });
-      const result = reducer(void(0), action);
+      it(`should set isFetching as true and update query for ${testData.serviceType}`, () => {
 
-      expect(result).toEqual({
-        'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'tobtc': { isFetching: true, response: null, lastUpdate: 0, query: { currency: 'USD', value: 200 } },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        const action = new fromDataServiceAction.Request({ key: testData.serviceType, query: testData.query });
+        const result = reducer(void(0), action);
+
+        expect(result).toEqual(testData.expected);
       });
     });
+
 
     it('should not update state for undefined node', () => {
 
@@ -48,21 +76,52 @@ describe('Data service reducer', () => {
 
   describe('[Blockchain data] data service response action', () => {
 
-    it('should set isFetching as false and update response', () => {
+    [
+      {
+        serviceType: DataServiceType.ToBTC,
+        query: { currency: 'USD', value: 200 },
+        response: 123,
+        expected: {
+          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'tobtc': { isFetching: false, response: 123, lastUpdate: 123, query: { currency: 'USD', value: 200 } },
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        }
+      },
+      {
+        serviceType: DataServiceType.Stats,
+        query: null,
+        response: {},
+        expected: {
+          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'stats': { isFetching: false, response: {}, lastUpdate: 123, query: null }
+        }
+      },
+      {
+        serviceType: DataServiceType.Ticker,
+        query: null,
+        response: {},
+        expected: {
+          'ticker': { isFetching: false, response: {}, lastUpdate: 123, query: null },
+          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        }
+      }
+    ].forEach((testData) => {
 
-      spyOn(Date, 'now').and.returnValue(123);
+      it(`should set isFetching as false and update response for ${testData.serviceType}`, () => {
 
-      const requestAction = new fromDataServiceAction.Request({ key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 } });
-      const requestResult = reducer(void(0), requestAction);
-      const responseAction = new fromDataServiceAction.Response({ key: DataServiceType.ToBTC, response: 123 });
-      const responseResult = reducer(requestResult, responseAction);
+        spyOn(Date, 'now').and.returnValue(123);
 
-      expect(responseResult).toEqual({
-        'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'tobtc': { isFetching: false, response: 123, lastUpdate: 123, query: { currency: 'USD', value: 200 } },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        const requestAction = new fromDataServiceAction.Request({ key: testData.serviceType, query: testData.query });
+        const requestResult = reducer(void(0), requestAction);
+        const responseAction = new fromDataServiceAction.Response({ key: testData.serviceType, response: testData.response });
+        const responseResult = reducer(requestResult, responseAction);
+
+        expect(responseResult).toEqual(testData.expected);
       });
     });
+
 
     it('should not update state for undefined node', () => {
 
