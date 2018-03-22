@@ -124,3 +124,20 @@
   </div>
 
 </div>
+
+
+<h3>Fake chart</h3>
+<ngx-charts-line-chart
+[view]="[700, 400]"
+[scheme]="{ domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] }"
+[results]="tempChartData"
+[gradient]="false"
+[xAxis]="true"
+[yAxis]="true"
+[legend]="true"
+[showXAxisLabel]="true"
+[showYAxisLabel]="true"
+[yAxisLabel]="'Transaction Per Second'"
+[xAxisLabel]="'Date'"
+[autoScale]="true">
+</ngx-charts-line-chart>

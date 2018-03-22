@@ -1,5 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { StoreModule } from '@ngrx/store';
 
@@ -11,6 +13,8 @@ import { StatisticsViewComponent } from './views/statistics.view';
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
+    NgxChartsModule,
     StoreModule.forFeature('statistics', reducers),
   ],
   declarations: [ StatisticsContainerComponent, StatisticsViewComponent ],
