@@ -5,7 +5,7 @@ import { Action } from '@ngrx/store';
 import { fromDataServiceAction, fromBlockchainDataAction } from './../actions/index.action';
 import { map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { DataServiceType, DataResponseType } from './../blockchain-data.type';
+import { DataServiceType, DataResponseType, ChartsQuery, BTCQuery } from './../blockchain-data.type';
 import { ExchangeRatesService } from './../services/exchange-rates.service';
 import { StatisticsService } from './../services/statistics.service';
 
@@ -25,8 +25,8 @@ export class DataServiceEffects {
   responseToBTCData$: Observable<Action> = this.responseData$(
     DataServiceType.ToBTC,
     (action: fromBlockchainDataAction.FetchData) => this.exchangeRatesService.tobtc(
-      action.payload.query.currency,
-      (action.payload.query.value as number)
+      (action.payload.query as BTCQuery).currency,
+      (action.payload.query as BTCQuery).value as number
     ).pipe(
       map((response: number) => [action, response]),
       catchError(() => of([action, 0]))
@@ -48,6 +48,16 @@ export class DataServiceEffects {
     DataServiceType.Stats,
     (action: fromBlockchainDataAction.FetchData) =>
     this.statisticsService.stats().pipe(
+      map((response) => [action, (response as DataResponseType)]),
+      catchError(() => of([action, 0]))
+    )
+  );
+
+  @Effect()
+  responseChartsData$: Observable<Action> = this.responseData$(
+    DataServiceType.Charts,
+    (action: fromBlockchainDataAction.FetchData) =>
+    this.statisticsService.charts(action.payload.query as ChartsQuery).pipe(
       map((response) => [action, (response as DataResponseType)]),
       catchError(() => of([action, 0]))
     )

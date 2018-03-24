@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
+import { fromBlockchainDataSelectors, DataServiceType, BTCQuery } from '@bmd/blockchain-data';
 import { MarketPrices } from './../exchange-rates.type';
 
 export interface ExchangeRatesState {
@@ -23,11 +23,13 @@ export const getMarketPricesData = createSelector(fromBlockchainDataSelectors.ge
 
 export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.ToBTC), (s) => {
 
+  const query = s.query as BTCQuery;
+
   return {
     isFetching: s.isFetching,
     convert: {
-      value: s.query ? s.query.value : '',
-      currency: s.query ? s.query.currency : '',
+      value: query ? query.value : '',
+      currency: query ? query.currency : '',
       btc: (s.response as number)
     },
     lastUpdate: s.lastUpdate

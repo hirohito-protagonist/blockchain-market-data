@@ -10,7 +10,7 @@ import { ExchangeRatesService } from './services/exchange-rates.service';
 import { StatisticsService } from './services/statistics.service';
 
 import { fromBlockchainDataAction } from './actions/index.action';
-import { DataServiceType } from './blockchain-data.type';
+import { DataServiceType, BTCQuery, ChartsQuery } from './blockchain-data.type';
 import { DataServiceEffects } from './effects/data-service.effect';
 
 const fromBlockchainDataSelectors = { lastUpdate, response, getServiceDataNode };
@@ -18,7 +18,9 @@ const fromBlockchainDataSelectors = { lastUpdate, response, getServiceDataNode }
 export {
   fromBlockchainDataAction,
   fromBlockchainDataSelectors,
-  DataServiceType
+  DataServiceType,
+  BTCQuery,
+  ChartsQuery
 };
 
 

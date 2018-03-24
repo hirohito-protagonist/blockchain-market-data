@@ -6,7 +6,8 @@ import {
 export enum DataServiceType {
   Ticker = 'ticker',
   ToBTC = 'tobtc',
-  Stats = 'stats'
+  Stats = 'stats',
+  Charts = 'charts'
 }
 
 export interface BTCQuery {
@@ -14,7 +15,16 @@ export interface BTCQuery {
   currency: string;
 }
 
-export type QueryType = BTCQuery | null;
+export interface ChartsQuery {
+  name: string;
+  timespan: string;
+  rollingAverage: string;
+  start: string;
+  format: string;
+  sampled: boolean;
+}
+
+export type QueryType = BTCQuery | ChartsQuery | null;
 
 export type DataResponseType = fromBlockchainDataMarketPriceEntity.MarketPricesEntities |
 fromBlockchainDataStatisticsEntity.StatisticEntity | number;

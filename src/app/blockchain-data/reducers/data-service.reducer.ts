@@ -31,6 +31,12 @@ const initialState: DataServiceState = {
     response: null,
     lastUpdate: 0,
     query: null
+  },
+  [DataServiceType.Charts]: {
+    isFetching: false,
+    response: null,
+    lastUpdate: 0,
+    query: null
   }
 };
 

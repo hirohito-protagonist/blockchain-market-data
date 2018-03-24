@@ -20,3 +20,19 @@ export const getStatistics = createSelector(fromBlockchainDataSelectors.getServi
 
   return (s.response as StatisticsInfo) || ({} as StatisticsInfo);
 });
+
+export const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
+
+  if (s.response) {
+    const v = s.response['values'] || [];
+    return [{
+      name: s.response['name'],
+      series: v.map((d) => {
+
+        return { name: String(new Date(d['x'] * 1000).toUTCString()), value: d['y'] };
+      })
+    }];
+  }
+
+  return null;
+});

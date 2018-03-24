@@ -14,7 +14,8 @@ describe('Data service reducer', () => {
       expect(result).toEqual({
         'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
         'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+        'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
       });
     });
   });
@@ -28,7 +29,8 @@ describe('Data service reducer', () => {
         expected: {
           'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
           'tobtc': { isFetching: true, response: null, lastUpdate: 0, query: { currency: 'USD', value: 200 } },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
         }
       },
       {
@@ -37,7 +39,8 @@ describe('Data service reducer', () => {
         expected: {
           'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
           'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: true, response: null, lastUpdate: 0, query: null }
+          'stats': { isFetching: true, response: null, lastUpdate: 0, query: null },
+          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
         }
       },
       {
@@ -46,7 +49,8 @@ describe('Data service reducer', () => {
         expected: {
           'ticker': { isFetching: true, response: null, lastUpdate: 0, query: null },
           'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
         }
       }
     ].forEach((testData) => {
@@ -69,7 +73,8 @@ describe('Data service reducer', () => {
       expect(result).toEqual({
         'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
         'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+        'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
       });
     });
   });
@@ -84,7 +89,8 @@ describe('Data service reducer', () => {
         expected: {
           'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
           'tobtc': { isFetching: false, response: 123, lastUpdate: 123, query: { currency: 'USD', value: 200 } },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
         }
       },
       {
@@ -94,7 +100,8 @@ describe('Data service reducer', () => {
         expected: {
           'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
           'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: false, response: {}, lastUpdate: 123, query: null }
+          'stats': { isFetching: false, response: {}, lastUpdate: 123, query: null },
+          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
         }
       },
       {
@@ -104,7 +111,8 @@ describe('Data service reducer', () => {
         expected: {
           'ticker': { isFetching: false, response: {}, lastUpdate: 123, query: null },
           'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
         }
       }
     ].forEach((testData) => {
@@ -133,7 +141,8 @@ describe('Data service reducer', () => {
       expect(responseResult).toEqual({
         'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
         'tobtc': { isFetching: true, response: null, lastUpdate: 0, query: { currency: 'USD', value: 200 } },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null }
+        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
+        'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
       });
     });
   });

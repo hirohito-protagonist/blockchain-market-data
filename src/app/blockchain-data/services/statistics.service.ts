@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { fromBlockchainDataStatisticsEntity } from './../entities/index.entity';
+import { ChartsQuery } from './../blockchain-data.type';
 
 
 @Injectable()
@@ -21,21 +22,23 @@ export class StatisticsService {
     return this.http.get<{ [key: string]: number; }>(`${this.API_Path}pools?cors=true&timespan=${timespan}`);
   }
 
-  charts(
-    name: string,
-    timespan: string = '1year',
-    rollingAverage: string = '',
-    start: string = '',
-    format: string = 'json',
-    sampled: boolean = true
-  ): Observable<any> {
+  charts(query: ChartsQuery): Observable<any> {
 
-    return this.http.get<any>(`${this.API_Path}charts/${name}/?cors=true
-      &timespan=${timespan}
-      &rollingAverage=${rollingAverage}
-      &start=${start}
-      &format=${format}
-      &sampled=${sampled}`
-    );
+    const q = {
+      timespan: '1year',
+      rollingAverage: '',
+      start: '',
+      format: 'json',
+      sampled: true,
+      ...query
+    };
+
+    return this.http.get<any>(`${this.API_Path}charts/${q.name}/?cors=true` + [
+      `&timespan=${q.timespan}`,
+      `&rollingAverage=${q.rollingAverage}`,
+      `&start=${q.start}`,
+      `&format=${q.format}`,
+      `&sampled=${q.sampled}`
+    ].join(''));
   }
 }
