@@ -20,4 +20,31 @@ export class StatisticsViewComponent {
 
   @Output() refresh = new EventEmitter<void>();
 
+  lineChartOptions = {
+    responsive: true,
+    animation: {
+      duration: 0
+    },
+    hover: {
+        animationDuration: 0
+    },
+    responsiveAnimationDuration: 0,
+    elements: {
+      line: {
+        fill: false,
+        tension: 0
+      }
+    }
+  };
+
+  lineChartColors = [
+    {
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    }
+  ];
 }

@@ -25,13 +25,11 @@ export const getChartsData = createSelector(fromBlockchainDataSelectors.getServi
 
   if (s.response) {
     const v = s.response['values'] || [];
-    return [{
+    return {
       name: s.response['name'],
-      series: v.map((d) => {
-
-        return { name: String(new Date(d['x'] * 1000).toUTCString()), value: d['y'] };
-      })
-    }];
+      data: v.map((d) => d['y']),
+      labels: v.map((d) => String(new Date(d['x'] * 1000).toUTCString()))
+    };
   }
 
   return null;

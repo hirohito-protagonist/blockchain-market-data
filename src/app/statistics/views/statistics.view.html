@@ -122,21 +122,22 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col">
+      <ng-container *ngIf="transPerSeconds">
+          <h5>{{ transPerSeconds.name }}</h5>
+          <canvas baseChart width="400" height="400"
+          [data]="transPerSeconds.data"
+          [labels]="transPerSeconds.labels"
+          [options]="lineChartOptions"
+          [legend]="false"
+          [colors]="lineChartColors"
+          [chartType]="'line'"
+          ></canvas>
+      </ng-container>
+    </div>
+  </div>
 </div>
-
-
-  <ng-container *ngIf="transPerSeconds">
-    <ngx-charts-line-chart
-      [results]="transPerSeconds"
-      [xAxis]="true"
-      [yAxis]="true"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [yAxisLabel]="'Transaction Per Second'"
-      [xAxisLabel]="'Date'"
-      [animations]="false"
-      [autoScale]="true">
-    </ngx-charts-line-chart>
-  </ng-container>
 
 
