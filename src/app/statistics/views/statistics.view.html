@@ -125,6 +125,16 @@
 
   <div class="row">
     <div class="col">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('24h')">1 day</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('1week')">1 week</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('30days')">30 days</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('60days')">60 days</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('180days')">180 days</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('1year')">1 year</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('2year')">2 year</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('all')">All time</button>
+      </div>
       <ng-container *ngIf="transPerSeconds">
           <h5>{{ transPerSeconds.name }}</h5>
           <canvas baseChart width="400" height="400"

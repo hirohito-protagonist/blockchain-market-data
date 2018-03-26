@@ -19,6 +19,7 @@ export class StatisticsViewComponent {
   @Input() transPerSeconds: any;
 
   @Output() refresh = new EventEmitter<void>();
+  @Output() chartTimeSpan = new EventEmitter<string>();
 
   lineChartOptions = {
     responsive: true,

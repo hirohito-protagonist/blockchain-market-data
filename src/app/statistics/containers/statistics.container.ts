@@ -21,7 +21,9 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
     <bmd-statistics-view
       [stats]="stats$ | async"
       [transPerSeconds]="transPerSecondsData$ | async"
-      (refresh)="requestStatistics()">
+      (refresh)="requestStatistics()"
+      (chartTimeSpan)="chartTimeSpan($event)"
+      >
     </bmd-statistics-view>
   `
 })
@@ -53,5 +55,19 @@ export class StatisticsContainerComponent implements OnInit {
 
   requestStatistics() {
     this.store.dispatch(new fromBlockchainDataAction.FetchData({ key: DataServiceType.Stats, query: null }));
+  }
+
+  chartTimeSpan(timespan: string) {
+    this.store.dispatch(new fromBlockchainDataAction.FetchData({
+      key: DataServiceType.Charts,
+      query: {
+        name: 'transactions-per-second',
+        start: '',
+        timespan,
+        rollingAverage: '',
+        format: 'json',
+        sampled: true
+      }
+    }));
   }
 }
