@@ -16,12 +16,14 @@ import { StatisticsInfo } from './../statistics.type';
 export class StatisticsViewComponent {
 
   @Input() stats: StatisticsInfo;
-  @Input() transPerSeconds: any;
+  @Input() chartData: any;
 
   @Output() refresh = new EventEmitter<void>();
   @Output() chartTimeSpan = new EventEmitter<string>();
+  @Output() chartName = new EventEmitter<string>();
 
   lineChartOptions = {
+
     responsive: true,
     animation: {
       duration: 0

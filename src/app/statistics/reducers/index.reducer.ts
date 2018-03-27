@@ -27,6 +27,8 @@ export const getChartsData = createSelector(fromBlockchainDataSelectors.getServi
     const v = s.response['values'] || [];
     return {
       name: s.response['name'],
+      unit: s.response['unit'],
+      description: s.response['description'],
       data: v.map((d) => d['y']),
       labels: v.map((d) => String(new Date(d['x'] * 1000).toUTCString()))
     };
