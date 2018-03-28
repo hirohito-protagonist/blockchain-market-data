@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { StoreModule } from '@ngrx/store';
@@ -18,6 +19,7 @@ import { reducers, metaReducers } from './store';
     BrowserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
+    NgbModule.forRoot(),
     CoreModule.forRoot(),
     ExchangeRatesModule.forRoot(),
     BlockchainDataModule.forRoot(),

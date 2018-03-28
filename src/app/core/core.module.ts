@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreAppContainerComponent } from './containers/app.container';
@@ -19,6 +20,7 @@ import { reducers } from './reducers/index.reducer';
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     ExchangeRatesModule,
     StatisticsModule,
     StoreModule.forFeature('core', reducers)

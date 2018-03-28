@@ -5,31 +5,32 @@ body {
   overflow: hidden;
 }
 
-.c-sidebar {
-  position: fixed;
-  top: 48px;
-  bottom: 0;
+.o-stretch-max {
+  position: absolute;
+  top: 0px;
   left: 0;
-  // z-index: 100; /* Behind the navbar */
-  padding: 0;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
-
-
-
-.c-sidebar-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 48px; /* Height of navbar */
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto;
+  right: 0;
+  bottom: 0;
 }
 
 .c-main {
-  overflow-x: hidden;
-  overflow-y: auto;
-  top: 48px; /* Height of navbar */
-  height: calc(100vh - 48px);
+  @extend .o-stretch-max;
+  top: 48px;
+
+  .c-main__content {
+    @extend .d-block;
+    @extend .o-stretch-max;
+  }
+}
+
+
+.tab-content {
+  @extend .o-stretch-max;
+  top: 42px;
+
+  .tab-pane {
+    @extend .o-stretch-max;
+    @extend .p-2;
+    overflow-y: scroll;
+  }
 }

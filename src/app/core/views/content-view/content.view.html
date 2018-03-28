@@ -1,9 +1,12 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h2>{{ activeView }}</h2>
-</div>
-<ng-container *ngIf="activeView == layoutView.ExchangeRate">
-  <bmd-exchange-rates-container></bmd-exchange-rates-container>
-</ng-container>
-<ng-container *ngIf="activeView == layoutView.Statistic">
-  <bmd-statistics-container></bmd-statistics-container>
-</ng-container>
+<ngb-tabset>
+  <ngb-tab title="Exchange Rate">
+    <ng-template ngbTabContent>
+      <bmd-exchange-rates-container></bmd-exchange-rates-container>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Statistics">
+    <ng-template ngbTabContent>
+      <bmd-statistics-container></bmd-statistics-container>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
