@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <select (change)="chartName.emit($event.target.value)">
+        <optgroup label="Currency statistics">
+          <option value="total-bitcoins">Bitcoins in circulation</option>
+          <option value="market-price">Market Price (USD)</option>
+          <option value="market-cap">Market Capitalization</option>
+          <option value="trade-volume">USD Exchange Trade Volume</option>
+        </optgroup>
+        <optgroup label="Block details">
+          <option value="blocks-size">Blockchain Size</option>
+          <option value="avg-block-size">Average Block Size</option>
+          <option value="n-orphaned-blocks">Number Of Orphaned Blocks</option>
+          <option value="n-transactions-per-block">Average Number Of Transactions Per Block</option>
+          <option value="median-confirmation-time">Median Confirmation Time</option>
+        </optgroup>
+        <optgroup label="Mining information">
+          <option value="hash-rate">Hash Rate</option>
+          <option value="difficulty">Difficulty</option>
+          <option value="miners-revenue">Miners Revenue</option>
+          <option value="transaction-fees">Total Transaction Fees</option>
+          <option value="transaction-fees-usd">Total Transaction Fees in USD</option>
+          <option value="cost-per-transaction-percent">Cost % of Transaction Volume</option>
+          <option value="cost-per-transaction">Cost per Transaction</option>
+        </optgroup>
+        <optgroup label="Network activity">
+          <option value="n-unique-addresses">Number Of Unique Addresses Used</option>
+          <option value="n-transactions">Confirmed Transactions Per Day</option>
+          <option value="n-transactions-total">Total Number of Transactions</option>
+          <option value="transactions-per-second" selected>Transaction Rate</option>
+          <option value="mempool-count">Mempool Transaction Count</option>
+          <option value="mempool-growth">Mempool Size Growth</option>
+          <option value="mempool-size">Mempool Size</option>
+          <option value="utxo-count">Number of Unspent Transaction Outputs</option>
+          <option value="n-transactions-excluding-popular">Number of Transactions Excluding Popular Addresses</option>
+          <option value="n-transactions-excluding-chains-longer-than-100">Number Of Transactions Excluding Chains Longer Than 100</option>
+          <option value="output-volume">Output Value</option>
+          <option value="estimated-transaction-volume">Estimated Transaction Value</option>
+          <option value="estimated-transaction-volume-usd">Estimated USD Transaction Value</option>
+        </optgroup>
+        <optgroup label="Blockchain Wallet Activity">
+          <option value="my-wallet-n-users">Blockchain Wallet Users</option>
+        </optgroup>
+      </select>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('24h')">1 day</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('1week')">1 week</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('30days')">30 days</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('60days')">60 days</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('180days')">180 days</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('1year')">1 year</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('2year')">2 year</button>
+        <button type="button" class="btn btn-secondary" (click)="chartTimeSpan.emit('all')">All time</button>
+      </div>
+      <ng-container *ngIf="chartData">
+          <h5>{{ chartData.name }}</h5>
+          <p>{{ chartData.description }}</p>
+          <canvas baseChart width="400" height="400"
+          [data]="chartData.data"
+          [labels]="chartData.labels"
+          [options]="lineChartOptions"
+          [legend]="false"
+          [colors]="lineChartColors"
+          [chartType]="'line'"
+          ></canvas>
+      </ng-container>
+    </div>
+  </div>
+</div>

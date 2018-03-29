@@ -10,6 +10,8 @@ import { reducers } from './reducers/index.reducer';
 
 import { StatisticsContainerComponent } from './containers/statistics.container';
 import { StatisticsViewComponent } from './views/statistics.view';
+import { ChartsContainerComponent } from './containers/charts.container';
+import { ChartsViewComponent } from './views/charts.view';
 
 @NgModule({
   imports: [
@@ -19,8 +21,16 @@ import { StatisticsViewComponent } from './views/statistics.view';
     NgxChartsModule,
     StoreModule.forFeature('statistics', reducers),
   ],
-  declarations: [ StatisticsContainerComponent, StatisticsViewComponent ],
-  exports: [ StatisticsContainerComponent ]
+  declarations: [
+    StatisticsContainerComponent,
+    ChartsContainerComponent,
+    StatisticsViewComponent,
+    ChartsViewComponent
+  ],
+  exports: [
+    StatisticsContainerComponent,
+    ChartsContainerComponent
+  ]
 })
 export class StatisticsModule {
 
