@@ -5,6 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
+import { Chart } from './../statistics.type';
 
 @Component({
   selector: '<bmd-charts-view></bmd-charts-view>',
@@ -13,28 +14,10 @@ import {
 })
 export class ChartsViewComponent {
 
-  @Input() chartData: any;
+  @Input() chartData: Chart;
 
   @Output() chartTimeSpan = new EventEmitter<string>();
   @Output() chartName = new EventEmitter<string>();
-
-  lineChartOptions = {
-
-    responsive: true,
-    animation: {
-      duration: 0
-    },
-    hover: {
-        animationDuration: 0
-    },
-    responsiveAnimationDuration: 0,
-    elements: {
-      line: {
-        fill: false,
-        tension: 0
-      }
-    }
-  };
 
   lineChartColors = [
     {

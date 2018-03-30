@@ -20,3 +20,39 @@ export interface StatisticsInfo {
   'trade_volume_usd': number;
   'timestamp': number;
 }
+
+export interface ChartOptions {
+  responsive: boolean;
+  animation: {
+    duration: number;
+  };
+  hover: {
+      animationDuration: number;
+  };
+  responsiveAnimationDuration: number;
+  elements: {
+    line: {
+      fill: boolean;
+      tension: number;
+    };
+  };
+}
+
+export interface Chart {
+  name: string;
+  unit: string;
+  description: string;
+  data: number[];
+  labels: string[];
+  type: string;
+  options: ChartOptions;
+}
+
+export interface ChartQuery {
+  name: string;
+  start: string;
+  timespan: string;
+  rollingAverage: string;
+  format: string;
+  sampled: boolean;
+}

@@ -59,10 +59,10 @@
           <canvas baseChart width="400" height="400"
           [data]="chartData.data"
           [labels]="chartData.labels"
-          [options]="lineChartOptions"
+          [options]="chartData.options"
           [legend]="false"
           [colors]="lineChartColors"
-          [chartType]="'line'"
+          [chartType]="chartData.type"
           ></canvas>
       </ng-container>
     </div>

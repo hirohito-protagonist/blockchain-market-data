@@ -8,6 +8,7 @@ import {
   StatisticsState,
   getChartsData
 } from './../reducers/index.reducer';
+import { Chart, ChartQuery } from './../statistics.type';
 import { Observable } from 'rxjs/Observable';
 
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
@@ -26,8 +27,8 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
 })
 export class ChartsContainerComponent implements OnInit {
 
-  chartData$: Observable<any>;
-  chartQuery: any;
+  chartData$: Observable<Chart>;
+  chartQuery: ChartQuery;
 
   constructor(private store: Store<StatisticsState>) {
 
@@ -44,10 +45,7 @@ export class ChartsContainerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.store.dispatch(new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.Charts,
-      query: this.chartQuery
-    }));
+    this.requestChart(this.chartQuery);
   }
 
   chartTimeSpan(timespan: string) {
@@ -57,10 +55,7 @@ export class ChartsContainerComponent implements OnInit {
       timespan
     };
 
-    this.store.dispatch(new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.Charts,
-      query: this.chartQuery
-    }));
+    this.requestChart(this.chartQuery);
   }
 
   chartName(name: string) {
@@ -70,9 +65,14 @@ export class ChartsContainerComponent implements OnInit {
       name
     };
 
+    this.requestChart(this.chartQuery);
+  }
+
+  requestChart(query: ChartQuery): void {
+
     this.store.dispatch(new fromBlockchainDataAction.FetchData({
       key: DataServiceType.Charts,
-      query: this.chartQuery
+      query: query
     }));
   }
 }

@@ -30,7 +30,24 @@ export const getChartsData = createSelector(fromBlockchainDataSelectors.getServi
       unit: s.response['unit'],
       description: s.response['description'],
       data: v.map((d) => d['y']),
-      labels: v.map((d) => String(new Date(d['x'] * 1000).toUTCString()))
+      labels: v.map((d) => String(new Date(d['x'] * 1000).toUTCString())),
+      type: 'line',
+      options: {
+        responsive: true,
+        animation: {
+          duration: 0
+        },
+        hover: {
+            animationDuration: 0
+        },
+        responsiveAnimationDuration: 0,
+        elements: {
+          line: {
+            fill: false,
+            tension: 0
+          }
+        }
+      }
     };
   }
 
