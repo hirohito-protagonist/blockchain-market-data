@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <select (change)="chartName.emit($event.target.value)">
+      <select class="form-control" (change)="chartName.emit($event.target.value)">
         <optgroup label="Currency statistics">
           <option value="total-bitcoins">Bitcoins in circulation</option>
           <option value="market-price">Market Price (USD)</option>

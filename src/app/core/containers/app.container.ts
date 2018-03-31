@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'bmd-core-app-container',
   template: `
-    <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0">
+    <nav class="navbar flex-md-nowrap p-0">
       <h1 class="navbar-brand col-sm-3 col-md-2 mr-0">Blockchain Market Data</h1>
     </nav>
     <div class="c-main">

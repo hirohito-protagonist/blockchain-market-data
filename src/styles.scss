@@ -1,3 +1,28 @@
+$primary: #864DD9;
+$body-bg: #2d3035;
+$body-color: #8a8d93;
+$link-color: #8a8d93;
+$border-color: #34373d;
+$card-bg: #2d3035;
+$dropdown-bg: #2d3035;
+$custom-select-bg: #2d3035;
+$list-group-bg: #2d3035;
+$list-group-border-color: $border-color;
+$table-bg: #2d3035;
+$table-border-color: $border-color;
+$input-bg: #2d3035;
+$input-disabled-bg: #2d3035;
+$input-color: #8a8d93;
+$input-border-color: $border-color;
+$input-group-addon-bg: #2d3035;
+$custom-control-indicator-bg: #2d3035;
+$component-active-bg: #2d3035;
+$component-active-color: #2d3035;
+$nav-tabs-border-color: $border-color;
+$nav-tabs-link-active-color: #bfc1c4;
+$nav-tabs-link-active-border-color: $border-color;
+$nav-tabs-link-hover-border-color: $border-color;
+
 /* You can add global styles to this file, and also import other style files */
 @import './../node_modules/bootstrap/scss/bootstrap.scss';
 
@@ -27,6 +52,7 @@ body {
 .tab-content {
   @extend .o-stretch-max;
   top: 42px;
+  background: #22252a;
 
   .tab-pane {
     @extend .o-stretch-max;
