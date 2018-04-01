@@ -1,23 +1,34 @@
-<button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
-<table class="table table-sm mt-2">
-  <thead>
-    <tr>
-      <th scope="col">currency</th>
-      <th scope="col">15m</th>
-      <th scope="col">buy</th>
-      <th scope="col">last</th>
-      <th scope="col">sell</th>
-      <th scope="col">symbol</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let currency of currencies">
-      <th scope="row">{{ currency }}</th>
-      <td>{{ prices[currency]['15m'] }}</td>
-      <td>{{ prices[currency].buy }}</td>
-      <td>{{ prices[currency].last }}</td>
-      <td>{{ prices[currency].sell }}</td>
-      <td>{{ prices[currency].symbol }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+          <div class="card-body">
+            <button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
+            <table class="table table-sm mt-2">
+              <thead>
+                <tr>
+                  <th scope="col">currency</th>
+                  <th scope="col">15m</th>
+                  <th scope="col">buy</th>
+                  <th scope="col">last</th>
+                  <th scope="col">sell</th>
+                  <th scope="col">symbol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let currency of currencies">
+                  <th scope="row">{{ currency }}</th>
+                  <td>{{ prices[currency]['15m'] }}</td>
+                  <td>{{ prices[currency].buy }}</td>
+                  <td>{{ prices[currency].last }}</td>
+                  <td>{{ prices[currency].sell }}</td>
+                  <td>{{ prices[currency].symbol }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

@@ -19,6 +19,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'bmd-exchange-rates-container',
   template: `
     <bmd-converter-view
+      class="navbar"
       [currencies]="currencies$ | async"
       [convert]="convert$ | async"
       (convertToBtc)="convertToBtc($event)"></bmd-converter-view>
