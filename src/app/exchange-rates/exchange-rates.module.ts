@@ -7,8 +7,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers/index.reducer';
 
 import { ExchangeRatesContainerComponent } from './containers/exchange-rates.container';
-import { MarketPricesViewComponent } from './views/market-prices/market-prices.view';
-import { ConverterViewComponent } from './views/converter/converter-view';
+import { MarketPricesViewComponent } from './views/market-prices.view';
+import { ConverterViewComponent } from './views/converter-view';
 
 import { MarketPricesEffects } from './effects/market-prices.effect';
 import { ConvertBtcEffects } from './effects/convert-btc.effect';

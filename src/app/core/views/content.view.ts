@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { fromLayoutReducer } from './../../reducers/index.reducer';
+import { fromLayoutReducer } from './../reducers/index.reducer';
 
 @Component({
   selector: 'bmd-core-content-view',

@@ -4,9 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreAppContainerComponent } from './containers/app.container';
-
-import { CoreSidebarViewComponent } from './views/sidebar-view/sidebar.view';
-import { CoreContentViewComponent } from './views/content-view/content.view';
+import { CoreContentViewComponent }  from './views/content.view';
 
 import { ExchangeRatesModule } from './../exchange-rates/exchange-rates.module';
 import { StatisticsModule } from './../statistics/statistics.module';
@@ -27,7 +25,6 @@ import { reducers } from './reducers/index.reducer';
   ],
   declarations: [
     CoreAppContainerComponent,
-    CoreSidebarViewComponent,
     CoreContentViewComponent
   ]
 })

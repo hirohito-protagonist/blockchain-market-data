@@ -8,7 +8,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-import { MarketPrices } from './../../exchange-rates.type';
+import { MarketPrices } from './../exchange-rates.type';
 
 @Component({
   selector: 'bmd-market-prices-view',
