@@ -6,12 +6,11 @@ import {
 import { Store } from '@ngrx/store';
 import {
   StatisticsState,
-  getStatistics,
-  getChartsData
+  statisticViewModel
 } from './../reducers/index.reducer';
 import { Observable } from 'rxjs/Observable';
 
-import { StatisticsInfo } from './../statistics.type';
+import { StatisticViewModel } from './../model.view';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 
@@ -19,7 +18,7 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
   selector: 'bmd-statistics-container',
   template: `
     <bmd-statistics-view
-      [stats]="stats$ | async"
+      [vModel]="stats$ | async"
       (refresh)="requestStatistics()"
       >
     </bmd-statistics-view>
@@ -27,11 +26,11 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
 })
 export class StatisticsContainerComponent implements OnInit {
 
-  stats$: Observable<StatisticsInfo>;
+  stats$: Observable<StatisticViewModel>;
 
   constructor(private store: Store<StatisticsState>) {
 
-    this.stats$ = this.store.select(getStatistics);
+    this.stats$ = this.store.select(statisticViewModel);
   }
 
   ngOnInit(): void {

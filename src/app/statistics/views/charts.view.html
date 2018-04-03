@@ -53,6 +53,12 @@
       <option value="all">All time</option>
     </select>
   </div>
+  <div>
+    <button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
+    <span class="alert" role="alert">
+        Last update: {{ vModel.update | date: 'yyyy-MM-dd HH:mm:ss' }}
+    </span>
+  </div>
 </nav>
 
 <div class="container-fluid">
@@ -60,16 +66,16 @@
     <div class="col">
       <div class="card">
           <div class="card-body">
-              <ng-container *ngIf="chartData">
-                  <h5>{{ chartData.name }}</h5>
-                  <p>{{ chartData.description }}</p>
+              <ng-container *ngIf="vModel.data">
+                  <h5>{{ vModel.data.name }}</h5>
+                  <p>{{ vModel.data.description }}</p>
                   <canvas baseChart width="400" height="400"
-                  [data]="chartData.data"
-                  [labels]="chartData.labels"
-                  [options]="chartData.options"
+                  [data]="vModel.data.data"
+                  [labels]="vModel.data.labels"
+                  [options]="vModel.data.options"
                   [legend]="false"
                   [colors]="lineChartColors"
-                  [chartType]="chartData.type"
+                  [chartType]="vModel.data.type"
                   ></canvas>
               </ng-container>
           </div>

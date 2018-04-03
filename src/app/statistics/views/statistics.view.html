@@ -1,8 +1,11 @@
 <nav class="navbar">
-  <button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
-  <span class="alert" role="alert">
-      Last update: {{ stats.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}
-  </span>
+  <div></div>
+  <div>
+    <button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
+    <span class="alert" role="alert">
+        Last update: {{ vModel.update | date: 'yyyy-MM-dd HH:mm:ss' }}
+    </span>
+  </div>
 </nav>
 <div class="container-fluid">
   <div class="row">
@@ -14,15 +17,15 @@
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Blocks Mined
-              <span class="badge badge-primary badge-pill">{{ stats.n_blocks_mined }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.n_blocks_mined }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Time Between Blocks (minutes)
-              <span class="badge badge-primary badge-pill">{{ stats.minutes_between_blocks }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.minutes_between_blocks }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Bitcoins Mined (BTC)
-              <span class="badge badge-primary badge-pill">{{ stats.n_btc_mined }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.n_btc_mined }}</span>
             </li>
           </ul>
         </div>
@@ -36,15 +39,15 @@
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Market Price ($)
-              <span class="badge badge-primary badge-pill">{{ stats.market_price_usd | currency: 'USD' }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.market_price_usd | currency: 'USD' }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Trade Volume ($)
-              <span class="badge badge-primary badge-pill">{{ stats.trade_volume_usd  | currency: 'USD' }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.trade_volume_usd  | currency: 'USD' }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Trade Volume (BTC)
-              <span class="badge badge-primary badge-pill">{{ stats.trade_volume_btc }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.trade_volume_btc }}</span>
             </li>
           </ul>
         </div>
@@ -61,23 +64,23 @@
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Total Transaction Fees (BTC)
-              <span class="badge badge-primary badge-pill">{{ stats.total_fees_btc }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.total_fees_btc }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Number of Transactions
-              <span class="badge badge-primary badge-pill">{{ stats.n_tx | number }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.n_tx | number }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Total Output Volume (BTC)
-              <span class="badge badge-primary badge-pill">{{ stats.total_btc_sent }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.total_btc_sent }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Estimated Transaction Volume (BTC)
-              <span class="badge badge-primary badge-pill">{{ stats.estimated_btc_sent }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.estimated_btc_sent }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Estimated Transaction Volume (USD)
-              <span class="badge badge-primary badge-pill">{{ stats.estimated_transaction_volume_usd | currency: 'USD' }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.estimated_transaction_volume_usd | currency: 'USD' }}</span>
             </li>
           </ul>
         </div>
@@ -94,7 +97,7 @@
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Total Miners Revenue (USD)
-              <span class="badge badge-primary badge-pill">{{ stats.miners_revenue_usd | currency: 'USD' }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.miners_revenue_usd | currency: 'USD' }}</span>
             </li>
           </ul>
         </div>
@@ -108,11 +111,11 @@
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Difficulty
-              <span class="badge badge-primary badge-pill">{{ stats.difficulty | number }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.difficulty | number }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Hash Rate (GH/s)
-              <span class="badge badge-primary badge-pill">{{ stats.hash_rate | number }}</span>
+              <span class="badge badge-primary badge-pill">{{ vModel.data.hash_rate | number }}</span>
             </li>
           </ul>
         </div>

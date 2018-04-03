@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { StatisticsInfo } from './../statistics.type';
+import { StatisticViewModel } from './../model.view';
 
 @Component({
   selector: '<bmd-statistics-view></bmd-statistics-view>',
@@ -15,7 +15,7 @@ import { StatisticsInfo } from './../statistics.type';
 })
 export class StatisticsViewComponent {
 
-  @Input() stats: StatisticsInfo;
+  @Input() vModel: StatisticViewModel;
 
   @Output() refresh = new EventEmitter<void>();
 }

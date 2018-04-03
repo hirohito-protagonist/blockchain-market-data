@@ -6,9 +6,10 @@ import {
 import { Store } from '@ngrx/store';
 import {
   StatisticsState,
-  getChartsData
+  viewChartModel
 } from './../reducers/index.reducer';
-import { Chart, ChartQuery } from './../statistics.type';
+import { ChartQuery } from './../statistics.type';
+import { ChartViewModel } from './../model.view';
 import { Observable } from 'rxjs/Observable';
 
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
@@ -18,21 +19,22 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
   selector: 'bmd-statistics-charts-container',
   template: `
     <bmd-charts-view
-      [chartData]="chartData$ | async"
+      [vModel]="chartViewModel$ | async"
       (chartTimeSpan)="chartTimeSpan($event)"
       (chartName)="chartName($event)"
+      (refresh)="refreshChart()"
       >
     </bmd-charts-view>
   `
 })
 export class ChartsContainerComponent implements OnInit {
 
-  chartData$: Observable<Chart>;
+  chartViewModel$: Observable<ChartViewModel>;
   chartQuery: ChartQuery;
 
   constructor(private store: Store<StatisticsState>) {
 
-    this.chartData$ = this.store.select(getChartsData);
+    this.chartViewModel$ = this.store.select(viewChartModel);
     this.chartQuery = {
       name: 'transactions-per-second',
       start: '',
@@ -44,6 +46,11 @@ export class ChartsContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.requestChart(this.chartQuery);
+  }
+
+  refreshChart(): void {
 
     this.requestChart(this.chartQuery);
   }

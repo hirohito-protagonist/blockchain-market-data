@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { Chart } from './../statistics.type';
+import { ChartViewModel } from './../model.view';
 
 @Component({
   selector: '<bmd-charts-view></bmd-charts-view>',
@@ -14,10 +14,11 @@ import { Chart } from './../statistics.type';
 })
 export class ChartsViewComponent {
 
-  @Input() chartData: Chart;
+  @Input() vModel: ChartViewModel;
 
   @Output() chartTimeSpan = new EventEmitter<string>();
   @Output() chartName = new EventEmitter<string>();
+  @Output() refresh = new EventEmitter<void>();
 
   lineChartColors = [
     {

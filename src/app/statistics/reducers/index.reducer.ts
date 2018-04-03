@@ -16,12 +16,25 @@ export const reducers = {
 };
 
 
-export const getStatistics = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats), (s) => {
+const getStatistics = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats), (s) => {
 
   return (s.response as StatisticsInfo) || ({} as StatisticsInfo);
 });
 
-export const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
+const getStatisticsLastUpdate = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats), (s) => {
+
+  return s.lastUpdate;
+});
+
+export const statisticViewModel = createSelector(getStatistics, getStatisticsLastUpdate, (data, update) => {
+
+  return {
+    data,
+    update
+  }
+});
+
+const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
 
   if (s.response) {
     const v = s.response['values'] || [];
@@ -52,4 +65,17 @@ export const getChartsData = createSelector(fromBlockchainDataSelectors.getServi
   }
 
   return null;
+});
+
+const getChartsLastUpdate = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
+
+  return s.lastUpdate;
+});
+
+export const viewChartModel = createSelector(getChartsData, getChartsLastUpdate, (data, update) => {
+
+  return {
+    data,
+    update
+  }
 });
