@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 
 import { CoreAppContainerComponent } from './containers/app.container';
-import { CoreContentViewComponent }  from './views/content.view';
+import { CoreContentViewComponent } from './views/content.view';
 
 import { ExchangeRatesModule } from './../exchange-rates/exchange-rates.module';
 import { StatisticsModule } from './../statistics/statistics.module';

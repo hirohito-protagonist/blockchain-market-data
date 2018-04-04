@@ -9,6 +9,7 @@ import { reducers } from './reducers/index.reducer';
 import { ExchangeRatesContainerComponent } from './containers/exchange-rates.container';
 import { MarketPricesViewComponent } from './views/market-prices.view';
 import { ConverterViewComponent } from './views/converter-view';
+import { ExchangeRatesViewComponent } from './views/exchange-rates.view';
 
 import { MarketPricesEffects } from './effects/market-prices.effect';
 import { ConvertBtcEffects } from './effects/convert-btc.effect';
@@ -24,13 +25,18 @@ export class RootExchangeRateModule {}
 
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule
+  ],
   declarations: [
     ExchangeRatesContainerComponent,
     MarketPricesViewComponent,
-    ConverterViewComponent
+    ConverterViewComponent,
+    ExchangeRatesViewComponent
   ],
-  exports: [ ExchangeRatesContainerComponent ]
+  exports: [
+    ExchangeRatesContainerComponent
+  ]
 })
 export class ExchangeRatesModule {
 

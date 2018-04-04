@@ -31,7 +31,7 @@ export const statisticViewModel = createSelector(getStatistics, getStatisticsLas
   return {
     data,
     update
-  }
+  };
 });
 
 const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
@@ -77,5 +77,5 @@ export const viewChartModel = createSelector(getChartsData, getChartsLastUpdate,
   return {
     data,
     update
-  }
+  };
 });

@@ -16,12 +16,9 @@ export const reducers = {
 };
 
 
-export const getMarketPricesData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Ticker), (s) => {
+const getMarketPrices = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Ticker), (s) => s);
 
-  return (s.response as MarketPrices) || {};
-});
-
-export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.ToBTC), (s) => {
+const getConvertBtcState = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.ToBTC), (s) => {
 
   const query = s.query as BTCQuery;
 
@@ -36,13 +33,28 @@ export const getConvertBtcState = createSelector(fromBlockchainDataSelectors.get
   };
 });
 
-export const getCurrencies = createSelector(getMarketPricesData, (d: MarketPrices) => {
+const getCurrencies = createSelector(getMarketPrices, (d) => {
 
-  return Object.keys(d).map((currency: string) => {
+  return Object.keys(d.response || {}).map((currency: string) => {
 
     return {
       currency: currency,
-      symbol: d[currency].symbol
+      symbol: d.response[currency].symbol
     };
   });
 });
+
+export const viewExchangeRatesModel = createSelector(
+  getMarketPrices, getCurrencies, getConvertBtcState,
+  (marketPrices, currencies, convert) => {
+
+    return {
+      update: marketPrices.lastUpdate || convert.lastUpdate,
+      data: {
+        marketPrices: marketPrices.response,
+        currencies,
+        convert
+      }
+    };
+  }
+);

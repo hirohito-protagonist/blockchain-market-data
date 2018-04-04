@@ -5,12 +5,11 @@ import {
 
 import { Store } from '@ngrx/store';
 import {
-  getCurrencies,
-  getMarketPricesData,
-  getConvertBtcState,
+  viewExchangeRatesModel,
   ExchangeRatesState
 } from './../reducers/index.reducer';
-import {  ConvertBtcState, ConvertToBTC, MarketPrices } from './../exchange-rates.type';
+import {  ConvertToBTC } from './../exchange-rates.type';
+import { ExchangeRatesViewModel } from './../model.view';
 
 import { fromMarketPricesAction, fromConvertBtcAction } from './../actions/index.action';
 import { Observable } from 'rxjs/Observable';
@@ -18,25 +17,18 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'bmd-exchange-rates-container',
   template: `
-    <bmd-converter-view
-      class="navbar"
-      [currencies]="currencies$ | async"
-      [convert]="convert$ | async"
-      (convertToBtc)="convertToBtc($event)"></bmd-converter-view>
-    <bmd-market-prices-view [prices]="data$ | async" (refresh)="requestMarkerPrices()"></bmd-market-prices-view>
+    <bmd-exchange-rate-view
+      [vModel]="exchangeRatesViewModel$ | async"
+      (vActions)="handleViewActions($event)"></bmd-exchange-rate-view>
   `
 })
 export class ExchangeRatesContainerComponent implements OnInit {
 
-  data$: Observable<MarketPrices>;
-  convert$: Observable<ConvertBtcState>;
-  currencies$: Observable<{ currency: string; symbol: string; }[]>;
+  exchangeRatesViewModel$: Observable<ExchangeRatesViewModel>;
 
   constructor(private store: Store<ExchangeRatesState>) {
 
-    this.data$ = this.store.select(getMarketPricesData);
-    this.currencies$ = this.store.select(getCurrencies);
-    this.convert$ = this.store.select(getConvertBtcState);
+    this.exchangeRatesViewModel$ = this.store.select(viewExchangeRatesModel);
   }
 
   ngOnInit(): void {
@@ -45,6 +37,24 @@ export class ExchangeRatesContainerComponent implements OnInit {
 
   convertToBtc(convert: ConvertToBTC) {
     this.store.dispatch(new fromConvertBtcAction.Convert(convert));
+  }
+
+  handleViewActions(viewAction: { type: string; e: any; }): void {
+
+    switch (viewAction.type) {
+
+      case 'convert': {
+
+        this.convertToBtc(viewAction.e);
+        break;
+      }
+
+      case 'refresh': {
+
+        this.requestMarkerPrices();
+        break;
+      }
+    }
   }
 
   requestMarkerPrices() {
