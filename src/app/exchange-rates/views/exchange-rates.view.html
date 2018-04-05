@@ -1,15 +1,20 @@
-<div class="navbar">
-    <bmd-converter-view
-    class="navbar"
-    [currencies]="vModel.data.currencies"
-    [convert]="vModel.data.convert"
-    (convertToBtc)="vActions.emit({ type: 'convert', e: $event })"></bmd-converter-view>
-  <div>
-    <button class="btn btn-outline-dark btn-sm" (click)="vActions.emit({ type: 'refresh', e: null })">Refresh</button>
-    <span class="alert" role="alert">
-        Last update: {{ vModel.update | date: 'yyyy-MM-dd HH:mm:ss' }}
-    </span>
+<div class="c-navbar">
+  <div class="navbar">
+      <bmd-converter-view
+      class="navbar"
+      [currencies]="vModel.data.currencies"
+      [convert]="vModel.data.convert"
+      (convertToBtc)="vActions.emit({ type: 'convert', e: $event })"></bmd-converter-view>
+    <div>
+      <button class="btn btn-outline-dark btn-sm" (click)="vActions.emit({ type: 'refresh', e: null })">Refresh</button>
+      <span class="alert" role="alert">
+          Last update: {{ vModel.update | date: 'yyyy-MM-dd HH:mm:ss' }}
+      </span>
+    </div>
   </div>
 </div>
-<bmd-market-prices-view
-  [prices]="vModel.data.marketPrices"></bmd-market-prices-view>
+<div class="c-content">
+  <bmd-market-prices-view
+    [prices]="vModel.data.marketPrices"></bmd-market-prices-view>
+</div>
+
