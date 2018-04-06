@@ -71,7 +71,7 @@
                 <ng-container *ngIf="vModel.data">
                     <h5>{{ vModel.data.name }}</h5>
                     <p>{{ vModel.data.description }}</p>
-                    <canvas baseChart width="400" height="400"
+                    <canvas baseChart class="c-chart"
                     [data]="vModel.data.data"
                     [labels]="vModel.data.labels"
                     [options]="vModel.data.options"

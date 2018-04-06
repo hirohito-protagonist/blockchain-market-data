@@ -46,7 +46,7 @@ const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataN
       labels: v.map((d) => String(new Date(d['x'] * 1000).toUTCString())),
       type: 'line',
       options: {
-        responsive: true,
+        responsive: false,
         animation: {
           duration: 0
         },
@@ -56,8 +56,12 @@ const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataN
         responsiveAnimationDuration: 0,
         elements: {
           line: {
-            fill: false,
+            borderWidth: 1,
+            fill: true,
             tension: 0
+          },
+          point: {
+            radius: 0
           }
         }
       }

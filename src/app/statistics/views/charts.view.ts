@@ -22,8 +22,8 @@ export class ChartsViewComponent {
 
   lineChartColors = [
     {
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
+      backgroundColor: '#3f2a5d',
+      borderColor: '#864DD9',
       pointBackgroundColor: 'rgba(77,83,96,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
