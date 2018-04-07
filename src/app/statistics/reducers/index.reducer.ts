@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
@@ -36,6 +37,7 @@ export const statisticViewModel = createSelector(getStatistics, getStatisticsLas
 
 const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
 
+  const datePipe = new DatePipe('en');
   if (s.response) {
     const v = s.response['values'] || [];
     return {
@@ -43,7 +45,7 @@ const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataN
       unit: s.response['unit'],
       description: s.response['description'],
       data: v.map((d) => d['y']),
-      labels: v.map((d) => String(new Date(d['x'] * 1000).toUTCString())),
+      labels: v.map((d) => datePipe.transform(d['x'] * 1000, 'MMM yy')),
       type: 'line',
       options: {
         responsive: false,
