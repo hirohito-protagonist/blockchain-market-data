@@ -72,7 +72,7 @@
                     <h5>{{ vModel.data.name }}</h5>
                     <p>{{ vModel.data.description }}</p>
                     <canvas baseChart class="c-chart"
-                    [data]="vModel.data.data"
+                    [datasets]="vModel.data.datasets"
                     [labels]="vModel.data.labels"
                     [options]="vModel.data.options"
                     [legend]="false"

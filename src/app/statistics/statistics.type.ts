@@ -40,12 +40,16 @@ export interface ChartOptions {
 
 export interface Chart {
   name: string;
-  unit: string;
   description: string;
-  data: number[];
+  datasets: ChartDataset[];
   labels: string[];
   type: string;
   options: ChartOptions;
+}
+
+export interface ChartDataset {
+  label: string;
+  data: number[];
 }
 
 export interface ChartQuery {

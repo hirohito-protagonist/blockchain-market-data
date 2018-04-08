@@ -42,11 +42,15 @@ const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataN
     const v = s.response['values'] || [];
     return {
       name: s.response['name'],
-      unit: s.response['unit'],
       description: s.response['description'],
-      data: v.map((d) => d['y']),
       labels: v.map((d) => datePipe.transform(d['x'] * 1000, 'MMM yy')),
       type: 'line',
+      datasets: [
+        {
+          label: s.response['unit'],
+          data: v.map((d) => d['y'])
+        }
+      ],
       options: {
         responsive: false,
         animation: {
