@@ -8,7 +8,7 @@ import { reducers } from './reducers/index.reducer';
 
 import { ExchangeRatesContainerComponent } from './containers/exchange-rates.container';
 import { MarketPricesViewComponent } from './views/market-prices.view';
-import { ConverterViewComponent } from './views/converter-view';
+import { ConverterViewComponent } from './views/converter.view';
 import { ExchangeRatesViewComponent } from './views/exchange-rates.view';
 
 import { MarketPricesEffects } from './effects/market-prices.effect';

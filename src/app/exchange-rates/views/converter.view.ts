@@ -12,7 +12,7 @@ import { ConvertToBTC, ConvertBtcState } from './../exchange-rates.type';
 
 @Component({
   selector: 'bmd-converter-view',
-  templateUrl: './converter-view.html',
+  templateUrl: './converter.view.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConverterViewComponent {
