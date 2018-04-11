@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main feature reducer Selectors should pick data service node 1`] = `
+Object {
+  "isFetching": false,
+  "lastUpdate": 0,
+  "query": null,
+  "response": null,
+}
+`;
+
+exports[`Main feature reducer Selectors should pick lastUpdate information for provided data service 1`] = `0`;
+
+exports[`Main feature reducer Selectors should pick response information for provided data service 1`] = `null`;

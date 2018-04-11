@@ -11,12 +11,7 @@ describe('Data service reducer', () => {
       const action = {} as any;
       const result = reducer(void(0), action);
 
-      expect(result).toEqual({
-        'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-      });
+      expect(result).toMatchSnapshot();
     });
   });
 
@@ -25,33 +20,15 @@ describe('Data service reducer', () => {
     [
       {
         serviceType: DataServiceType.ToBTC,
-        query: { currency: 'USD', value: 200 },
-        expected: {
-          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'tobtc': { isFetching: true, response: null, lastUpdate: 0, query: { currency: 'USD', value: 200 } },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-        }
+        query: { currency: 'USD', value: 200 }
       },
       {
         serviceType: DataServiceType.Stats,
-        query: null,
-        expected: {
-          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: true, response: null, lastUpdate: 0, query: null },
-          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-        }
+        query: null
       },
       {
         serviceType: DataServiceType.Ticker,
-        query: null,
-        expected: {
-          'ticker': { isFetching: true, response: null, lastUpdate: 0, query: null },
-          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-        }
+        query: null
       }
     ].forEach((testData) => {
 
@@ -60,7 +37,7 @@ describe('Data service reducer', () => {
         const action = new fromDataServiceAction.Request({ key: testData.serviceType, query: testData.query });
         const result = reducer(void(0), action);
 
-        expect(result).toEqual(testData.expected);
+        expect(result).toMatchSnapshot();
       });
     });
 
@@ -70,12 +47,7 @@ describe('Data service reducer', () => {
       const action = new fromDataServiceAction.Request({ key: '' as any, query: { currency: 'USD', value: 200 } });
       const result = reducer(void(0), action);
 
-      expect(result).toEqual({
-        'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-      });
+      expect(result).toMatchSnapshot();
     });
   });
 
@@ -85,35 +57,17 @@ describe('Data service reducer', () => {
       {
         serviceType: DataServiceType.ToBTC,
         query: { currency: 'USD', value: 200 },
-        response: 123,
-        expected: {
-          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'tobtc': { isFetching: false, response: 123, lastUpdate: 123, query: { currency: 'USD', value: 200 } },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-        }
+        response: 123
       },
       {
         serviceType: DataServiceType.Stats,
         query: null,
-        response: {},
-        expected: {
-          'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: false, response: {}, lastUpdate: 123, query: null },
-          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-        }
+        response: {}
       },
       {
         serviceType: DataServiceType.Ticker,
         query: null,
-        response: {},
-        expected: {
-          'ticker': { isFetching: false, response: {}, lastUpdate: 123, query: null },
-          'tobtc': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-          'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-        }
+        response: {}
       }
     ].forEach((testData) => {
 
@@ -126,7 +80,7 @@ describe('Data service reducer', () => {
         const responseAction = new fromDataServiceAction.Response({ key: testData.serviceType, response: testData.response });
         const responseResult = reducer(requestResult, responseAction);
 
-        expect(responseResult).toEqual(testData.expected);
+        expect(responseResult).toMatchSnapshot();
       });
     });
 
@@ -138,12 +92,7 @@ describe('Data service reducer', () => {
       const responseAction = new fromDataServiceAction.Response({ key: '' as any, response: 123 });
       const responseResult = reducer(requestResult, responseAction);
 
-      expect(responseResult).toEqual({
-        'ticker': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'tobtc': { isFetching: true, response: null, lastUpdate: 0, query: { currency: 'USD', value: 200 } },
-        'stats': { isFetching: false, response: null, lastUpdate: 0, query: null },
-        'charts': { isFetching: false, response: null, lastUpdate: 0, query: null }
-      });
+      expect(responseResult).toMatchSnapshot();
     });
   });
 

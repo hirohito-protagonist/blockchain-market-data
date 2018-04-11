@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Data service reducer [Blockchain data] data service request action should not update state for undefined node 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service request action should set isFetching as true and update query for stats 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": true,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service request action should set isFetching as true and update query for ticker 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": true,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service request action should set isFetching as true and update query for tobtc 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": true,
+    "lastUpdate": 0,
+    "query": Object {
+      "currency": "USD",
+      "value": 200,
+    },
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service response action should not update state for undefined node 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": true,
+    "lastUpdate": 0,
+    "query": Object {
+      "currency": "USD",
+      "value": 200,
+    },
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service response action should set isFetching as false and update response for stats 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 123,
+    "query": null,
+    "response": Object {},
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service response action should set isFetching as false and update response for ticker 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 123,
+    "query": null,
+    "response": Object {},
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+}
+`;
+
+exports[`Data service reducer [Blockchain data] data service response action should set isFetching as false and update response for tobtc 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 123,
+    "query": Object {
+      "currency": "USD",
+      "value": 200,
+    },
+    "response": 123,
+  },
+}
+`;
+
+exports[`Data service reducer init should return default state 1`] = `
+Object {
+  "charts": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "stats": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "ticker": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+  "tobtc": Object {
+    "isFetching": false,
+    "lastUpdate": 0,
+    "query": null,
+    "response": null,
+  },
+}
+`;

@@ -39,12 +39,12 @@ describe('ExchangeRatesService', () => {
 
       service.ticker().subscribe((responseBody) => {
 
-        expect(responseBody).toEqual(testData);
+        expect(responseBody).toMatchSnapshot();
       });
 
       const req = httpTestingController.expectOne('https://blockchain.info/ticker?cors=true');
 
-      expect(req.request.method).toEqual('GET');
+      expect(req.request.method).toMatchSnapshot();
       req.flush(testData);
     });
   });
@@ -56,12 +56,12 @@ describe('ExchangeRatesService', () => {
 
       service.tobtc('USD', 500).subscribe(btc => {
 
-        expect(btc).toEqual(10);
+        expect(btc).toMatchSnapshot();
       });
 
       const req = httpTestingController.expectOne('https://blockchain.info/tobtc?cors=true&currency=USD&value=500');
 
-      expect(req.request.method).toEqual('GET');
+      expect(req.request.method).toMatchSnapshot();
       req.flush(10);
     });
   });
