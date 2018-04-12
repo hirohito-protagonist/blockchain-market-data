@@ -1,0 +1,36 @@
+$primary: #864DD9;
+$body-bg: #2d3035;
+$body-color: #8a8d93;
+$link-color: $body-color;
+$border-color: #34373d;
+$card-bg: $body-bg;
+$dropdown-bg: $body-bg;
+$custom-select-bg: $body-bg;
+$list-group-bg: $body-bg;
+$list-group-border-color: $border-color;
+$table-bg: $body-bg;
+$table-border-color: $border-color;
+$input-bg: $body-bg;
+$input-disabled-bg: $body-bg;
+$input-color: $body-color;
+$input-border-color: $border-color;
+$input-group-addon-bg: $body-bg;
+$custom-control-indicator-bg: $body-bg;
+$component-active-bg: $body-bg;
+$component-active-color: $body-bg;
+$nav-tabs-border-color: $border-color;
+$nav-tabs-link-active-color: #bfc1c4;
+$nav-tabs-link-active-border-color: $border-color;
+$nav-tabs-link-hover-border-color: $border-color;
+
+$loader-height: 100px !default;
+$loader-width: 100px !default;
+$loader-color: $primary !default;
+$loader-duration: 2.0s !default;
+
+$c-navbar-height: 74px;
+
+
+@import './../node_modules/bootstrap/scss/bootstrap.scss';
+
+

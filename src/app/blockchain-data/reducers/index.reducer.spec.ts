@@ -19,7 +19,7 @@ describe('Main feature reducer', () => {
           data: reducers.data(void(0), {} as any),
           version: reducers.version()
         }
-      }
+      };
 
     });
 

@@ -16,26 +16,28 @@ export const reducers = {
   version: featureVersion
 };
 
+const statisticsNode = fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats);
+const chartsNode = fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts);
 
-const getStatistics = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats), (s) => {
+const getStatistics = createSelector(statisticsNode, (s) => {
 
   return (s.response as StatisticsInfo) || ({} as StatisticsInfo);
 });
 
-const getStatisticsLastUpdate = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats), (s) => {
+const getStatisticsLastUpdate = createSelector(statisticsNode, (s) => s.lastUpdate);
+const isStatisticsLoading = createSelector(statisticsNode, (s) => s.isFetching);
 
-  return s.lastUpdate;
-});
+export const statisticViewModel = createSelector(
+  getStatistics,
+  getStatisticsLastUpdate,
+  isStatisticsLoading,
+  (data, update, isLoading) => {
 
-export const statisticViewModel = createSelector(getStatistics, getStatisticsLastUpdate, (data, update) => {
+    return { data, update, isLoading };
+  }
+);
 
-  return {
-    data,
-    update
-  };
-});
-
-const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
+const getChartsData = createSelector(chartsNode, (s) => {
 
   const datePipe = new DatePipe('en');
   if (s.response) {
@@ -77,15 +79,16 @@ const getChartsData = createSelector(fromBlockchainDataSelectors.getServiceDataN
   return null;
 });
 
-const getChartsLastUpdate = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts), (s) => {
+const getChartsLastUpdate = createSelector(chartsNode, (s) => s.lastUpdate);
 
-  return s.lastUpdate;
-});
+const isChartLoading = createSelector(chartsNode, (s) => s.isFetching);
 
-export const viewChartModel = createSelector(getChartsData, getChartsLastUpdate, (data, update) => {
+export const viewChartModel = createSelector(
+  getChartsData,
+  getChartsLastUpdate,
+  isChartLoading,
+  (data, update, isLoading) => {
 
-  return {
-    data,
-    update
-  };
-});
+    return { data, update, isLoading };
+  }
+);

@@ -66,23 +66,37 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <ng-container *ngIf="vModel.data">
-                    <h5>{{ vModel.data.name }}</h5>
-                    <p>{{ vModel.data.description }}</p>
-                    <canvas baseChart class="c-chart"
-                    [datasets]="vModel.data.datasets"
-                    [labels]="vModel.data.labels"
-                    [options]="vModel.data.options"
-                    [legend]="false"
-                    [colors]="lineChartColors"
-                    [chartType]="vModel.data.type"
-                    ></canvas>
-                </ng-container>
+
+        <ng-container *ngIf="vModel.isLoading; else chartCard">
+          <div class="c-loader c-loader--circle-pulse-multiple">
+            <div class="c-loader__items">
+              <div class="c-loader__item c-loader__item--circle-1"></div>
+              <div class="c-loader__item c-loader__item--circle-2"></div>
+              <div class="c-loader__item c-loader__item--circle-3"></div>
             </div>
           </div>
+        </ng-container>
+
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #chartCard>
+  <div class="card">
+      <div class="card-body">
+          <ng-container *ngIf="vModel.data">
+              <h5>{{ vModel.data.name }}</h5>
+              <p>{{ vModel.data.description }}</p>
+              <canvas baseChart class="c-chart"
+              [datasets]="vModel.data.datasets"
+              [labels]="vModel.data.labels"
+              [options]="vModel.data.options"
+              [legend]="false"
+              [colors]="lineChartColors"
+              [chartType]="vModel.data.type"
+              ></canvas>
+          </ng-container>
+      </div>
+    </div>
+</ng-template>
