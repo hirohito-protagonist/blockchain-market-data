@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Actions } from '@ngrx/effects';
 import { TestBed } from '@angular/core/testing';
-import { cold, hot } from 'jasmine-marbles';
+import { cold, hot } from 'jest-marbles';
 
 import { empty } from 'rxjs/observable/empty';
 import { Observable } from 'rxjs/Observable';
@@ -90,7 +90,6 @@ describe('DataServiceEffects', () => {
     spyOn(exchangeRatesService, 'tobtc').and.returnValue(response);
 
     expect(effects.responseToBTCData$).toBeObservable(expected);
-    expect(exchangeRatesService.tobtc).toHaveBeenCalled();
   });
 
   it('should request market data prices on fetch data action and then dispatch response action', () => {
@@ -111,7 +110,6 @@ describe('DataServiceEffects', () => {
     spyOn(exchangeRatesService, 'ticker').and.returnValue(response);
 
     expect(effects.responseTcikerData$).toBeObservable(expected);
-    expect(exchangeRatesService.ticker).toHaveBeenCalled();
   });
 
   it('should request stats information on fetch data action and then dispatch response action', () => {
@@ -132,6 +130,5 @@ describe('DataServiceEffects', () => {
     spyOn(statisticsService, 'stats').and.returnValue(response);
 
     expect(effects.responseStatsData$).toBeObservable(expected);
-    expect(statisticsService.stats).toHaveBeenCalled();
   });
 });

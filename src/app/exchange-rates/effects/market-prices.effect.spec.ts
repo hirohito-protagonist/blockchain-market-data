@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Actions } from '@ngrx/effects';
 import { TestBed } from '@angular/core/testing';
-import { cold, hot } from 'jasmine-marbles';
+import { cold, hot } from 'jest-marbles';
 
 import { empty } from 'rxjs/observable/empty';
 import { Observable } from 'rxjs/Observable';
