@@ -1,10 +1,9 @@
 <div class="c-navbar">
   <div class="navbar">
       <bmd-converter-view
-      class="navbar"
-      [currencies]="vModel.data.currencies"
-      [convert]="vModel.data.convert"
-      (convertToBtc)="vActions.emit({ type: 'convert', e: $event })"></bmd-converter-view>
+        [currencies]="vModel.data.currencies"
+        [convert]="vModel.data.convert"
+        (convertToBtc)="vActions.emit({ type: 'convert', e: $event })"></bmd-converter-view>
     <div>
       <button class="btn btn-outline-dark btn-sm" (click)="vActions.emit({ type: 'refresh', e: null })">Refresh</button>
       <span class="alert" role="alert">

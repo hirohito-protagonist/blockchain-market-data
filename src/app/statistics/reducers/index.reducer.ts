@@ -54,7 +54,7 @@ const getChartsData = createSelector(chartsNode, (s) => {
         }
       ],
       options: {
-        responsive: false,
+        responsive: true,
         animation: {
           duration: 0
         },

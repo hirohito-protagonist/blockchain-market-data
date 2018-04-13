@@ -23,12 +23,14 @@ $nav-tabs-link-active-color: #bfc1c4;
 $nav-tabs-link-active-border-color: $border-color;
 $nav-tabs-link-hover-border-color: $border-color;
 
+$font-size-base: .75rem;
+
 $loader-height: 100px !default;
 $loader-width: 100px !default;
 $loader-color: $primary !default;
 $loader-duration: 2.0s !default;
 
-$c-navbar-height: 74px;
+$c-navbar-height: 48px;
 
 
 @import './../node_modules/bootstrap/scss/bootstrap.scss';
