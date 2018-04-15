@@ -6,11 +6,13 @@ import {
 import { Store } from '@ngrx/store';
 import {
   StatisticsState,
-  viewChartModel
+  viewChartModel,
+  getChartQuery
 } from './../reducers/index.reducer';
 import { ChartQuery } from './../statistics.type';
 import { ChartViewModel } from './../model.view';
 import { Observable } from 'rxjs/Observable';
+import { fromUIActions } from './../actions/index.action';
 
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
@@ -35,14 +37,10 @@ export class ChartsContainerComponent implements OnInit {
   constructor(private store: Store<StatisticsState>) {
 
     this.chartViewModel$ = this.store.select(viewChartModel);
-    this.chartQuery = {
-      name: 'transactions-per-second',
-      start: '',
-      timespan: '30days',
-      rollingAverage: '',
-      format: 'json',
-      sampled: true
-    };
+    this.store.select(getChartQuery).subscribe((query) => {
+
+      this.chartQuery = query;
+    });
   }
 
   ngOnInit(): void {
@@ -63,6 +61,12 @@ export class ChartsContainerComponent implements OnInit {
     };
 
     this.requestChart(this.chartQuery);
+    this.store.dispatch(new fromUIActions.UpdateUIState({
+      key: 'chartsView',
+      value: {
+        selectedChartTimeSpan: timespan
+      }
+    }));
   }
 
   chartName(name: string) {
@@ -73,6 +77,12 @@ export class ChartsContainerComponent implements OnInit {
     };
 
     this.requestChart(this.chartQuery);
+    this.store.dispatch(new fromUIActions.UpdateUIState({
+      key: 'chartsView',
+      value: {
+        selectedChart: name
+      }
+    }));
   }
 
   requestChart(query: ChartQuery): void {

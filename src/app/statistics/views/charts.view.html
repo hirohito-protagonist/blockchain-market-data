@@ -1,7 +1,7 @@
 <div class="c-navbar">
   <nav class="navbar">
     <div class="form-inline">
-      <select class="form-control" (change)="chartName.emit($event.target.value)">
+      <select class="form-control" [ngModel]="vModel.state.selectedChart" (change)="chartName.emit($event.target.value)">
         <optgroup label="Currency statistics">
           <option value="total-bitcoins">Bitcoins in circulation</option>
           <option value="market-price">Market Price (USD)</option>
@@ -28,7 +28,7 @@
           <option value="n-unique-addresses">Number Of Unique Addresses Used</option>
           <option value="n-transactions">Confirmed Transactions Per Day</option>
           <option value="n-transactions-total">Total Number of Transactions</option>
-          <option value="transactions-per-second" selected>Transaction Rate</option>
+          <option value="transactions-per-second">Transaction Rate</option>
           <option value="mempool-count">Mempool Transaction Count</option>
           <option value="mempool-growth">Mempool Size Growth</option>
           <option value="mempool-size">Mempool Size</option>
@@ -43,10 +43,10 @@
           <option value="my-wallet-n-users">Blockchain Wallet Users</option>
         </optgroup>
       </select>
-      <select class="form-control ml-2" (change)="chartTimeSpan.emit($event.target.value)">
+      <select class="form-control ml-2" [ngModel]="vModel.state.selectedChartTimeSpan" (change)="chartTimeSpan.emit($event.target.value)">
         <option value="24h">1 day</option>
         <option value="1week">1 week</option>
-        <option value="30days" selected>30 days</option>
+        <option value="30days">30 days</option>
         <option value="60days">60 days</option>
         <option value="180days">180 days</option>
         <option value="1year">1 year</option>

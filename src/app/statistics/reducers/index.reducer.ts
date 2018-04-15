@@ -3,9 +3,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
 import { StatisticsInfo } from './../statistics.type';
+import * as fromUIReducer from './ui.reducer';
 
 export interface StatisticsState {
   version: string;
+  ui: fromUIReducer.UIState;
 }
 
 export function featureVersion() {
@@ -13,7 +15,8 @@ export function featureVersion() {
 }
 
 export const reducers = {
-  version: featureVersion
+  version: featureVersion,
+  ui: fromUIReducer.reducer
 };
 
 const statisticsNode = fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats);
@@ -83,12 +86,29 @@ const getChartsLastUpdate = createSelector(chartsNode, (s) => s.lastUpdate);
 
 const isChartLoading = createSelector(chartsNode, (s) => s.isFetching);
 
+const getStatisticsState = createFeatureSelector('statistics');
+const getUIState = createSelector(getStatisticsState, (s: StatisticsState) => s.ui);
+const getChartViewState = createSelector(getUIState, (s) => s.chartsView);
+
 export const viewChartModel = createSelector(
   getChartsData,
   getChartsLastUpdate,
   isChartLoading,
-  (data, update, isLoading) => {
+  getChartViewState,
+  (data, update, isLoading, state) => {
 
-    return { data, update, isLoading };
+    return { data, update, isLoading, state };
   }
 );
+
+export const getChartQuery = createSelector(getChartViewState, (s) => {
+
+  return {
+    name: s.selectedChart,
+    start: '',
+    timespan: s.selectedChartTimeSpan,
+    rollingAverage: '',
+    format: 'json',
+    sampled: true
+  };
+});

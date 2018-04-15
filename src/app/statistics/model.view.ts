@@ -10,4 +10,5 @@ export interface ChartViewModel {
   data: Chart;
   update: number;
   isLoading: boolean;
+  state: any;
 }
