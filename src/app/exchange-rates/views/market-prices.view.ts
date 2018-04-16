@@ -16,11 +16,19 @@ import { MarketPrices } from './../exchange-rates.type';
 })
 export class MarketPricesViewComponent implements OnChanges {
 
-  currencies = [];
+  displayedColumns = ['currency', 'm', 'buy', 'last', 'sell', 'symbol'];
+  dataSource = [];
 
   @Input() prices: MarketPrices;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.currencies = Object.keys(this.prices || {});
+
+    this.dataSource = Object.keys(this.prices || {}).map((currency) => {
+
+      return {
+        ...this.prices[currency],
+        currency
+      };
+    });
   }
 }

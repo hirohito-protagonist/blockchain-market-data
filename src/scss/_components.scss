@@ -118,3 +118,25 @@ $loader-duration: 1s;
 		opacity: 0;
 	}
 }
+
+
+.c-table {
+  flex: 1 1 auto;
+
+  &__header-row, &__row {
+    display: flex;
+    border-bottom: 1px solid $border-color;
+    align-items: center;
+    height: 32px;
+    padding: 0 8px;
+  }
+
+  &__cell, &__header-cell {
+    flex: 1;
+  }
+
+  &__header-cell {
+    font-weight: bold;
+  }
+}
+

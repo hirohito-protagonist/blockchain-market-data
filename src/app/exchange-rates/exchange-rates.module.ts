@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CdkTableModule } from '@angular/cdk/table';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -26,7 +27,8 @@ export class RootExchangeRateModule {}
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CdkTableModule
   ],
   declarations: [
     ExchangeRatesContainerComponent,

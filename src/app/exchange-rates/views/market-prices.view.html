@@ -3,28 +3,36 @@
     <div class="col">
       <div class="card">
           <div class="card-body">
-            <table class="table table-sm mt-2">
-              <thead>
-                <tr>
-                  <th scope="col">currency</th>
-                  <th scope="col">15m</th>
-                  <th scope="col">buy</th>
-                  <th scope="col">last</th>
-                  <th scope="col">sell</th>
-                  <th scope="col">symbol</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let currency of currencies">
-                  <th scope="row">{{ currency }}</th>
-                  <td>{{ prices[currency]['15m'] }}</td>
-                  <td>{{ prices[currency].buy }}</td>
-                  <td>{{ prices[currency].last }}</td>
-                  <td>{{ prices[currency].sell }}</td>
-                  <td>{{ prices[currency].symbol }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="d-flex">
+              <cdk-table [dataSource]="dataSource" class="c-table">
+                <ng-container cdkColumnDef="currency">
+                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">currency</cdk-header-cell>
+                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.currency}} </cdk-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="m">
+                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">15m</cdk-header-cell>
+                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row['15m']}} </cdk-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="buy">
+                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">buy</cdk-header-cell>
+                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.buy}} </cdk-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="last">
+                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">last</cdk-header-cell>
+                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.last}} </cdk-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="sell">
+                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">sell</cdk-header-cell>
+                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.sell}} </cdk-cell>
+                </ng-container>
+                <ng-container cdkColumnDef="symbol">
+                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">symbol</cdk-header-cell>
+                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.symbol}} </cdk-cell>
+                </ng-container>
+                <cdk-header-row *cdkHeaderRowDef="displayedColumns" class="c-table__header-row"></cdk-header-row>
+                <cdk-row *cdkRowDef="let row; columns: displayedColumns" class="c-table__row"></cdk-row>
+              </cdk-table>
+            </div>
           </div>
         </div>
     </div>
