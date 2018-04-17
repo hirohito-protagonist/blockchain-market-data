@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import {
   StatisticsState,
   viewChartModel,
@@ -36,7 +36,7 @@ export class ChartsContainerComponent implements OnInit {
 
   constructor(private store: Store<StatisticsState>) {
 
-    this.chartViewModel$ = this.store.select(viewChartModel);
+    this.chartViewModel$ = this.store.pipe(select(viewChartModel));
     this.store.select(getChartQuery).subscribe((query) => {
 
       this.chartQuery = query;

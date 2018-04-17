@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import {
   StatisticsState,
   statisticViewModel
@@ -30,7 +30,7 @@ export class StatisticsContainerComponent implements OnInit {
 
   constructor(private store: Store<StatisticsState>) {
 
-    this.statisticViewModel$ = this.store.select(statisticViewModel);
+    this.statisticViewModel$ = this.store.pipe(select(statisticViewModel));
   }
 
   ngOnInit(): void {

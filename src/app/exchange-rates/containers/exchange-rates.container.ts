@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import {
   viewExchangeRatesModel,
   ExchangeRatesState
@@ -28,7 +28,7 @@ export class ExchangeRatesContainerComponent implements OnInit {
 
   constructor(private store: Store<ExchangeRatesState>) {
 
-    this.exchangeRatesViewModel$ = this.store.select(viewExchangeRatesModel);
+    this.exchangeRatesViewModel$ = this.store.pipe(select(viewExchangeRatesModel));
   }
 
   ngOnInit(): void {

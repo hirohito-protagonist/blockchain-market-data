@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { fromLayoutActions } from './../actions/index.action';
 import { fromLayoutReducer, CoreState, getActiveLayoutView } from './../reducers/index.reducer';
@@ -31,7 +31,7 @@ export class CoreAppContainerComponent {
 
   constructor(public store: Store<CoreState>) {
 
-    this.activeView$ = store.select(getActiveLayoutView);
+    this.activeView$ = this.store.pipe(select(getActiveLayoutView));
   }
 
   changeView(view: fromLayoutReducer.LayoutView) {
