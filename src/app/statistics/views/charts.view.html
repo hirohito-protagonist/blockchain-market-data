@@ -86,16 +86,9 @@
   <div class="card">
       <div class="card-body">
           <ng-container *ngIf="vModel.data">
-              <h5>{{ vModel.data.name }}</h5>
-              <p>{{ vModel.data.description }}</p>
-              <canvas baseChart class="c-chart"
-              [datasets]="vModel.data.datasets"
-              [labels]="vModel.data.labels"
-              [options]="vModel.data.options"
-              [legend]="false"
-              [colors]="lineChartColors"
-              [chartType]="vModel.data.type"
-              ></canvas>
+            <h5>{{ vModel.data.name }}</h5>
+            <p>{{ vModel.data.description }}</p>
+            <div echarts [options]="vModel.data.options"></div>
           </ng-container>
       </div>
     </div>

@@ -64,4 +64,3 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import 'chart.js/src/chart.js';

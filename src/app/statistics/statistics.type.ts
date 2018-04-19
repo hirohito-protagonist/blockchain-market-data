@@ -22,34 +22,54 @@ export interface StatisticsInfo {
 }
 
 export interface ChartOptions {
-  responsive: boolean;
-  animation: {
-    duration: number;
+  textStyle: {
+    color: string;
   };
-  hover: {
-      animationDuration: number;
-  };
-  responsiveAnimationDuration: number;
-  elements: {
-    line: {
-      fill: boolean;
-      tension: number;
+  tooltip: {
+    trigger: string;
+    axisPointer: {
+        type: string;
+        label: {
+            backgroundColor: string;
+        };
     };
   };
+  xAxis: {
+    type: string;
+    data: any[];
+    boundaryGap: boolean;
+  }[];
+  yAxis: {
+    type: string;
+    splitLine: {
+      lineStyle: {
+        color: string;
+      };
+    };
+  }[];
+  grid: {
+    borderColor: string;
+    left: string;
+    right: string;
+  };
+  series: {
+    name: string;
+    type: string;
+    data: any[];
+    showSymbol: boolean;
+    lineStyle: {
+      color: string;
+    };
+    areaStyle: {
+      color: string;
+    };
+  }[];
 }
 
 export interface Chart {
   name: string;
   description: string;
-  datasets: ChartDataset[];
-  labels: string[];
-  type: string;
   options: ChartOptions;
-}
-
-export interface ChartDataset {
-  label: string;
-  data: number[];
 }
 
 export interface ChartQuery {

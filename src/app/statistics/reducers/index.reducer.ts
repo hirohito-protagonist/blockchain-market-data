@@ -48,33 +48,55 @@ const getChartsData = createSelector(chartsNode, (s) => {
     return {
       name: s.response['name'],
       description: s.response['description'],
-      labels: v.map((d) => datePipe.transform(d['x'] * 1000, 'MMM yy')),
-      type: 'line',
-      datasets: [
-        {
-          label: s.response['unit'],
-          data: v.map((d) => d['y'])
-        }
-      ],
       options: {
-        responsive: true,
-        animation: {
-          duration: 0
+        textStyle: {
+          color: 'rgba(255, 255, 255, 0.3)'
         },
-        hover: {
-            animationDuration: 0
-        },
-        responsiveAnimationDuration: 0,
-        elements: {
-          line: {
-            borderWidth: 1,
-            fill: true,
-            tension: 0
-          },
-          point: {
-            radius: 0
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+              type: 'cross',
+              label: {
+                  backgroundColor: '#6a7985'
+              }
           }
-        }
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: v.map((d) => datePipe.transform(d['x'] * 1000, 'MMM yy')),
+            boundaryGap: false
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            splitLine: {
+              lineStyle: {
+                color: 'rgba(255, 255, 255, 0.3)'
+              }
+            }
+          },
+        ],
+        grid: {
+          borderColor: 'rgba(255, 255, 255, 0.3)',
+          left: '8%',
+          right: '8%'
+        },
+        series: [
+          {
+            name: s.response['unit'],
+            type: 'line',
+            data: v.map((d) => d['y']),
+            showSymbol: false,
+            lineStyle: {
+              color: '#864DD9'
+            },
+            areaStyle: {
+              color: '#3f2a5d'
+            }
+          }
+        ]
       }
     };
   }
