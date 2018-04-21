@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exchange rates reducer Selectors getConvertBtcState should remap data service query state to new model 1`] = `
+Object {
+  "convert": Object {
+    "btc": 0.001,
+    "currency": "USD",
+    "value": "200",
+  },
+  "isFetching": true,
+  "lastUpdate": 123,
+}
+`;
+
+exports[`Exchange rates reducer Selectors getConvertBtcState should remap data service state to new model 1`] = `
+Object {
+  "convert": Object {
+    "btc": 0,
+    "currency": "",
+    "value": "",
+  },
+  "isFetching": true,
+  "lastUpdate": 123,
+}
+`;
+
+exports[`Exchange rates reducer Selectors getCurrencies should remap market prices to new collection model 1`] = `
+Array [
+  Object {
+    "currency": "USD",
+    "symbol": "$",
+  },
+  Object {
+    "currency": "PLN",
+    "symbol": "zł",
+  },
+]
+`;
+
+exports[`Exchange rates reducer Selectors getCurrencies should return empty collection by default 1`] = `Array []`;
+
+exports[`Exchange rates reducer Selectors viewExchangeRatesModel should compose selectors to create view model 1`] = `
+Object {
+  "data": Object {
+    "convert": Object {
+      "convert": Object {
+        "btc": 0.001,
+        "currency": "",
+        "value": "",
+      },
+      "isFetching": true,
+      "lastUpdate": 123,
+    },
+    "currencies": Array [
+      Object {
+        "currency": "USD",
+        "symbol": "$",
+      },
+      Object {
+        "currency": "PLN",
+        "symbol": "zł",
+      },
+    ],
+    "marketPrices": Object {
+      "PLN": Object {
+        "symbol": "zł",
+      },
+      "USD": Object {
+        "symbol": "$",
+      },
+    },
+  },
+  "update": 123,
+}
+`;
