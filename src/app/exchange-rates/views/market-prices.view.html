@@ -30,7 +30,11 @@
                   <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.symbol}} </cdk-cell>
                 </ng-container>
                 <cdk-header-row *cdkHeaderRowDef="displayedColumns" class="c-table__header-row"></cdk-header-row>
-                <cdk-row *cdkRowDef="let row; columns: displayedColumns" class="c-table__row"></cdk-row>
+                <cdk-row
+                  *cdkRowDef="let row; columns: displayedColumns"
+                  class="c-table__row"
+                  [class.selected]="row.currency == selectedCurrency"
+                  (click)="selectCurrency.emit(row.currency)"></cdk-row>
               </cdk-table>
             </div>
           </div>

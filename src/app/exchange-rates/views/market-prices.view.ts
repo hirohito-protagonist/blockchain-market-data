@@ -2,6 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   Input,
+  Output,
   EventEmitter,
   OnChanges,
   SimpleChanges
@@ -20,6 +21,9 @@ export class MarketPricesViewComponent implements OnChanges {
   dataSource = [];
 
   @Input() prices: MarketPrices;
+  @Input() selectedCurrency = '';
+
+  @Output() selectCurrency = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges): void {
 

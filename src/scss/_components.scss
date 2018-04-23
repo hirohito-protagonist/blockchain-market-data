@@ -131,6 +131,11 @@ $loader-duration: 1s;
     padding: 0 8px;
   }
 
+  &__row.selected {
+    background: $primary;
+    color: white;
+  }
+
   &__cell, &__header-cell {
     flex: 1;
   }

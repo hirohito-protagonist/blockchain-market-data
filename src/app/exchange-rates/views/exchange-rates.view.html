@@ -3,7 +3,9 @@
       <bmd-converter-view
         [currencies]="vModel.data.currencies"
         [convert]="vModel.data.convert"
-        (convertToBtc)="vActions.emit({ type: 'convert', e: $event })"></bmd-converter-view>
+        [selectedCurrency]="vModel.data.activeCurrency"
+        (convertToBtc)="vActions.emit({ type: 'convert', e: $event })"
+        (selectCurrency)="vActions.emit({ type: 'selectCurrency', e: $event })"></bmd-converter-view>
     <div>
       <button class="btn btn-outline-dark btn-sm" (click)="vActions.emit({ type: 'refresh', e: null })">Refresh</button>
       <span class="alert" role="alert">
@@ -14,6 +16,8 @@
 </div>
 <div class="c-content">
   <bmd-market-prices-view
-    [prices]="vModel.data.marketPrices"></bmd-market-prices-view>
+    [prices]="vModel.data.marketPrices"
+    [selectedCurrency]="vModel.data.activeCurrency"
+    (selectCurrency)="vActions.emit({ type: 'selectCurrency', e: $event })"></bmd-market-prices-view>
 </div>
 

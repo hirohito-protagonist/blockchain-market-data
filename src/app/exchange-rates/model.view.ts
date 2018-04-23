@@ -9,5 +9,6 @@ export interface ExchangeRatesViewModel {
       symbol: string;
     }[];
     convert: ConvertBtcState;
+    activeCurrency: string;
   };
 }

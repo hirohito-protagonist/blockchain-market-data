@@ -5,6 +5,7 @@ import {
   ViewChild,
   EventEmitter,
   ElementRef,
+  OnChanges,
   ChangeDetectionStrategy
 } from '@angular/core';
 
@@ -15,15 +16,29 @@ import { ConvertToBTC, ConvertBtcState } from './../exchange-rates.type';
   templateUrl: './converter.view.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConverterViewComponent {
+export class ConverterViewComponent implements OnChanges {
 
   @Input() convert: ConvertBtcState;
   @Input() currencies: { currency: string; symbol: string; }[];
   @Output() convertToBtc = new EventEmitter<ConvertToBTC>();
+  @Input() selectedCurrency = '';
+  @Output() selectCurrency = new EventEmitter<string>();
   @ViewChild('value') inputValue: ElementRef;
   @ViewChild('currency') inputCurrency: ElementRef;
 
   currencySymbol = '';
+
+  ngOnChanges(changes) {
+
+    if (changes.selectedCurrency) {
+
+      this.currencySymbol = this.resolveCurrencySymbol(this.selectedCurrency);
+      this.convertToBtc.emit({
+        value: (this.inputValue.nativeElement.value as string),
+        currency: this.selectedCurrency
+      });
+    }
+  }
 
   updateConvert(type: string, value: string) {
 
@@ -33,14 +48,16 @@ export class ConverterViewComponent {
         currency: this.inputCurrency.nativeElement.value
       });
     } else if (type === 'currency') {
-      this.convertToBtc.emit({
-        value: (this.inputValue.nativeElement.value as string),
-        currency: value
-      });
-      this.currencySymbol = this.currencies.reduce((previous, current) => {
-
-        return current.currency === value ? current.symbol : previous;
-      }, '');
+      this.currencySymbol = this.resolveCurrencySymbol(value);
+      this.selectCurrency.emit(value);
     }
+  }
+
+  resolveCurrencySymbol(currency: string): string {
+
+    return this.currencies.reduce((previous, current) => {
+
+      return current.currency === currency ? current.symbol : previous;
+    }, '');
   }
 }

@@ -11,7 +11,7 @@ import {
 import {  ConvertToBTC } from './../exchange-rates.type';
 import { ExchangeRatesViewModel } from './../model.view';
 
-import { fromMarketPricesAction, fromConvertBtcAction } from './../actions/index.action';
+import { fromMarketPricesAction, fromConvertBtcAction, fromUIAction } from './../actions/index.action';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -52,6 +52,15 @@ export class ExchangeRatesContainerComponent implements OnInit {
       case 'refresh': {
 
         this.requestMarkerPrices();
+        break;
+      }
+
+      case 'selectCurrency': {
+
+        this.store.dispatch(new fromUIAction.UpdateUIState({
+          key: 'activeCurrency',
+          value: viewAction.e
+        }));
         break;
       }
     }

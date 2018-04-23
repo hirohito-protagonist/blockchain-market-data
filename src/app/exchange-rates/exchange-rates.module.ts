@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import { StoreModule } from '@ngrx/store';
@@ -28,6 +29,7 @@ export class RootExchangeRateModule {}
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     CdkTableModule
   ],
   declarations: [

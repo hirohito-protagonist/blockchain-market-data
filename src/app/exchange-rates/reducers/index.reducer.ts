@@ -2,9 +2,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType, BTCQuery } from '@bmd/blockchain-data';
 import { MarketPrices } from './../exchange-rates.type';
+import * as fromUIReducer from './ui.reducer';
 
 export interface ExchangeRatesState {
   version: string;
+  ui: fromUIReducer.UIState;
 }
 
 export function featureVersion() {
@@ -12,9 +14,13 @@ export function featureVersion() {
 }
 
 export const reducers = {
-  version: featureVersion
+  version: featureVersion,
+  ui: fromUIReducer.reducer
 };
 
+const getExchangeRatesState = createFeatureSelector('exchangeRates');
+const getUIState = createSelector(getExchangeRatesState, (s: ExchangeRatesState) => s.ui);
+const getActiveCurrency = createSelector(getUIState, fromUIReducer.activeCurrency);
 
 export const getMarketPrices = createSelector(fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Ticker), (s) => s);
 
@@ -45,15 +51,16 @@ export const getCurrencies = createSelector(getMarketPrices, (d) => {
 });
 
 export const viewExchangeRatesModel = createSelector(
-  getMarketPrices, getCurrencies, getConvertBtcState,
-  (marketPrices, currencies, convert) => {
+  getMarketPrices, getCurrencies, getConvertBtcState, getActiveCurrency,
+  (marketPrices, currencies, convert, activeCurrency) => {
 
     return {
       update: marketPrices.lastUpdate || convert.lastUpdate,
       data: {
         marketPrices: marketPrices.response,
         currencies,
-        convert
+        convert,
+        activeCurrency
       }
     };
   }
