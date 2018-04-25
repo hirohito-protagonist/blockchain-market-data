@@ -42,6 +42,7 @@ exports[`Exchange rates reducer Selectors getCurrencies should return empty coll
 exports[`Exchange rates reducer Selectors viewExchangeRatesModel should compose selectors to create view model 1`] = `
 Object {
   "data": Object {
+    "activeCurrency": "USD",
     "convert": Object {
       "convert": Object {
         "btc": 0.001,

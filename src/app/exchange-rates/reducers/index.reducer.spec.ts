@@ -63,7 +63,7 @@ describe('Exchange rates reducer', () => {
         const prices = getMarketPrices.projector({ response: marketPrices });
         const currencies = getCurrencies.projector({ response: marketPrices });
         const convert = getConvertBtcState.projector({ isFetching: true, query: {}, response: 0.001, lastUpdate: 123 });
-        const selector = viewExchangeRatesModel.projector(prices, currencies, convert);
+        const selector = viewExchangeRatesModel.projector(prices, currencies, convert, 'USD');
 
         expect(selector).toMatchSnapshot();
       });
