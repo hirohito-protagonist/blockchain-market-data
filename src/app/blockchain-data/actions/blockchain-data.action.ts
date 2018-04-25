@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { DataServiceType, QueryType } from './../blockchain-data.type';
 
 export enum ActionTypes {
-  FetchData = '[Blockchain data] fetch data'
+  FetchData = '[Blockchain Data Feature API] Fetch data'
 }
 
 export class FetchData implements Action {

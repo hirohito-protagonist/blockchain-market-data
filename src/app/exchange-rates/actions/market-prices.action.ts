@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum ActionTypes {
-  FetchData = '[Exchange rates] Market prices fetch data'
+  FetchData = '[Exchange Rates Feature] Market prices fetch data'
 }
 
 

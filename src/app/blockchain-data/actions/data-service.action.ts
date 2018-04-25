@@ -2,8 +2,8 @@ import { Action } from '@ngrx/store';
 import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
 export enum ActionTypes {
-  Request = '[Blockchain data] data service request',
-  Response = '[Blockchain data] data service response'
+  Request = '[Blockchain Data Feature API] Data service request',
+  Response = '[Blockchain Data Feature API] Data service response'
 }
 
 export class Request implements Action {

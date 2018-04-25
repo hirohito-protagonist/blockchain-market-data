@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum ActionTypes {
-  UpdateUI = '[Exchange Rates UI] update ui state'
+  UpdateUI = '[Exchange Rates Feature] Update UI state'
 }
 
 export class UpdateUIState implements Action {

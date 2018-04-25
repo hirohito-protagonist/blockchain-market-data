@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { ConvertToBTC } from './../exchange-rates.type';
 
 export enum ActionTypes {
-  Convert = '[Exchange rates] Convert to BTC'
+  Convert = '[Exchange Rates Feature] Convert to BTC'
 }
 
 export class Convert implements Action {
