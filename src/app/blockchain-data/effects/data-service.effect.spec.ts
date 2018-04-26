@@ -66,7 +66,7 @@ describe('DataServiceEffects', () => {
     actions$.stream = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
-    expect(effects.requestData$).toBeObservable(expected);
+    expect(effects.requestData$).toMatchSnapshot();
   });
 
   it('should request convert to BTC on fetch data action and then dispatch response action', () => {
@@ -89,7 +89,7 @@ describe('DataServiceEffects', () => {
     const expected = cold('--b', { b: completion });
     spyOn(exchangeRatesService, 'tobtc').and.returnValue(response);
 
-    expect(effects.responseToBTCData$).toBeObservable(expected);
+    expect(effects.responseToBTCData$).toMatchSnapshot();
   });
 
   it('should request market data prices on fetch data action and then dispatch response action', () => {
@@ -109,7 +109,7 @@ describe('DataServiceEffects', () => {
     const expected = cold('--b', { b: completion });
     spyOn(exchangeRatesService, 'ticker').and.returnValue(response);
 
-    expect(effects.responseTcikerData$).toBeObservable(expected);
+    expect(effects.responseTcikerData$).toMatchSnapshot();
   });
 
   it('should request stats information on fetch data action and then dispatch response action', () => {
@@ -129,6 +129,6 @@ describe('DataServiceEffects', () => {
     const expected = cold('--b', { b: completion });
     spyOn(statisticsService, 'stats').and.returnValue(response);
 
-    expect(effects.responseStatsData$).toBeObservable(expected);
+    expect(effects.responseStatsData$).toMatchSnapshot();
   });
 });

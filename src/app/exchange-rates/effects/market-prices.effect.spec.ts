@@ -58,6 +58,6 @@ describe('MarketPricesEffects', () => {
     actions$.stream = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
-    expect(effects.requestData$).toBeObservable(expected);
+    expect(effects.requestData$).toMatchSnapshot();
   });
 });
