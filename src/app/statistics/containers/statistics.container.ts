@@ -8,7 +8,7 @@ import {
   StatisticsState,
   statisticViewModel
 } from './../reducers/index.reducer';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { StatisticViewModel } from './../model.view';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';

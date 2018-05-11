@@ -3,8 +3,7 @@ import { Actions } from '@ngrx/effects';
 import { TestBed } from '@angular/core/testing';
 import { cold, hot } from 'jest-marbles';
 
-import { empty } from 'rxjs/observable/empty';
-import { Observable } from 'rxjs/Observable';
+import { Observable, empty } from 'rxjs';
 
 import { ConvertBtcEffects } from './convert-btc.effect';
 import { fromConvertBtcAction } from './../actions/index.action';

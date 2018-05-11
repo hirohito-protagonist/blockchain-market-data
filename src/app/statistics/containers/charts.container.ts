@@ -11,7 +11,7 @@ import {
 } from './../reducers/index.reducer';
 import { ChartQuery } from './../statistics.type';
 import { ChartViewModel } from './../model.view';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { fromUIActions } from './../actions/index.action';
 
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';

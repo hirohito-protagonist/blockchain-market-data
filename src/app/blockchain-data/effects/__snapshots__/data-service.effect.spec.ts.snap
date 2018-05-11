@@ -111,7 +111,6 @@ Actions {
     "_isScalar": false,
     "operator": SwitchMapOperator {
       "project": [Function],
-      "resultSelector": undefined,
     },
     "source": Actions {
       "_isScalar": false,
@@ -257,7 +256,6 @@ Actions {
     "_isScalar": false,
     "operator": SwitchMapOperator {
       "project": [Function],
-      "resultSelector": undefined,
     },
     "source": Actions {
       "_isScalar": false,
@@ -397,7 +395,6 @@ Actions {
     "_isScalar": false,
     "operator": SwitchMapOperator {
       "project": [Function],
-      "resultSelector": undefined,
     },
     "source": Actions {
       "_isScalar": false,

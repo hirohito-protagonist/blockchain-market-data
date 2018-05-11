@@ -7,7 +7,7 @@ import { Store, select } from '@ngrx/store';
 
 import { fromLayoutActions } from './../actions/index.action';
 import { fromLayoutReducer, CoreState, getActiveLayoutView } from './../reducers/index.reducer';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 
 @Component({

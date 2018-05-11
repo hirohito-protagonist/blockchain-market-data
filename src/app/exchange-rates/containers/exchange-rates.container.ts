@@ -12,7 +12,7 @@ import {  ConvertToBTC } from './../exchange-rates.type';
 import { ExchangeRatesViewModel } from './../model.view';
 
 import { fromMarketPricesAction, fromConvertBtcAction, fromUIAction } from './../actions/index.action';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bmd-exchange-rates-container',

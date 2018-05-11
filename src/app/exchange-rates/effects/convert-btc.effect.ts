@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { fromConvertBtcAction } from './../actions/index.action';
 import { map, switchMap, tap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { of, Observable } from 'rxjs';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 @Injectable()
