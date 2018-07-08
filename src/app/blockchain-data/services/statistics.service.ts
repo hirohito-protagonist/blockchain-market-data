@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { fromBlockchainDataStatisticsEntity } from './../entities/index.entity';
 import { ChartsQuery } from './../blockchain-data.type';
 
