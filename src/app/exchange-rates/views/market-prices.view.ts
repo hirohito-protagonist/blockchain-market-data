@@ -17,7 +17,7 @@ import { MarketPrices } from './../exchange-rates.type';
 })
 export class MarketPricesViewComponent implements OnChanges {
 
-  displayedColumns = ['currency', 'm', 'buy', 'last', 'sell', 'symbol'];
+  displayedColumns = ['currency',  'symbol', 'm', 'last', 'sell', 'buy'];
   dataSource = [];
 
   @Input() prices: MarketPrices;

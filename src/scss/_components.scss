@@ -123,15 +123,18 @@ $loader-duration: 1s;
 .c-table {
   display: table;
   width: 100%;
-
+  table-layout: fixed;
 
   &__header-row, &__row {
     display: table-row;
 
   }
 
-  &__row.selected {
-    background: $primary;
+  &__row.selected,
+  &__row.selected .cdk-column-currency,
+  &__row.selected .cdk-column-buy,
+  &__row.selected .cdk-column-sell {
+    background: $primary !important;
     color: white;
   }
 
@@ -146,8 +149,51 @@ $loader-duration: 1s;
     background-color: $border-color;
     font-weight: bold;
     position: sticky;
-    z-index: 1;
+    z-index: 2;
     top: 0;
+  }
+
+  .cdk-column-currency {
+    width: 80px;
+  }
+  .cdk-column-symbol, .cdk-column-m, .cdk-column-last, .cdk-column-sell, .cdk-column-buy {
+    width: 100px;
+  }
+
+  .c-table__header {
+
+    .cdk-column-currency {
+      left: 0;
+    }
+
+    .cdk-column-buy {
+      right: 0;
+    }
+
+    .cdk-column-sell {
+      right: 100px;
+    }
+  }
+
+  .c-table__row {
+
+    .cdk-column-currency {
+      position: sticky;
+      z-index: 1;
+      left: 0;
+      background: $border-color;
+    }
+
+    .cdk-column-buy, .cdk-column-sell {
+      position: sticky;
+      z-index: 1;
+      right: 0;
+      background: $border-color;
+    }
+
+    .cdk-column-sell {
+      right: 100px;
+    }
   }
 }
 
