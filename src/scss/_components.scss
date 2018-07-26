@@ -33,7 +33,7 @@
 .tab-content {
   @extend .o-stretch-max;
   top: 42px;
-  background: #22252a;
+  background: map-get($color-palette, color-5);
 
   .tab-pane {
     @extend .o-stretch-max;
@@ -134,19 +134,19 @@ $loader-duration: 1s;
   &__row.selected .cdk-column-currency,
   &__row.selected .cdk-column-buy,
   &__row.selected .cdk-column-sell {
-    background: $primary !important;
+    background: map-get($color-palette, color-1) !important;
     color: white;
   }
 
   &__cell, &__header-cell {
     display: table-cell;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid map-get($color-palette, color-4);
     align-items: center;
     padding: 10px 8px;
   }
 
   &__header-cell {
-    background-color: $border-color;
+    background-color: map-get($color-palette, color-4);
     font-weight: bold;
     position: sticky;
     z-index: 2;
@@ -181,14 +181,14 @@ $loader-duration: 1s;
       position: sticky;
       z-index: 1;
       left: 0;
-      background: $border-color;
+      background: map-get($color-palette, color-4);
     }
 
     .cdk-column-buy, .cdk-column-sell {
       position: sticky;
       z-index: 1;
       right: 0;
-      background: $border-color;
+      background: map-get($color-palette, color-4);
     }
 
     .cdk-column-sell {

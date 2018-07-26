@@ -1,8 +1,16 @@
-$primary: #864DD9;
-$body-bg: #2d3035;
-$body-color: #8a8d93;
+$color-palette: (
+  color-1: #864DD9,
+  color-2: lighten(#22252a, 5%),
+  color-3: lighten(#22252a, 70%),
+  color-4: lighten(#22252a, 10%),
+  color-5: #22252a
+);
+
+$primary: map-get($color-palette, color-1);
+$body-bg: map-get($color-palette, color-2);
+$body-color: map-get($color-palette, color-3);
 $link-color: $body-color;
-$border-color: #34373d;
+$border-color: map-get($color-palette, color-4);
 $card-bg: $body-bg;
 $dropdown-bg: $body-bg;
 $custom-select-bg: $body-bg;
