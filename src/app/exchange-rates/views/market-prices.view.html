@@ -1,45 +1,35 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <div class="card">
-          <div class="card-body">
-            <div class="d-flex">
-              <cdk-table [dataSource]="dataSource" class="c-table">
-                <ng-container cdkColumnDef="currency">
-                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">currency</cdk-header-cell>
-                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.currency}} </cdk-cell>
-                </ng-container>
-                <ng-container cdkColumnDef="m">
-                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">15m</cdk-header-cell>
-                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row['15m']}} </cdk-cell>
-                </ng-container>
-                <ng-container cdkColumnDef="buy">
-                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">buy</cdk-header-cell>
-                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.buy}} </cdk-cell>
-                </ng-container>
-                <ng-container cdkColumnDef="last">
-                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">last</cdk-header-cell>
-                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.last}} </cdk-cell>
-                </ng-container>
-                <ng-container cdkColumnDef="sell">
-                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">sell</cdk-header-cell>
-                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.sell}} </cdk-cell>
-                </ng-container>
-                <ng-container cdkColumnDef="symbol">
-                  <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">symbol</cdk-header-cell>
-                  <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.symbol}} </cdk-cell>
-                </ng-container>
-                <cdk-header-row *cdkHeaderRowDef="displayedColumns" class="c-table__header-row"></cdk-header-row>
-                <cdk-row
-                  *cdkRowDef="let row; columns: displayedColumns"
-                  class="c-table__row"
-                  [class.selected]="row.currency == selectedCurrency"
-                  (click)="selectCurrency.emit(row.currency)"></cdk-row>
-              </cdk-table>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
+<div class="p-3">
+  <cdk-table [dataSource]="dataSource" class="c-table">
+    <ng-container cdkColumnDef="currency">
+      <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">currency</cdk-header-cell>
+      <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.currency}} </cdk-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="m">
+      <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">15m</cdk-header-cell>
+      <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row['15m']}} </cdk-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="buy">
+      <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">buy</cdk-header-cell>
+      <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.buy}} </cdk-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="last">
+      <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">last</cdk-header-cell>
+      <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.last}} </cdk-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="sell">
+      <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">sell</cdk-header-cell>
+      <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.sell}} </cdk-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="symbol">
+      <cdk-header-cell *cdkHeaderCellDef class="c-table__header-cell">symbol</cdk-header-cell>
+      <cdk-cell *cdkCellDef="let row" class="c-table__cell"> {{row.symbol}} </cdk-cell>
+    </ng-container>
+    <cdk-header-row *cdkHeaderRowDef="displayedColumns" class="c-table__header-row"></cdk-header-row>
+    <cdk-row
+      *cdkRowDef="let row; columns: displayedColumns"
+      class="c-table__row"
+      [class.selected]="row.currency == selectedCurrency"
+      (click)="selectCurrency.emit(row.currency)"></cdk-row>
+  </cdk-table>
 </div>
 

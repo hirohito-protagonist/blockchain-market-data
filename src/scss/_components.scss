@@ -143,6 +143,7 @@ $loader-duration: 1s;
     border-bottom: 1px solid map-get($color-palette, color-4);
     align-items: center;
     padding: 10px 8px;
+    word-wrap: break-word;
   }
 
   &__header-cell {
@@ -160,18 +161,21 @@ $loader-duration: 1s;
     width: 100px;
   }
 
-  .c-table__header {
+  .c-table__header-row {
 
     .cdk-column-currency {
       left: 0;
+      z-index: 3;
     }
 
     .cdk-column-buy {
       right: 0;
+      z-index: 3;
     }
 
     .cdk-column-sell {
       right: 100px;
+      z-index: 3;
     }
   }
 
