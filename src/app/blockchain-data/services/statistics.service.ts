@@ -24,21 +24,21 @@ export class StatisticsService {
 
   charts(query: ChartsQuery): Observable<any> {
 
-    const q = {
+    const q = Object.entries({
       timespan: '1year',
       rollingAverage: '',
       start: '',
       format: 'json',
       sampled: true,
       ...query
-    };
+    })
+    .filter(entry => entry[1] !== '')
+    .map((entry) => {
+      const [key, value] = entry;
+      return `&${key}=${value}`;
+    })
+    .join('');
 
-    return this.http.get<any>(`${this.API_Path}charts/${q.name}/?cors=true` + [
-      `&timespan=${q.timespan}`,
-      `&rollingAverage=${q.rollingAverage}`,
-      `&start=${q.start}`,
-      `&format=${q.format}`,
-      `&sampled=${q.sampled}`
-    ].join(''));
+    return this.http.get<any>(`${this.API_Path}charts/${query.name}/?cors=true${q}`);
   }
 }
