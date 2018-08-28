@@ -3,7 +3,7 @@ import { Actions } from '@ngrx/effects';
 import { TestBed } from '@angular/core/testing';
 import { cold, hot } from 'jest-marbles';
 
-import { Observable, empty } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 
 import { MarketPricesEffects } from './market-prices.effect';
 import { fromMarketPricesAction } from './../actions/index.action';
@@ -12,7 +12,7 @@ import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data'
 export class TestActions extends Actions {
 
   constructor() {
-    super(empty());
+    super(EMPTY);
   }
 
   set stream(source: Observable<any>) {
