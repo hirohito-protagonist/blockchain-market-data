@@ -1,9 +1,9 @@
 $color-palette: (
-  color-1: #864DD9,
-  color-2: lighten(#22252a, 5%),
-  color-3: lighten(#22252a, 70%),
-  color-4: lighten(#22252a, 10%),
-  color-5: #22252a
+  color-1: #9c27b0,
+  color-2: lighten(#303030, 2%),
+  color-3: lighten(#303030, 70%),
+  color-4: lighten(#303030, 5%),
+  color-5: #303030
 );
 
 $primary: map-get($color-palette, color-1);

@@ -8,6 +8,10 @@
   }
 }
 
+.o-navbar {
+  background: map-get($color-palette, color-1);
+}
+
 .c-chart {
   width: 100%;
   min-height: 200px;
