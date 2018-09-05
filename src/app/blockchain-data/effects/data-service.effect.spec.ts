@@ -3,7 +3,7 @@ import { Actions } from '@ngrx/effects';
 import { TestBed } from '@angular/core/testing';
 import { cold, hot } from 'jest-marbles';
 
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 
 import { DataServiceEffects } from './data-service.effect';
 import { ExchangeRatesService } from './../services/exchange-rates.service';
@@ -65,7 +65,7 @@ describe('DataServiceEffects', () => {
     actions$.stream = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
-    expect(effects.requestData$).toMatchSnapshot();
+    expect(effects.requestData$).toBeObservable(expected);
   });
 
   it('should request convert to BTC on fetch data action and then dispatch response action', () => {
@@ -84,11 +84,10 @@ describe('DataServiceEffects', () => {
     });
 
     actions$.stream = hot('-a', { a: action });
-    const response = cold('-a|', { a: responseData });
-    const expected = cold('--b', { b: completion });
-    spyOn(exchangeRatesService, 'tobtc').and.returnValue(response);
+    const expected = cold('-b', { b: completion });
+    spyOn(exchangeRatesService, 'tobtc').and.returnValue(of(responseData));
 
-    expect(effects.responseToBTCData$).toMatchSnapshot();
+    expect(effects.responseToBTCData$).toBeObservable(expected);
   });
 
   it('should request market data prices on fetch data action and then dispatch response action', () => {
@@ -104,11 +103,10 @@ describe('DataServiceEffects', () => {
     });
 
     actions$.stream = hot('-a', { a: action });
-    const response = cold('-a|', { a: responseData });
-    const expected = cold('--b', { b: completion });
-    spyOn(exchangeRatesService, 'ticker').and.returnValue(response);
+    const expected = cold('-b', { b: completion });
+    spyOn(exchangeRatesService, 'ticker').and.returnValue(of(responseData));
 
-    expect(effects.responseTcikerData$).toMatchSnapshot();
+    expect(effects.responseTcikerData$).toBeObservable(expected);
   });
 
   it('should request stats information on fetch data action and then dispatch response action', () => {
@@ -124,10 +122,9 @@ describe('DataServiceEffects', () => {
     });
 
     actions$.stream = hot('-a', { a: action });
-    const response = cold('-a|', { a: responseData });
-    const expected = cold('--b', { b: completion });
-    spyOn(statisticsService, 'stats').and.returnValue(response);
+    const expected = cold('-b', { b: completion });
+    spyOn(statisticsService, 'stats').and.returnValue(of(responseData));
 
-    expect(effects.responseStatsData$).toMatchSnapshot();
+    expect(effects.responseStatsData$).toBeObservable(expected);
   });
 });
