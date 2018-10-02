@@ -37,7 +37,7 @@ export class ChartsContainerComponent implements OnInit {
   constructor(private store: Store<StatisticsState>) {
 
     this.chartViewModel$ = this.store.pipe(select(viewChartModel));
-    this.store.select(getChartQuery).subscribe((query) => {
+    this.store.pipe(select(getChartQuery)).subscribe((query) => {
 
       this.chartQuery = query;
     });
