@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { CoreAppContainerComponent } from './containers/app.container';
 import { CoreContentViewComponent } from './views/content.view';
@@ -19,6 +20,7 @@ import { reducers } from './reducers/index.reducer';
   imports: [
     CommonModule,
     NgbModule,
+    NgZorroAntdModule,
     ExchangeRatesModule,
     StatisticsModule,
     StoreModule.forFeature('core', reducers)
