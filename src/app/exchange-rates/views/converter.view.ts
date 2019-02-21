@@ -23,10 +23,9 @@ export class ConverterViewComponent implements OnChanges {
   @Output() convertToBtc = new EventEmitter<ConvertToBTC>();
   @Input() selectedCurrency = '';
   @Output() selectCurrency = new EventEmitter<string>();
-  @ViewChild('value') inputValue: ElementRef;
-  @ViewChild('currency') inputCurrency: ElementRef;
 
   currencySymbol = '';
+  val = 0;
 
   ngOnChanges(changes) {
 
@@ -34,7 +33,7 @@ export class ConverterViewComponent implements OnChanges {
 
       this.currencySymbol = this.resolveCurrencySymbol(this.selectedCurrency);
       this.convertToBtc.emit({
-        value: (this.inputValue.nativeElement.value as string),
+        value: this.val,
         currency: this.selectedCurrency
       });
     }
@@ -45,7 +44,7 @@ export class ConverterViewComponent implements OnChanges {
     if (type === 'value') {
       this.convertToBtc.emit({
         value,
-        currency: this.inputCurrency.nativeElement.value
+        currency: this.selectedCurrency
       });
     } else if (type === 'currency') {
       this.currencySymbol = this.resolveCurrencySymbol(value);

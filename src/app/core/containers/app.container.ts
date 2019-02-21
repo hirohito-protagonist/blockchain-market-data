@@ -14,10 +14,13 @@ import { Observable } from 'rxjs';
   selector: 'bmd-core-app-container',
   template: `
   <nz-layout class="layout">
-    <nz-header>
-      <h1 >Blockchain Market Data</h1>
-    </nz-header>
-    <nz-content>Content</nz-content>
+    <nz-header>Blockchain Market Data</nz-header>
+    <nz-content>
+      <bmd-core-content-view
+        class="c-main__content"
+        [activeView]="activeView$ | async"
+      ></bmd-core-content-view>
+    </nz-content>
   </nz-layout>
 
     <!-- <nav class="o-navbar navbar flex-md-nowrap p-0">

@@ -2,6 +2,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -28,9 +30,11 @@ export class RootExchangeRateModule {}
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
-    CdkTableModule
+    CdkTableModule,
+    NgZorroAntdModule
   ],
   declarations: [
     ExchangeRatesContainerComponent,
