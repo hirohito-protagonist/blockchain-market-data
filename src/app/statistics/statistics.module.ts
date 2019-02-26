@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { StoreModule } from '@ngrx/store';
@@ -16,6 +17,7 @@ import { ChartsViewComponent } from './views/charts.view';
   imports: [
     CommonModule,
     FormsModule,
+    NgZorroAntdModule,
     NgxEchartsModule,
     StoreModule.forFeature('statistics', reducers),
   ],

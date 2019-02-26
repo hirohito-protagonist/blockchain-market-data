@@ -1,22 +1,8 @@
-<div class="c-navbar">
-  <nav class="navbar">
-    <div></div>
-    <div>
-      <button class="btn btn-outline-dark btn-sm" (click)="refresh.emit()">Refresh</button>
-      <span class="alert" role="alert">
-          Last update: {{ vModel.update | date: 'yyyy-MM-dd HH:mm:ss' }}
-      </span>
-    </div>
-  </nav>
-</div>
-<div class="c-content">
-  <div class="container-fluid">
-    <div class="row">
-
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Block Summary</h5>
+<nz-card [nzTitle]="vModel.update | date: 'yyyy-MM-dd HH:mm:ss'" [nzExtra]="refreshTemplate">
+  <div nz-card-grid [ngStyle]="{ width: '100%' }">
+    <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <nz-card nzTitle="Block Summary">
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Blocks Mined
@@ -31,14 +17,10 @@
                 <span class="badge badge-primary badge-pill">{{ vModel.data.n_btc_mined }}</span>
               </li>
             </ul>
-          </div>
+          </nz-card>
         </div>
-      </div>
-
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Market Summary</h5>
+        <div nz-col [nzSpan]="12">
+          <nz-card nzTitle="Market Summary">
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Market Price ($)
@@ -53,17 +35,13 @@
                 <span class="badge badge-primary badge-pill">{{ vModel.data.trade_volume_btc }}</span>
               </li>
             </ul>
-          </div>
+          </nz-card>
         </div>
       </div>
 
-    </div>
-
-    <div class="row pt-4">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Transaction Summary</h5>
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+          <nz-card nzTitle="Transaction Summary">
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Total Transaction Fees (BTC)
@@ -86,31 +64,23 @@
                 <span class="badge badge-primary badge-pill">{{ vModel.data.estimated_transaction_volume_usd | currency: 'USD' }}</span>
               </li>
             </ul>
-          </div>
+          </nz-card>
         </div>
-      </div>
-    </div>
-
-    <div class="row pt-4">
-
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Mining Cost</h5>
+        <div nz-col [nzSpan]="12">
+          <nz-card nzTitle="Mining Cost">
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Total Miners Revenue (USD)
                 <span class="badge badge-primary badge-pill">{{ vModel.data.miners_revenue_usd | currency: 'USD' }}</span>
               </li>
             </ul>
-          </div>
+          </nz-card>
         </div>
       </div>
 
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Hash Rate and Electricity Consumption</h5>
+      <div nz-row [nzGutter]="16">
+        <div nz-col [nzSpan]="24">
+          <nz-card nzTitle="Hash Rate and Electricity Consumption">
             <ul class="list-group">
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 Difficulty
@@ -121,9 +91,12 @@
                 <span class="badge badge-primary badge-pill">{{ vModel.data.hash_rate | number }}</span>
               </li>
             </ul>
-          </div>
+          </nz-card>
         </div>
       </div>
-    </div>
   </div>
-</div>
+</nz-card>
+
+<ng-template #refreshTemplate>
+  <button nz-button nzType="default" nzShape="circle" (click)="refresh.emit()"><i nz-icon type="reload"></i></button>
+</ng-template>
