@@ -9,7 +9,11 @@
 }
 
 .o-navbar {
-  background: map-get($color-palette, color-1);
+  color: white;
+
+  .navbar-brand {
+    font-size: 1.4rem;
+  }
 }
 
 .c-chart {
@@ -36,7 +40,7 @@
 
 .tab-content {
   @extend .o-stretch-max;
-  top: 42px;
+  top: 35px;
   background: map-get($color-palette, color-5);
 
   .tab-pane {
@@ -47,13 +51,15 @@
 }
 
 .nav-tabs {
+  background: rgba(#d1d1d9, 0.1);
+  border: 0;
 
   .nav-link {
-    border-top-width: 4px;
+    // border-top-width: 4px;
   }
 
   .nav-link.active {
-    border-top-color: $primary;
+    // border-top-color: $primary;
   }
 }
 
@@ -139,7 +145,7 @@ $loader-duration: 1s;
   &__row.selected .cdk-column-buy,
   &__row.selected .cdk-column-sell {
     background: map-get($color-palette, color-1) !important;
-    color: white;
+    color: map-get($color-palette, color-5) ;
   }
 
   &__cell, &__header-cell {
@@ -202,6 +208,20 @@ $loader-duration: 1s;
     .cdk-column-sell {
       right: 100px;
     }
+  }
+}
+
+.badge {
+  font-size: 94%;
+}
+
+.btn-outline-dark {
+  border-color: lighten(#303030, 50%);
+  color: lighten(#303030, 50%);
+
+  &:hover {
+    border-color: map-get($color-palette, color-1);
+    color: map-get($color-palette, color-1);
   }
 }
 

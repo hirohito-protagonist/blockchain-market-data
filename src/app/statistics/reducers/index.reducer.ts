@@ -90,10 +90,10 @@ const getChartsData = createSelector(chartsNode, (s) => {
             data: v.map((d) => d['y']),
             showSymbol: false,
             lineStyle: {
-              color: '#9c27b0'
+              color: '#49D8EB'
             },
             areaStyle: {
-              color: '#9c27b0'
+              color: '#49D8EB'
             }
           }
         ]

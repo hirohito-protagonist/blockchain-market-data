@@ -10,6 +10,11 @@ body {
   bottom: 0;
 }
 
+body {
+  background: rgb(66,50,92);
+  background: linear-gradient(90deg, rgba(66,50,92,1) 0%, rgba(86,107,159,1) 100%);
+}
+
 body::-webkit-scrollbar, .tab-pane::-webkit-scrollbar, .c-content::-webkit-scrollbar {
   height: 6px;
   width: 6px;
