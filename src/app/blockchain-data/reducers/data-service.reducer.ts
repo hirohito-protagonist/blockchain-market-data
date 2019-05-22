@@ -45,7 +45,7 @@ export function reducer(state: DataServiceState = initialState, action: fromData
 
   switch (action.type) {
 
-    case fromDataServiceAction.ActionTypes.Request: {
+    case fromDataServiceAction.request.type: {
       const node = action.payload.key;
 
       if (state[node]) {
@@ -63,7 +63,7 @@ export function reducer(state: DataServiceState = initialState, action: fromData
       return state;
     }
 
-    case fromDataServiceAction.ActionTypes.Response: {
+    case fromDataServiceAction.response.type: {
 
       const node = action.payload.key;
 
@@ -87,3 +87,4 @@ export function reducer(state: DataServiceState = initialState, action: fromData
     }
   }
 }
+

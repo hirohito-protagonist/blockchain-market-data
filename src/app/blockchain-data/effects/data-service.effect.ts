@@ -14,9 +14,11 @@ export class DataServiceEffects {
   @Effect()
   requestData$: Observable<Action> = this.action$.pipe(
     ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    map((action: fromBlockchainDataAction.FetchData) => new fromDataServiceAction.Request({
-      key: action.payload.key,
-      query: action.payload.query
+    map((action: fromBlockchainDataAction.FetchData) => fromDataServiceAction.request({
+      payload: {
+        key: action.payload.key,
+        query: action.payload.query
+      }
     }))
   );
 
@@ -74,9 +76,11 @@ export class DataServiceEffects {
       filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === serviceType),
       switchMap((action: fromBlockchainDataAction.FetchData) => fn(action)),
       map(([action, response]) => {
-        return new fromDataServiceAction.Response({
-          key: (action as fromBlockchainDataAction.FetchData).payload.key,
-          response: (response as DataResponseType)
+        return fromDataServiceAction.response({
+          payload: {
+            key: (action as fromBlockchainDataAction.FetchData).payload.key,
+            response: (response as DataResponseType)
+          }
         });
       })
     );

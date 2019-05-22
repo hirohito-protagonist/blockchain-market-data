@@ -34,7 +34,11 @@ describe('Data service reducer', () => {
 
       it(`should set isFetching as true and update query for ${testData.serviceType}`, () => {
 
-        const action = new fromDataServiceAction.Request({ key: testData.serviceType, query: testData.query });
+        const action = fromDataServiceAction.request({
+          payload: {
+            key: testData.serviceType, query: testData.query
+          }
+        });
         const result = reducer(void(0), action);
 
         expect(result).toMatchSnapshot();
@@ -44,7 +48,11 @@ describe('Data service reducer', () => {
 
     it('should not update state for undefined node', () => {
 
-      const action = new fromDataServiceAction.Request({ key: '' as any, query: { currency: 'USD', value: 200 } });
+      const action = fromDataServiceAction.request({
+        payload: {
+          key: '' as any, query: { currency: 'USD', value: 200 }
+        }
+      });
       const result = reducer(void(0), action);
 
       expect(result).toMatchSnapshot();
@@ -75,9 +83,17 @@ describe('Data service reducer', () => {
 
         spyOn(Date, 'now').and.returnValue(123);
 
-        const requestAction = new fromDataServiceAction.Request({ key: testData.serviceType, query: testData.query });
+        const requestAction = fromDataServiceAction.request({
+          payload: {
+            key: testData.serviceType, query: testData.query
+          }
+        });
         const requestResult = reducer(void(0), requestAction);
-        const responseAction = new fromDataServiceAction.Response({ key: testData.serviceType, response: testData.response });
+        const responseAction = fromDataServiceAction.response({
+          payload: {
+            key: testData.serviceType, response: testData.response
+          }
+        });
         const responseResult = reducer(requestResult, responseAction);
 
         expect(responseResult).toMatchSnapshot();
@@ -87,9 +103,17 @@ describe('Data service reducer', () => {
 
     it('should not update state for undefined node', () => {
 
-      const requestAction = new fromDataServiceAction.Request({ key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 } });
+      const requestAction = fromDataServiceAction.request({
+        payload: {
+          key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 }
+        }
+      });
       const requestResult = reducer(void(0), requestAction);
-      const responseAction = new fromDataServiceAction.Response({ key: '' as any, response: 123 });
+      const responseAction = fromDataServiceAction.response({
+        payload: {
+          key: '' as any, response: 123
+        }
+      });
       const responseResult = reducer(requestResult, responseAction);
 
       expect(responseResult).toMatchSnapshot();

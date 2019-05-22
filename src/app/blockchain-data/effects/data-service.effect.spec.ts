@@ -57,9 +57,11 @@ describe('DataServiceEffects', () => {
   it('should dispatch request data action on fetch action', () => {
 
     const action = new fromBlockchainDataAction.FetchData({ key: DataServiceType.Ticker, query: null });
-    const completion = new fromDataServiceAction.Request({
-      key: DataServiceType.Ticker,
-      query: null
+    const completion = fromDataServiceAction.request({
+      payload: {
+        key: DataServiceType.Ticker,
+        query: null
+      }
     });
 
     actions$.stream = hot('-a', { a: action });
@@ -78,9 +80,11 @@ describe('DataServiceEffects', () => {
         value: 200
       }
     });
-    const completion = new fromDataServiceAction.Response({
-      key: DataServiceType.ToBTC,
-      response: responseData
+    const completion = fromDataServiceAction.response({
+      payload: {
+        key: DataServiceType.ToBTC,
+        response: responseData
+      }
     });
 
     actions$.stream = hot('-a', { a: action });
@@ -97,9 +101,11 @@ describe('DataServiceEffects', () => {
       key: DataServiceType.Ticker,
       query: null
     });
-    const completion = new fromDataServiceAction.Response({
-      key: DataServiceType.Ticker,
-      response: responseData
+    const completion = fromDataServiceAction.response({
+      payload: {
+        key: DataServiceType.Ticker,
+        response: responseData
+      }
     });
 
     actions$.stream = hot('-a', { a: action });
@@ -116,9 +122,11 @@ describe('DataServiceEffects', () => {
       key: DataServiceType.Stats,
       query: null
     });
-    const completion = new fromDataServiceAction.Response({
-      key: DataServiceType.Stats,
-      response: responseData
+    const completion = fromDataServiceAction.response({
+      payload: {
+        key: DataServiceType.Stats,
+        response: responseData
+      }
     });
 
     actions$.stream = hot('-a', { a: action });
