@@ -1,15 +1,11 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { DataServiceType, QueryType } from './../blockchain-data.type';
 
-export enum ActionTypes {
-  FetchData = '[Blockchain Data Feature API] Fetch data'
-}
+export const fetchData = createAction(
+  '[Blockchain Data Feature API] Fetch data',
+  props<{ payload: { key: DataServiceType; query: QueryType; } }>()
+);
 
-export class FetchData implements Action {
-  readonly type = ActionTypes.FetchData;
+const all = union({ fetchData });
 
-  constructor(public payload: { key: DataServiceType; query: QueryType; }) {}
-}
-
-
-export type ActionType = FetchData;
+export type ActionType = typeof all;

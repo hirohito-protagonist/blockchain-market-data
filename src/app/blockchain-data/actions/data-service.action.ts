@@ -1,18 +1,14 @@
 import { createAction, props, union } from '@ngrx/store';
 import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
-enum ActionTypes {
-  Request = '[Blockchain Data Feature API] Data service request',
-  Response = '[Blockchain Data Feature API] Data service response'
-}
 
 export const request = createAction(
-  ActionTypes.Request,
+  '[Blockchain Data Feature API] Data service request',
   props<{ payload: { key: DataServiceType; query: QueryType; } }>()
 );
 
 export const response = createAction(
-  ActionTypes.Response,
+  '[Blockchain Data Feature API] Data service response',
   props<{ payload: { key: DataServiceType; response: DataResponseType; } }>()
 );
 

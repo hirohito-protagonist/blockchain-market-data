@@ -87,9 +87,11 @@ export class ChartsContainerComponent implements OnInit {
 
   requestChart(query: ChartQuery): void {
 
-    this.store.dispatch(new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.Charts,
-      query: query
+    this.store.dispatch(fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.Charts,
+        query: query
+      }
     }));
   }
 }

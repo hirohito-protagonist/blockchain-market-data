@@ -56,7 +56,11 @@ describe('DataServiceEffects', () => {
 
   it('should dispatch request data action on fetch action', () => {
 
-    const action = new fromBlockchainDataAction.FetchData({ key: DataServiceType.Ticker, query: null });
+    const action = fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.Ticker, query: null
+      }
+    });
     const completion = fromDataServiceAction.request({
       payload: {
         key: DataServiceType.Ticker,
@@ -73,11 +77,13 @@ describe('DataServiceEffects', () => {
   it('should request convert to BTC on fetch data action and then dispatch response action', () => {
 
     const responseData = 0.12331;
-    const action = new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.ToBTC,
-      query: {
-        currency: 'USD',
-        value: 200
+    const action = fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.ToBTC,
+        query: {
+          currency: 'USD',
+          value: 200
+        }
       }
     });
     const completion = fromDataServiceAction.response({
@@ -97,9 +103,11 @@ describe('DataServiceEffects', () => {
   it('should request market data prices on fetch data action and then dispatch response action', () => {
 
     const responseData = {};
-    const action = new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.Ticker,
-      query: null
+    const action = fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.Ticker,
+        query: null
+      }
     });
     const completion = fromDataServiceAction.response({
       payload: {
@@ -118,9 +126,11 @@ describe('DataServiceEffects', () => {
   it('should request stats information on fetch data action and then dispatch response action', () => {
 
     const responseData = {};
-    const action = new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.Stats,
-      query: null
+    const action = fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.Stats,
+        query: null
+      }
     });
     const completion = fromDataServiceAction.response({
       payload: {

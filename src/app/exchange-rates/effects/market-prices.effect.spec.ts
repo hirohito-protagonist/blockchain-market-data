@@ -49,9 +49,11 @@ describe('MarketPricesEffects', () => {
   it('should dispatch action on fetch market prices data action', () => {
 
     const action = new fromMarketPricesAction.FetchData();
-    const completion = new fromBlockchainDataAction.FetchData({
-      key: DataServiceType.Ticker,
-      query: null
+    const completion = fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.Ticker,
+        query: null
+      }
     });
 
     actions$.stream = hot('-a', { a: action });

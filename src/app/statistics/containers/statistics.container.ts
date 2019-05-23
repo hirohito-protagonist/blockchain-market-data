@@ -38,6 +38,10 @@ export class StatisticsContainerComponent implements OnInit {
   }
 
   requestStatistics() {
-    this.store.dispatch(new fromBlockchainDataAction.FetchData({ key: DataServiceType.Stats, query: null }));
+    this.store.dispatch(fromBlockchainDataAction.fetchData({
+      payload: {
+        key: DataServiceType.Stats, query: null
+      }
+    }));
   }
 }

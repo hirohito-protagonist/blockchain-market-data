@@ -13,8 +13,8 @@ export class DataServiceEffects {
 
   @Effect()
   requestData$: Observable<Action> = this.action$.pipe(
-    ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-    map((action: fromBlockchainDataAction.FetchData) => fromDataServiceAction.request({
+    ofType(fromBlockchainDataAction.fetchData.type),
+    map((action: fromBlockchainDataAction.ActionType) => fromDataServiceAction.request({
       payload: {
         key: action.payload.key,
         query: action.payload.query
@@ -25,7 +25,7 @@ export class DataServiceEffects {
   @Effect()
   responseToBTCData$: Observable<Action> = this.responseData$(
     DataServiceType.ToBTC,
-    (action: fromBlockchainDataAction.FetchData) => this.exchangeRatesService.tobtc(
+    (action: fromBlockchainDataAction.ActionType) => this.exchangeRatesService.tobtc(
       (action.payload.query as BTCQuery).currency,
       (action.payload.query as BTCQuery).value as number
     ).pipe(
@@ -37,7 +37,7 @@ export class DataServiceEffects {
   @Effect()
   responseTcikerData$: Observable<Action> = this.responseData$(
     DataServiceType.Ticker,
-    (action: fromBlockchainDataAction.FetchData) =>
+    (action: fromBlockchainDataAction.ActionType) =>
     this.exchangeRatesService.ticker().pipe(
       map((response) => [action, (response as DataResponseType)]),
       catchError(() => of([action, 0]))
@@ -47,7 +47,7 @@ export class DataServiceEffects {
   @Effect()
   responseStatsData$: Observable<Action> = this.responseData$(
     DataServiceType.Stats,
-    (action: fromBlockchainDataAction.FetchData) =>
+    (action: fromBlockchainDataAction.ActionType) =>
     this.statisticsService.stats().pipe(
       map((response) => [action, (response as DataResponseType)]),
       catchError(() => of([action, 0]))
@@ -57,7 +57,7 @@ export class DataServiceEffects {
   @Effect()
   responseChartsData$: Observable<Action> = this.responseData$(
     DataServiceType.Charts,
-    (action: fromBlockchainDataAction.FetchData) =>
+    (action: fromBlockchainDataAction.ActionType) =>
     this.statisticsService.charts(action.payload.query as ChartsQuery).pipe(
       map((response) => [action, (response as DataResponseType)]),
       catchError(() => of([action, 0]))
@@ -72,13 +72,13 @@ export class DataServiceEffects {
 
   responseData$(serviceType: DataServiceType, fn: Function): Observable<Action> {
     return this.action$.pipe(
-      ofType(fromBlockchainDataAction.ActionTypes.FetchData),
-      filter((action: fromBlockchainDataAction.FetchData) => action.payload.key === serviceType),
-      switchMap((action: fromBlockchainDataAction.FetchData) => fn(action)),
+      ofType(fromBlockchainDataAction.fetchData.type),
+      filter((action: fromBlockchainDataAction.ActionType) => action.payload.key === serviceType),
+      switchMap((action: fromBlockchainDataAction.ActionType) => fn(action)),
       map(([action, response]) => {
         return fromDataServiceAction.response({
           payload: {
-            key: (action as fromBlockchainDataAction.FetchData).payload.key,
+            key: (action as fromBlockchainDataAction.ActionType).payload.key,
             response: (response as DataResponseType)
           }
         });
