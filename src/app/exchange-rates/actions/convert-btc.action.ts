@@ -1,14 +1,11 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { ConvertToBTC } from './../exchange-rates.type';
 
-export enum ActionTypes {
-  Convert = '[Exchange Rates Feature] Convert to BTC'
-}
+export const convert = createAction(
+  '[Exchange Rates Feature] Convert to BTC',
+  props<{ payload: ConvertToBTC }>()
+);
 
-export class Convert implements Action {
-  readonly type = ActionTypes.Convert;
+const all = union({ convert });
 
-  constructor(public payload: ConvertToBTC) {}
-}
-
-export type ActionType = Convert;
+export type ActionType = typeof all;

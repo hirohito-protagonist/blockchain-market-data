@@ -1,14 +1,12 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { fromLayoutReducer } from './../reducers/index.reducer';
 
-export enum ActionTypes {
-  ChangeView = '[Core Feature] Change Layout View'
-}
 
-export class ChangeView implements Action {
-  readonly type = ActionTypes.ChangeView;
-  constructor(public payload: fromLayoutReducer.LayoutView) {}
-}
+export const changeView = createAction(
+  '[Core Feature] Change Layout View',
+  props<{ payload: fromLayoutReducer.LayoutView }>()
+);
 
-export type ActionType = ChangeView;
+const all = union({ changeView });
 
+export type ActionType = typeof all;

@@ -48,7 +48,9 @@ describe('ConvertBtcEffects', () => {
 
   it('should dispatch action to fetch data on convert action', () => {
 
-    const action = new fromConvertBtcAction.Convert({ currency: 'USD', value: 200 });
+    const action = fromConvertBtcAction.convert({
+      payload: { currency: 'USD', value: 200 }
+    });
     const completion = fromBlockchainDataAction.fetchData({
       payload: {
         key: DataServiceType.ToBTC,

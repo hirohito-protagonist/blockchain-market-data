@@ -1,12 +1,10 @@
-import { Action } from '@ngrx/store';
+import { createAction, union } from '@ngrx/store';
 
-export enum ActionTypes {
-  FetchData = '[Exchange Rates Feature] Market prices fetch data'
-}
+export const fetchData = createAction(
+  '[Exchange Rates Feature] Market prices fetch data'
+);
 
+const all = union({ fetchData });
 
-export class FetchData implements Action {
-  readonly type = ActionTypes.FetchData;
-}
+export type ActionType = typeof all;
 
-export type ActionType = FetchData;

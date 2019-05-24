@@ -1,13 +1,10 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 
-export enum ActionTypes {
-  UpdateUI = '[Exchange Rates Feature] Update UI state'
-}
+export const updateUIState = createAction(
+  '[Exchange Rates Feature] Update UI state',
+  props<{ payload: { key: string; value: any } }>()
+);
 
-export class UpdateUIState implements Action {
+const all = union({ updateUIState });
 
-  readonly type = ActionTypes.UpdateUI;
-  constructor(public payload: { key: string; value: any }) {}
-}
-
-export type ActionType = UpdateUIState;
+export type ActionType = typeof all;
