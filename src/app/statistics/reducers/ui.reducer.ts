@@ -18,7 +18,7 @@ export function reducer(state: UIState = initialState, action: fromUIActions.Act
 
   switch (action.type) {
 
-    case fromUIActions.ActionTypes.UpdateUI: {
+    case fromUIActions.updateUIState.type: {
 
       const { key, value } = action.payload;
 

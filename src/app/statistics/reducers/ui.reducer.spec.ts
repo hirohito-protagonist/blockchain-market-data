@@ -20,7 +20,9 @@ describe('UI reducer store state', () => {
 
     it('should not add new property to the store', () => {
 
-      const action = new fromUIActions.UpdateUIState({ key: 'test', value: 'test' });
+      const action = fromUIActions.updateUIState({
+        payload: { key: 'test', value: 'test' }
+      });
       const result = reducer(void(0), action);
 
       expect(result).toMatchSnapshot();
@@ -29,13 +31,17 @@ describe('UI reducer store state', () => {
     it('should partial update state for provided key', () => {
 
       const value1 = { selectedChart: 'test' };
-      let action = new fromUIActions.UpdateUIState({ key: 'chartsView', value: value1 });
+      let action = fromUIActions.updateUIState({
+        payload: { key: 'chartsView', value: value1 }
+      });
       let result = reducer(void(0), action);
 
       expect(result).toMatchSnapshot();
 
       const value2 = { selectedChartTimeSpan: '20days' };
-      action = new fromUIActions.UpdateUIState({ key: 'chartsView', value: value2 });
+      action = fromUIActions.updateUIState({
+        payload: { key: 'chartsView', value: value2 }
+      });
       result = reducer(result, action);
 
       expect(result).toMatchSnapshot();
