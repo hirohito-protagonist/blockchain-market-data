@@ -20,7 +20,7 @@ export function reducer(state: UIState = initialState, action: fromUIActions.Act
 
     case fromUIActions.updateUIState.type: {
 
-      const { key, value } = action.payload;
+      const { key, value } = action;
 
       if (state[key]) {
 

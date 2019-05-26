@@ -62,11 +62,9 @@ export class ChartsContainerComponent implements OnInit {
 
     this.requestChart(this.chartQuery);
     this.store.dispatch(fromUIActions.updateUIState({
-      payload: {
-        key: 'chartsView',
-        value: {
-          selectedChartTimeSpan: timespan
-        }
+      key: 'chartsView',
+      value: {
+        selectedChartTimeSpan: timespan
       }
     }));
   }
@@ -80,11 +78,9 @@ export class ChartsContainerComponent implements OnInit {
 
     this.requestChart(this.chartQuery);
     this.store.dispatch(fromUIActions.updateUIState({
-      payload: {
-        key: 'chartsView',
-        value: {
-          selectedChart: name
-        }
+      key: 'chartsView',
+      value: {
+        selectedChart: name
       }
     }));
   }
@@ -92,10 +88,8 @@ export class ChartsContainerComponent implements OnInit {
   requestChart(query: ChartQuery): void {
 
     this.store.dispatch(fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.Charts,
-        query: query
-      }
+      key: DataServiceType.Charts,
+      query: query
     }));
   }
 }

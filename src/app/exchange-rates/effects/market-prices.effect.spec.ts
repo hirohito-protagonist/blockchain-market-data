@@ -50,10 +50,8 @@ describe('MarketPricesEffects', () => {
 
     const action = fromMarketPricesAction.fetchData();
     const completion = fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.Ticker,
-        query: null
-      }
+      key: DataServiceType.Ticker,
+      query: null
     });
 
     actions$.stream = hot('-a', { a: action });

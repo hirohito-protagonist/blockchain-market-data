@@ -2,7 +2,7 @@ import { createAction, props, union } from '@ngrx/store';
 
 export const updateUIState = createAction(
   '[Exchange Rates Feature] Update UI state',
-  props<{ payload: { key: string; value: any } }>()
+  props<{ key: string; value: any }>()
 );
 
 const all = union({ updateUIState });

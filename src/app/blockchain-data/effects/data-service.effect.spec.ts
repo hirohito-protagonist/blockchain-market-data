@@ -57,15 +57,11 @@ describe('DataServiceEffects', () => {
   it('should dispatch request data action on fetch action', () => {
 
     const action = fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.Ticker, query: null
-      }
+      key: DataServiceType.Ticker, query: null
     });
     const completion = fromDataServiceAction.request({
-      payload: {
-        key: DataServiceType.Ticker,
-        query: null
-      }
+      key: DataServiceType.Ticker,
+      query: null
     });
 
     actions$.stream = hot('-a', { a: action });
@@ -78,19 +74,15 @@ describe('DataServiceEffects', () => {
 
     const responseData = 0.12331;
     const action = fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.ToBTC,
-        query: {
-          currency: 'USD',
-          value: 200
-        }
+      key: DataServiceType.ToBTC,
+      query: {
+        currency: 'USD',
+        value: 200
       }
     });
     const completion = fromDataServiceAction.response({
-      payload: {
-        key: DataServiceType.ToBTC,
-        response: responseData
-      }
+      key: DataServiceType.ToBTC,
+      response: responseData
     });
 
     actions$.stream = hot('-a', { a: action });
@@ -104,16 +96,12 @@ describe('DataServiceEffects', () => {
 
     const responseData = {};
     const action = fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.Ticker,
-        query: null
-      }
+      key: DataServiceType.Ticker,
+      query: null
     });
     const completion = fromDataServiceAction.response({
-      payload: {
-        key: DataServiceType.Ticker,
-        response: responseData
-      }
+      key: DataServiceType.Ticker,
+      response: responseData
     });
 
     actions$.stream = hot('-a', { a: action });
@@ -127,16 +115,12 @@ describe('DataServiceEffects', () => {
 
     const responseData = {};
     const action = fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.Stats,
-        query: null
-      }
+      key: DataServiceType.Stats,
+      query: null
     });
     const completion = fromDataServiceAction.response({
-      payload: {
-        key: DataServiceType.Stats,
-        response: responseData
-      }
+      key: DataServiceType.Stats,
+      response: responseData
     });
 
     actions$.stream = hot('-a', { a: action });

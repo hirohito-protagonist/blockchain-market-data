@@ -46,17 +46,17 @@ export function reducer(state: DataServiceState = initialState, action: fromData
   switch (action.type) {
 
     case fromDataServiceAction.request.type: {
-      const node = action.payload.key;
+      const { key, query } = action;
 
-      if (state[node]) {
+      if (state[key]) {
 
         return {
           ...state,
-          [node]: {
-            ...state[node],
+          [key]: {
+            ...state[key],
             isFetching: true,
             response: null,
-            query: action.payload.query
+            query
           }
         };
       }
@@ -65,16 +65,16 @@ export function reducer(state: DataServiceState = initialState, action: fromData
 
     case fromDataServiceAction.response.type: {
 
-      const node = action.payload.key;
+      const { key, response } = action;
 
-      if (state[node]) {
+      if (state[key]) {
 
         return {
           ...state,
-          [node]: {
-            ...state[node],
+          [key]: {
+            ...state[key],
             isFetching: false,
-            response: action.payload.response,
+            response,
             lastUpdate: Date.now()
           }
         };

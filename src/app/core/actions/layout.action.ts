@@ -4,7 +4,7 @@ import { fromLayoutReducer } from './../reducers/index.reducer';
 
 export const changeView = createAction(
   '[Core Feature] Change Layout View',
-  props<{ payload: fromLayoutReducer.LayoutView }>()
+  props<{ view: fromLayoutReducer.LayoutView }>()
 );
 
 const all = union({ changeView });

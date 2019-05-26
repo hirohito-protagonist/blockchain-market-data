@@ -3,7 +3,7 @@ import { DataServiceType, QueryType } from './../blockchain-data.type';
 
 export const fetchData = createAction(
   '[Blockchain Data Feature API] Fetch data',
-  props<{ payload: { key: DataServiceType; query: QueryType; } }>()
+  props<{ key: DataServiceType; query: QueryType; }>()
 );
 
 const all = union({ fetchData });

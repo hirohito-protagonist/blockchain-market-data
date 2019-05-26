@@ -4,12 +4,12 @@ import { DataServiceType, QueryType, DataResponseType } from './../blockchain-da
 
 export const request = createAction(
   '[Blockchain Data Feature API] Data service request',
-  props<{ payload: { key: DataServiceType; query: QueryType; } }>()
+  props<{ key: DataServiceType; query: QueryType; }>()
 );
 
 export const response = createAction(
   '[Blockchain Data Feature API] Data service response',
-  props<{ payload: { key: DataServiceType; response: DataResponseType; } }>()
+  props<{ key: DataServiceType; response: DataResponseType; }>()
 );
 
 const all = union({ request, response });

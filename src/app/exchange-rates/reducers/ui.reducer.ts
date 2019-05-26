@@ -14,7 +14,7 @@ export function reducer(state: UIState = initialState, action: fromUIAction.Acti
 
     case fromUIAction.updateUIState.type: {
 
-      const { key, value } = action.payload;
+      const { key, value } = action;
 
       if (typeof state[key] !== 'undefined') {
 

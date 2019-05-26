@@ -36,9 +36,7 @@ export class ExchangeRatesContainerComponent implements OnInit {
   }
 
   convertToBtc(convert: ConvertToBTC) {
-    this.store.dispatch(fromConvertBtcAction.convert({
-      payload: convert
-    }));
+    this.store.dispatch(fromConvertBtcAction.convert({ convert }));
   }
 
   handleViewActions(viewAction: { type: string; e: any; }): void {
@@ -60,10 +58,8 @@ export class ExchangeRatesContainerComponent implements OnInit {
       case 'selectCurrency': {
 
         this.store.dispatch(fromUIAction.updateUIState({
-          payload: {
-            key: 'activeCurrency',
-            value: viewAction.e
-          }
+          key: 'activeCurrency',
+          value: viewAction.e
         }));
         break;
       }

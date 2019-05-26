@@ -35,9 +35,7 @@ describe('Data service reducer', () => {
       it(`should set isFetching as true and update query for ${testData.serviceType}`, () => {
 
         const action = fromDataServiceAction.request({
-          payload: {
-            key: testData.serviceType, query: testData.query
-          }
+          key: testData.serviceType, query: testData.query
         });
         const result = reducer(void(0), action);
 
@@ -49,9 +47,7 @@ describe('Data service reducer', () => {
     it('should not update state for undefined node', () => {
 
       const action = fromDataServiceAction.request({
-        payload: {
-          key: '' as any, query: { currency: 'USD', value: 200 }
-        }
+        key: '' as any, query: { currency: 'USD', value: 200 }
       });
       const result = reducer(void(0), action);
 
@@ -84,15 +80,11 @@ describe('Data service reducer', () => {
         spyOn(Date, 'now').and.returnValue(123);
 
         const requestAction = fromDataServiceAction.request({
-          payload: {
-            key: testData.serviceType, query: testData.query
-          }
+          key: testData.serviceType, query: testData.query
         });
         const requestResult = reducer(void(0), requestAction);
         const responseAction = fromDataServiceAction.response({
-          payload: {
-            key: testData.serviceType, response: testData.response
-          }
+          key: testData.serviceType, response: testData.response
         });
         const responseResult = reducer(requestResult, responseAction);
 
@@ -104,15 +96,11 @@ describe('Data service reducer', () => {
     it('should not update state for undefined node', () => {
 
       const requestAction = fromDataServiceAction.request({
-        payload: {
-          key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 }
-        }
+        key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 }
       });
       const requestResult = reducer(void(0), requestAction);
       const responseAction = fromDataServiceAction.response({
-        payload: {
-          key: '' as any, response: 123
-        }
+        key: '' as any, response: 123
       });
       const responseResult = reducer(requestResult, responseAction);
 

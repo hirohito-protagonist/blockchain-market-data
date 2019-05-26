@@ -36,8 +36,6 @@ export class CoreAppContainerComponent {
 
   changeView(view: fromLayoutReducer.LayoutView) {
 
-    this.store.dispatch(fromLayoutActions.changeView({
-      payload: view
-    }));
+    this.store.dispatch(fromLayoutActions.changeView({ view }));
   }
 }

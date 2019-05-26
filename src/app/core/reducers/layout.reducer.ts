@@ -21,7 +21,7 @@ export function reducer(state: LayoutState = initialState, action: fromLayoutAct
     case fromLayoutActions.changeView.type: {
 
       return Object.assign({}, state, {
-        activeView: action.payload
+        activeView: action.view
       });
     }
 

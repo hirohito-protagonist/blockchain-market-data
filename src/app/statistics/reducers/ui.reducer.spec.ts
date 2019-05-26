@@ -1,6 +1,5 @@
 import { fromUIActions } from './../actions/index.action';
-import { reducer, UIState } from './ui.reducer';
-import { reduce } from 'rxjs/operators';
+import { reducer } from './ui.reducer';
 
 
 describe('UI reducer store state', () => {
@@ -21,7 +20,7 @@ describe('UI reducer store state', () => {
     it('should not add new property to the store', () => {
 
       const action = fromUIActions.updateUIState({
-        payload: { key: 'test', value: 'test' }
+        key: 'test', value: 'test'
       });
       const result = reducer(void(0), action);
 
@@ -32,7 +31,7 @@ describe('UI reducer store state', () => {
 
       const value1 = { selectedChart: 'test' };
       let action = fromUIActions.updateUIState({
-        payload: { key: 'chartsView', value: value1 }
+        key: 'chartsView', value: value1
       });
       let result = reducer(void(0), action);
 
@@ -40,7 +39,7 @@ describe('UI reducer store state', () => {
 
       const value2 = { selectedChartTimeSpan: '20days' };
       action = fromUIActions.updateUIState({
-        payload: { key: 'chartsView', value: value2 }
+        key: 'chartsView', value: value2
       });
       result = reducer(result, action);
 

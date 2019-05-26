@@ -13,10 +13,8 @@ export class MarketPricesEffects {
   requestData$: Observable<Action> = this.action$.pipe(
     ofType(fromMarketPricesAction.fetchData.type),
     map(() => fromBlockchainDataAction.fetchData({
-      payload: {
-        key: DataServiceType.Ticker,
-        query: null
-      }
+      key: DataServiceType.Ticker,
+      query: null
     }))
   );
 

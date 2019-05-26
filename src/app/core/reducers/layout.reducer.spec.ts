@@ -20,13 +20,13 @@ describe('Core layout store state', () => {
     it('should change active view state', () => {
 
       const state1 = reducer(void(0), fromLayoutActions.changeView({
-        payload: LayoutView.Statistic
+        view: LayoutView.Statistic
       }));
 
       expect(state1).toMatchSnapshot();
 
       const state2 = reducer(state1, fromLayoutActions.changeView({
-        payload: LayoutView.ExchangeRate
+        view: LayoutView.ExchangeRate
       }));
 
       expect(state2).toMatchSnapshot();

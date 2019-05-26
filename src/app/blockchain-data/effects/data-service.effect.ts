@@ -15,10 +15,8 @@ export class DataServiceEffects {
   requestData$: Observable<Action> = this.action$.pipe(
     ofType(fromBlockchainDataAction.fetchData.type),
     map((action: fromBlockchainDataAction.ActionType) => fromDataServiceAction.request({
-      payload: {
-        key: action.payload.key,
-        query: action.payload.query
-      }
+      key: action.key,
+      query: action.query
     }))
   );
 
@@ -26,8 +24,8 @@ export class DataServiceEffects {
   responseToBTCData$: Observable<Action> = this.responseData$(
     DataServiceType.ToBTC,
     (action: fromBlockchainDataAction.ActionType) => this.exchangeRatesService.tobtc(
-      (action.payload.query as BTCQuery).currency,
-      (action.payload.query as BTCQuery).value as number
+      (action.query as BTCQuery).currency,
+      (action.query as BTCQuery).value as number
     ).pipe(
       map((response: number) => [action, response]),
       catchError(() => of([action, 0]))
@@ -58,7 +56,7 @@ export class DataServiceEffects {
   responseChartsData$: Observable<Action> = this.responseData$(
     DataServiceType.Charts,
     (action: fromBlockchainDataAction.ActionType) =>
-    this.statisticsService.charts(action.payload.query as ChartsQuery).pipe(
+    this.statisticsService.charts(action.query as ChartsQuery).pipe(
       map((response) => [action, (response as DataResponseType)]),
       catchError(() => of([action, 0]))
     )
@@ -73,14 +71,12 @@ export class DataServiceEffects {
   responseData$(serviceType: DataServiceType, fn: Function): Observable<Action> {
     return this.action$.pipe(
       ofType(fromBlockchainDataAction.fetchData.type),
-      filter((action: fromBlockchainDataAction.ActionType) => action.payload.key === serviceType),
+      filter((action: fromBlockchainDataAction.ActionType) => action.key === serviceType),
       switchMap((action: fromBlockchainDataAction.ActionType) => fn(action)),
       map(([action, response]) => {
         return fromDataServiceAction.response({
-          payload: {
-            key: (action as fromBlockchainDataAction.ActionType).payload.key,
-            response: (response as DataResponseType)
-          }
+          key: (action as fromBlockchainDataAction.ActionType).key,
+          response: (response as DataResponseType)
         });
       })
     );
