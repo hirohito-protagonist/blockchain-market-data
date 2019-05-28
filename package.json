@@ -8,7 +8,6 @@
     "build": "ng build --prod",
     "test": "jest --watch --collectCoverage false",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "jest": "jest",
     "ci:test": "jest",
     "commitmsg": "commitlint -x @commitlint/config-conventional -E HUSKY_GIT_PARAMS"
