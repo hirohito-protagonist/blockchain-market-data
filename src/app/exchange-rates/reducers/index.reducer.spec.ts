@@ -13,20 +13,34 @@ describe('Exchange rates reducer', () => {
 
       it('should remap data service state to new model', () => {
 
-        const selector = getConvertBtcState.projector({ isFetching: true, query: {}, lastUpdate: 123 });
+        // Given
+        const serviceResponse = {
+          isFetching: true, query: {}, lastUpdate: 123
+        };
 
-        expect(selector).toMatchSnapshot();
+        // When
+        const result = getConvertBtcState.projector(serviceResponse);
+
+        // Then
+        expect(result).toMatchSnapshot();
       });
 
       it('should remap data service query state to new model', () => {
 
+        // Given
         const query = {
           value: '200',
           currency: 'USD',
         };
-        const selector = getConvertBtcState.projector({ isFetching: true, query, response: 0.001, lastUpdate: 123 });
+        const serviceResponse = {
+          isFetching: true, query, response: 0.001, lastUpdate: 123
+        };
 
-        expect(selector).toMatchSnapshot();
+        // When
+        const result = getConvertBtcState.projector(serviceResponse);
+
+        // Then
+        expect(result).toMatchSnapshot();
       });
     });
 
@@ -34,20 +48,32 @@ describe('Exchange rates reducer', () => {
 
       it('should return empty collection by default', () => {
 
-        const selector = getCurrencies.projector({});
+        // Given
+        const serviceResponse = {};
 
-        expect(selector).toMatchSnapshot();
+        // When
+        const result = getCurrencies.projector(serviceResponse);
+
+        // Then
+        expect(result).toMatchSnapshot();
       });
 
       it('should remap market prices to new collection model', () => {
 
+        // Given
         const marketPrices = {
           'USD': { symbol: '$' },
           'PLN': { symbol: 'zł'}
         };
-        const selector = getCurrencies.projector({ response: marketPrices });
+        const serviceResponse = {
+          response: marketPrices
+        };
 
-        expect(selector).toMatchSnapshot();
+        // When
+        const result = getCurrencies.projector(serviceResponse);
+
+        // Then
+        expect(result).toMatchSnapshot();
       });
     });
 
@@ -55,17 +81,20 @@ describe('Exchange rates reducer', () => {
 
       it('should compose selectors to create view model', () => {
 
+        // Given
         const marketPrices = {
           'USD': { symbol: '$' },
           'PLN': { symbol: 'zł'}
         };
 
+        // When
         const prices = getMarketPrices.projector({ response: marketPrices });
         const currencies = getCurrencies.projector({ response: marketPrices });
         const convert = getConvertBtcState.projector({ isFetching: true, query: {}, response: 0.001, lastUpdate: 123 });
-        const selector = viewExchangeRatesModel.projector(prices, currencies, convert, 'USD');
+        const result = viewExchangeRatesModel.projector(prices, currencies, convert, 'USD');
 
-        expect(selector).toMatchSnapshot();
+        // THen
+        expect(result).toMatchSnapshot();
       });
     });
   });

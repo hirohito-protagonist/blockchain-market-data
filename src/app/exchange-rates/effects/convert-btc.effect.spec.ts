@@ -48,6 +48,7 @@ describe('ConvertBtcEffects', () => {
 
   it('should dispatch action to fetch data on convert action', () => {
 
+    // Given
     const action = fromConvertBtcAction.convert({
       convert: { currency: 'USD', value: 200 }
     });
@@ -59,9 +60,11 @@ describe('ConvertBtcEffects', () => {
       }
     });
 
+    // When
     actions$.stream = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
+    // Then
     expect(effects.convertToBTC$).toBeObservable(expected);
   });
 });

@@ -48,15 +48,18 @@ describe('MarketPricesEffects', () => {
 
   it('should dispatch action on fetch market prices data action', () => {
 
+    // Given
     const action = fromMarketPricesAction.fetchData();
     const completion = fromBlockchainDataAction.fetchData({
       key: DataServiceType.Ticker,
       query: null
     });
 
+    // When
     actions$.stream = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
+    // Then
     expect(effects.requestData$).toBeObservable(expected);
   });
 });

@@ -8,9 +8,13 @@ describe('UI reducer store state', () => {
 
     it('should return default state', () => {
 
+      // Given
       const action = { type: void(0) } as fromUIActions.ActionType;
+
+      // When
       const result = reducer(void(0), action);
 
+      // Then
       expect(result).toMatchSnapshot();
     });
   });
@@ -19,31 +23,36 @@ describe('UI reducer store state', () => {
 
     it('should not add new property to the store', () => {
 
+      // Given
       const action = fromUIActions.updateUIState({
         key: 'test', value: 'test'
       });
+
+      // When
       const result = reducer(void(0), action);
 
+      // Then
       expect(result).toMatchSnapshot();
     });
 
     it('should partial update state for provided key', () => {
 
-      const value1 = { selectedChart: 'test' };
-      let action = fromUIActions.updateUIState({
-        key: 'chartsView', value: value1
+      // Given
+      const changeChartViewAction1 = fromUIActions.updateUIState({
+        key: 'chartsView', value: { selectedChart: 'test' }
       });
-      let result = reducer(void(0), action);
 
-      expect(result).toMatchSnapshot();
-
-      const value2 = { selectedChartTimeSpan: '20days' };
-      action = fromUIActions.updateUIState({
-        key: 'chartsView', value: value2
+      const changeChartViewAction2 = fromUIActions.updateUIState({
+        key: 'chartsView', value: { selectedChartTimeSpan: '20days' }
       });
-      result = reducer(result, action);
 
-      expect(result).toMatchSnapshot();
+      // When
+      const state1 = reducer(void(0), changeChartViewAction1);
+      const state2 = reducer(state1, changeChartViewAction2);
+
+      // Then
+      expect(state1).toMatchSnapshot();
+      expect(state2).toMatchSnapshot();
     });
   });
 });

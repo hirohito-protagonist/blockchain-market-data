@@ -1,8 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExchangeRatesService ticker should return market prices 1`] = `"GET"`;
-
-exports[`ExchangeRatesService ticker should return market prices 2`] = `
+exports[`ExchangeRatesService ticker should return market prices 1`] = `
 Object {
   "USD": Object {
     "15m": 478.68,
@@ -14,6 +12,8 @@ Object {
 }
 `;
 
-exports[`ExchangeRatesService tobtc should convert x value in the provided currency to btc 1`] = `"GET"`;
+exports[`ExchangeRatesService ticker should return market prices 2`] = `"GET"`;
 
-exports[`ExchangeRatesService tobtc should convert x value in the provided currency to btc 2`] = `10`;
+exports[`ExchangeRatesService tobtc should convert x value in the provided currency to btc 1`] = `10`;
+
+exports[`ExchangeRatesService tobtc should convert x value in the provided currency to btc 2`] = `"GET"`;

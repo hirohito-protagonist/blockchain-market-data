@@ -33,19 +33,23 @@ describe('ExchangeRatesService', () => {
 
     it('should return market prices', () => {
 
+      // Given
+      const url = 'https://blockchain.info/ticker?cors=true';
       const testData: fromBlockchainDataMarketPriceEntity.MarketPricesEntities = {
         'USD' : { '15m' : 478.68, 'last' : 478.68, 'buy' : 478.55, 'sell' : 478.68,  'symbol' : '$' }
       };
 
+      // When
       service.ticker().subscribe((responseBody) => {
 
         expect(responseBody).toMatchSnapshot();
       });
 
-      const req = httpTestingController.expectOne('https://blockchain.info/ticker?cors=true');
+      const request = httpTestingController.expectOne(url);
+      request.flush(testData);
 
-      expect(req.request.method).toMatchSnapshot();
-      req.flush(testData);
+      // Then
+      expect(request.request.method).toMatchSnapshot();
     });
   });
 
@@ -53,16 +57,20 @@ describe('ExchangeRatesService', () => {
 
     it('should convert x value in the provided currency to btc', () => {
 
+      // Given
+      const url = 'https://blockchain.info/tobtc?cors=true&currency=USD&value=500';
 
+      // When
       service.tobtc('USD', 500).subscribe(btc => {
 
         expect(btc).toMatchSnapshot();
       });
 
-      const req = httpTestingController.expectOne('https://blockchain.info/tobtc?cors=true&currency=USD&value=500');
+      const request = httpTestingController.expectOne(url);
+      request.flush(10);
 
-      expect(req.request.method).toMatchSnapshot();
-      req.flush(10);
+      // Then
+      expect(request.request.method).toMatchSnapshot();
     });
   });
 });

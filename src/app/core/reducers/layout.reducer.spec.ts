@@ -7,10 +7,13 @@ describe('Core layout store state', () => {
 
     it('should return default state', () => {
 
+      // Given
       const action = { type: void(0) } as fromLayoutActions.ActionType;
 
+      // When
       const result = reducer(void(0), action);
 
+      // Then
       expect(result).toMatchSnapshot();
     });
   });
@@ -19,16 +22,20 @@ describe('Core layout store state', () => {
 
     it('should change active view state', () => {
 
-      const state1 = reducer(void(0), fromLayoutActions.changeView({
+      // Given
+      const action1 = fromLayoutActions.changeView({
         view: LayoutView.Statistic
-      }));
-
-      expect(state1).toMatchSnapshot();
-
-      const state2 = reducer(state1, fromLayoutActions.changeView({
+      });
+      const action2 = fromLayoutActions.changeView({
         view: LayoutView.ExchangeRate
-      }));
+      });
 
+      // When
+      const state1 = reducer(void(0), action1);
+      const state2 = reducer(state1, action2);
+
+      // Then
+      expect(state1).toMatchSnapshot();
       expect(state2).toMatchSnapshot();
     });
   });
