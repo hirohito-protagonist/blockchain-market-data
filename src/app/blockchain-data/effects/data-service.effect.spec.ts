@@ -1,9 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Actions } from '@ngrx/effects';
+import { provideMockActions } from '@ngrx/effects/testing';
 import { TestBed } from '@angular/core/testing';
 import { cold, hot } from 'jest-marbles';
 
-import { Observable, EMPTY, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { DataServiceEffects } from './data-service.effect';
 import { ExchangeRatesService } from './../services/exchange-rates.service';
@@ -11,28 +12,11 @@ import { StatisticsService } from './../services/statistics.service';
 import { fromBlockchainDataAction, fromDataServiceAction } from './../actions/index.action';
 import { DataServiceType } from '../blockchain-data.type';
 
-export class TestActions extends Actions {
-
-  constructor() {
-    super(EMPTY);
-  }
-
-  set stream(source: Observable<any>) {
-    this.source = source;
-  }
-}
-
-
-
-export function getActions() {
-  return new TestActions();
-}
-
 
 describe('DataServiceEffects', () => {
 
   let effects: DataServiceEffects;
-  let actions$: TestActions;
+  let actions$: Observable<any>;
   let exchangeRatesService: ExchangeRatesService;
   let statisticsService: StatisticsService;
 
@@ -44,7 +28,7 @@ describe('DataServiceEffects', () => {
         DataServiceEffects,
         ExchangeRatesService,
         StatisticsService,
-        { provide: Actions, useFactory: getActions }
+        provideMockActions(() => actions$)
       ]
     });
 
@@ -66,7 +50,7 @@ describe('DataServiceEffects', () => {
     });
 
     // When
-    actions$.stream = hot('-a', { a: action });
+    actions$ = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
     // Then
@@ -90,7 +74,7 @@ describe('DataServiceEffects', () => {
     });
 
     // When
-    actions$.stream = hot('-a', { a: action });
+    actions$ = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
     spyOn(exchangeRatesService, 'tobtc').and.returnValue(of(responseData));
 
@@ -112,7 +96,7 @@ describe('DataServiceEffects', () => {
     });
 
     // When
-    actions$.stream = hot('-a', { a: action });
+    actions$ = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
     spyOn(exchangeRatesService, 'ticker').and.returnValue(of(responseData));
 
@@ -134,7 +118,7 @@ describe('DataServiceEffects', () => {
     });
 
     // When
-    actions$.stream = hot('-a', { a: action });
+    actions$ = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
     spyOn(statisticsService, 'stats').and.returnValue(of(responseData));
 

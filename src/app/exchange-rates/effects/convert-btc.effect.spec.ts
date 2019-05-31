@@ -1,36 +1,20 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Actions } from '@ngrx/effects';
+import { provideMockActions } from '@ngrx/effects/testing';
 import { TestBed } from '@angular/core/testing';
 import { cold, hot } from 'jest-marbles';
 
-import { Observable, EMPTY } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { ConvertBtcEffects } from './convert-btc.effect';
 import { fromConvertBtcAction } from './../actions/index.action';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
-export class TestActions extends Actions {
-
-  constructor() {
-    super(EMPTY);
-  }
-
-  set stream(source: Observable<any>) {
-    this.source = source;
-  }
-}
-
-
-
-export function getActions() {
-  return new TestActions();
-}
-
 
 describe('ConvertBtcEffects', () => {
 
   let effects: ConvertBtcEffects;
-  let actions$: TestActions;
+  let actions$: Observable<any>;
 
   beforeEach(() => {
 
@@ -38,7 +22,7 @@ describe('ConvertBtcEffects', () => {
       imports: [ HttpClientModule ],
       providers: [
         ConvertBtcEffects,
-        { provide: Actions, useFactory: getActions }
+        provideMockActions(() => actions$)
       ]
     });
 
@@ -61,7 +45,7 @@ describe('ConvertBtcEffects', () => {
     });
 
     // When
-    actions$.stream = hot('-a', { a: action });
+    actions$ = hot('-a', { a: action });
     const expected = cold('-b', { b: completion });
 
     // Then
