@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { fromBlockchainDataStatisticsEntity } from './../entities/index.entity';
-import { ChartsQuery } from './../blockchain-data.type';
+import { ChartsQuery, ServiceResponse } from './../blockchain-data.type';
 
 
 @Injectable()
@@ -12,17 +13,35 @@ export class StatisticsService {
 
   constructor(private http: HttpClient) {}
 
-  stats(): Observable<fromBlockchainDataStatisticsEntity.StatisticEntity> {
+  stats(): Observable<ServiceResponse<fromBlockchainDataStatisticsEntity.StatisticEntity>> {
 
-    return this.http.get<fromBlockchainDataStatisticsEntity.StatisticEntity>(`${this.API_Path}stats?cors=true`);
+    return this.http.get(`${this.API_Path}stats?cors=true`).pipe(
+      map<any, ServiceResponse<fromBlockchainDataStatisticsEntity.StatisticEntity>>((response) => ({
+        status: 200,
+        response
+      })),
+      catchError((e) => of({
+        status: e.status,
+        response: null
+      }))
+    );
   }
 
-  pools(timespan: string = '4days'): Observable<{ [key: string]: number; }> {
+  pools(timespan: string = '4days'): Observable<ServiceResponse<{ [key: string]: number; }>> {
 
-    return this.http.get<{ [key: string]: number; }>(`${this.API_Path}pools?cors=true&timespan=${timespan}`);
+    return this.http.get(`${this.API_Path}pools?cors=true&timespan=${timespan}`).pipe(
+      map<any, ServiceResponse<{ [key: string]: number; }>>((response) => ({
+        status: 200,
+        response
+      })),
+      catchError((e) => of({
+        status: e.status,
+        response: null
+      }))
+    );
   }
 
-  charts(query: ChartsQuery): Observable<any> {
+  charts(query: ChartsQuery): Observable<ServiceResponse<any>> {
 
     const q = Object.entries({
       timespan: '1year',
@@ -39,6 +58,15 @@ export class StatisticsService {
     })
     .join('');
 
-    return this.http.get<any>(`${this.API_Path}charts/${query.name}/?cors=true${q}`);
+    return this.http.get(`${this.API_Path}charts/${query.name}/?cors=true${q}`).pipe(
+      map<any, ServiceResponse<any>>((response) => ({
+        status: 200,
+        response
+      })),
+      catchError((e) => of({
+        status: e.status,
+        response: null
+      }))
+    );
   }
 }

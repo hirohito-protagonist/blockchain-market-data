@@ -60,7 +60,10 @@ describe('DataServiceEffects', () => {
   it('should request convert to BTC on fetch data action and then dispatch response action', () => {
 
     // Given
-    const responseData = 0.12331;
+    const responseData = {
+      status: 200,
+      response: 0.12331
+    };
     const action = fromBlockchainDataAction.fetchData({
       key: DataServiceType.ToBTC,
       query: {
@@ -70,7 +73,7 @@ describe('DataServiceEffects', () => {
     });
     const completion = fromDataServiceAction.response({
       key: DataServiceType.ToBTC,
-      response: responseData
+      response: responseData.response
     });
 
     // When
@@ -85,14 +88,17 @@ describe('DataServiceEffects', () => {
   it('should request market data prices on fetch data action and then dispatch response action', () => {
 
     // Given
-    const responseData = {};
+    const responseData = {
+      status: 200,
+      response: {}
+    };
     const action = fromBlockchainDataAction.fetchData({
       key: DataServiceType.Ticker,
       query: null
     });
     const completion = fromDataServiceAction.response({
       key: DataServiceType.Ticker,
-      response: responseData
+      response: responseData.response
     });
 
     // When
@@ -107,14 +113,17 @@ describe('DataServiceEffects', () => {
   it('should request stats information on fetch data action and then dispatch response action', () => {
 
     // Given
-    const responseData = {};
+    const responseData = {
+      status: 200,
+      response: {}
+    };
     const action = fromBlockchainDataAction.fetchData({
       key: DataServiceType.Stats,
       query: null
     });
     const completion = fromDataServiceAction.response({
       key: DataServiceType.Stats,
-      response: responseData
+      response: responseData.response
     });
 
     // When

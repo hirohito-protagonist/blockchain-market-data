@@ -24,6 +24,11 @@ export interface ChartsQuery {
   sampled: boolean;
 }
 
+export interface ServiceResponse<T> {
+  status: number;
+  response: T;
+}
+
 export type QueryType = BTCQuery | ChartsQuery | null;
 
 export type DataResponseType = fromBlockchainDataMarketPriceEntity.MarketPricesEntities |

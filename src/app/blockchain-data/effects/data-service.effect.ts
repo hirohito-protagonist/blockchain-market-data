@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { fromDataServiceAction, fromBlockchainDataAction } from './../actions/index.action';
 import { map, filter, switchMap, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
-import { DataServiceType, DataResponseType, ChartsQuery, BTCQuery } from './../blockchain-data.type';
+import { DataServiceType, DataResponseType, ChartsQuery, BTCQuery, ServiceResponse } from './../blockchain-data.type';
 import { ExchangeRatesService } from './../services/exchange-rates.service';
 import { StatisticsService } from './../services/statistics.service';
 
@@ -27,7 +27,7 @@ export class DataServiceEffects {
       (action.query as BTCQuery).currency,
       (action.query as BTCQuery).value as number
     ).pipe(
-      map((response: number) => [action, response]),
+      map((response) => [action, response]),
       catchError(() => of([action, 0]))
     )
   );
@@ -37,7 +37,7 @@ export class DataServiceEffects {
     DataServiceType.Ticker,
     (action: fromBlockchainDataAction.ActionType) =>
     this.exchangeRatesService.ticker().pipe(
-      map((response) => [action, (response as DataResponseType)]),
+      map((response) => [action, response]),
       catchError(() => of([action, 0]))
     )
   );
@@ -47,7 +47,7 @@ export class DataServiceEffects {
     DataServiceType.Stats,
     (action: fromBlockchainDataAction.ActionType) =>
     this.statisticsService.stats().pipe(
-      map((response) => [action, (response as DataResponseType)]),
+      map((response) => [action, response]),
       catchError(() => of([action, 0]))
     )
   );
@@ -57,7 +57,7 @@ export class DataServiceEffects {
     DataServiceType.Charts,
     (action: fromBlockchainDataAction.ActionType) =>
     this.statisticsService.charts(action.query as ChartsQuery).pipe(
-      map((response) => [action, (response as DataResponseType)]),
+      map((response) => [action, response]),
       catchError(() => of([action, 0]))
     )
   );
@@ -73,10 +73,11 @@ export class DataServiceEffects {
       ofType(fromBlockchainDataAction.fetchData.type),
       filter((action: fromBlockchainDataAction.ActionType) => action.key === serviceType),
       switchMap((action: fromBlockchainDataAction.ActionType) => fn(action)),
+      filter(([action, response]) => response.status === 200),
       map(([action, response]) => {
         return fromDataServiceAction.response({
           key: (action as fromBlockchainDataAction.ActionType).key,
-          response: (response as DataResponseType)
+          response: (response.response as DataResponseType)
         });
       })
     );

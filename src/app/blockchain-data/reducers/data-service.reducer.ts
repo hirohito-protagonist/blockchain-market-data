@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { fromDataServiceAction } from './../actions/index.action';
 import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
