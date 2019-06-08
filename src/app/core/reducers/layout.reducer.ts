@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { fromLayoutActions } from './../actions/index.action';
 
 export enum LayoutView {
@@ -14,21 +15,16 @@ const initialState: LayoutState = {
   activeView: LayoutView.ExchangeRate
 };
 
-export function reducer(state: LayoutState = initialState, action: fromLayoutActions.ActionType): LayoutState {
+export const reducer = createReducer(
+  initialState,
+  on(
+    fromLayoutActions.changeView,
+    (state, { view }) => {
 
-  switch (action.type) {
-
-    case fromLayoutActions.changeView.type: {
-
-      return Object.assign({}, state, {
-        activeView: action.view
-      });
+      return {
+        ...state,
+        activeView: view
+      };
     }
-
-    default: {
-
-      return state;
-    }
-  }
-}
-
+  )
+);

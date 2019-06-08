@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { fromDataServiceAction } from './../actions/index.action';
 import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
@@ -39,13 +40,11 @@ const initialState: DataServiceState = {
   }
 };
 
-
-export function reducer(state: DataServiceState = initialState, action: fromDataServiceAction.ActionType): DataServiceState {
-
-  switch (action.type) {
-
-    case fromDataServiceAction.request.type: {
-      const { key, query } = action;
+export const reducer = createReducer(
+  initialState,
+  on(
+    fromDataServiceAction.request,
+    (state, { key, query }) => {
 
       if (state[key]) {
 
@@ -61,10 +60,10 @@ export function reducer(state: DataServiceState = initialState, action: fromData
       }
       return state;
     }
-
-    case fromDataServiceAction.response.type: {
-
-      const { key, response } = action;
+  ),
+  on(
+    fromDataServiceAction.response,
+    (state, { key, response }) => {
 
       if (state[key]) {
 
@@ -80,10 +79,5 @@ export function reducer(state: DataServiceState = initialState, action: fromData
       }
       return state;
     }
-
-    default: {
-      return state;
-    }
-  }
-}
-
+  )
+);

@@ -1,3 +1,4 @@
+import { createReducer, on } from '@ngrx/store';
 import { fromUIAction } from './../actions/index.action';
 
 export interface UIState {
@@ -8,13 +9,11 @@ const initialState: UIState = {
   activeCurrency: ''
 };
 
-export function reducer(state: UIState = initialState, action: fromUIAction.ActionType): UIState {
-
-  switch (action.type) {
-
-    case fromUIAction.updateUIState.type: {
-
-      const { key, value } = action;
+export const  reducer = createReducer(
+  initialState,
+  on(
+    fromUIAction.updateUIState,
+    (state, { key, value }) => {
 
       if (typeof state[key] !== 'undefined') {
 
@@ -26,11 +25,7 @@ export function reducer(state: UIState = initialState, action: fromUIAction.Acti
 
       return state;
     }
-
-    default:
-      return state;
-  }
-}
-
+  )
+);
 
 export const activeCurrency = (s: UIState) => s.activeCurrency;
