@@ -11,8 +11,8 @@ export class ConvertBtcEffects {
 
 
   convertToBTC$: Observable<Action> = createEffect(() => this.action$.pipe(
-    ofType(fromConvertBtcAction.convert.type),
-    map((action: fromConvertBtcAction.ActionType) => fromBlockchainDataAction.fetchData({
+    ofType(fromConvertBtcAction.convert),
+    map((action) => fromBlockchainDataAction.fetchData({
       key: DataServiceType.ToBTC,
       query: action.convert
     }))

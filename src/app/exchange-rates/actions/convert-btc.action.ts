@@ -5,7 +5,3 @@ export const convert = createAction(
   '[Exchange Rates Feature] Convert to BTC',
   props<{ convert: ConvertToBTC }>()
 );
-
-const all = union({ convert });
-
-export type ActionType = typeof all;

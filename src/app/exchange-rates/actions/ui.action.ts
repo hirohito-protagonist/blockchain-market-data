@@ -4,7 +4,3 @@ export const updateUIState = createAction(
   '[Exchange Rates Feature] Update UI state',
   props<{ key: string; value: any }>()
 );
-
-const all = union({ updateUIState });
-
-export type ActionType = typeof all;

@@ -6,7 +6,3 @@ export const changeView = createAction(
   '[Core Feature] Change Layout View',
   props<{ view: fromLayoutReducer.LayoutView }>()
 );
-
-const all = union({ changeView });
-
-export type ActionType = typeof all;

@@ -12,8 +12,8 @@ import { StatisticsService } from './../services/statistics.service';
 export class DataServiceEffects {
 
   requestData$: Observable<Action> = createEffect(() => this.action$.pipe(
-    ofType(fromBlockchainDataAction.fetchData.type),
-    map((action: fromBlockchainDataAction.ActionType) => fromDataServiceAction.request({
+    ofType(fromBlockchainDataAction.fetchData),
+    map((action) => fromDataServiceAction.request({
       key: action.key,
       query: action.query
     }))
@@ -22,7 +22,7 @@ export class DataServiceEffects {
 
   responseToBTCData$: Observable<Action> = createEffect(() => this.responseData$(
     DataServiceType.ToBTC,
-    (action: fromBlockchainDataAction.ActionType) => this.exchangeRatesService.tobtc(
+    (action) => this.exchangeRatesService.tobtc(
       (action.query as BTCQuery).currency,
       (action.query as BTCQuery).value as number
     ).pipe(
@@ -34,7 +34,7 @@ export class DataServiceEffects {
 
   responseTcikerData$: Observable<Action> = createEffect(() => this.responseData$(
     DataServiceType.Ticker,
-    (action: fromBlockchainDataAction.ActionType) =>
+    (action) =>
     this.exchangeRatesService.ticker().pipe(
       map((response) => [action, response]),
       catchError(() => of([action, 0]))
@@ -44,7 +44,7 @@ export class DataServiceEffects {
 
   responseStatsData$: Observable<Action> = createEffect(() => this.responseData$(
     DataServiceType.Stats,
-    (action: fromBlockchainDataAction.ActionType) =>
+    (action) =>
     this.statisticsService.stats().pipe(
       map((response) => [action, response]),
       catchError(() => of([action, 0]))
@@ -54,7 +54,7 @@ export class DataServiceEffects {
 
   responseChartsData$: Observable<Action> = createEffect(() => this.responseData$(
     DataServiceType.Charts,
-    (action: fromBlockchainDataAction.ActionType) =>
+    (action) =>
     this.statisticsService.charts(action.query as ChartsQuery).pipe(
       map((response) => [action, response]),
       catchError(() => of([action, 0]))
@@ -69,13 +69,13 @@ export class DataServiceEffects {
 
   responseData$(serviceType: DataServiceType, fn: Function): Observable<Action> {
     return this.action$.pipe(
-      ofType(fromBlockchainDataAction.fetchData.type),
-      filter((action: fromBlockchainDataAction.ActionType) => action.key === serviceType),
-      switchMap((action: fromBlockchainDataAction.ActionType) => fn(action)),
+      ofType(fromBlockchainDataAction.fetchData),
+      filter((action) => action.key === serviceType),
+      switchMap((action) => fn(action)),
       filter(([action, response]) => response.status === 200),
       map(([action, response]) => {
         return fromDataServiceAction.response({
-          key: (action as fromBlockchainDataAction.ActionType).key,
+          key: action.key,
           response: (response.response as DataResponseType)
         });
       })

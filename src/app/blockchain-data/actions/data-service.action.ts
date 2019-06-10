@@ -11,7 +11,3 @@ export const response = createAction(
   '[Blockchain Data Feature API] Data service response',
   props<{ key: DataServiceType; response: DataResponseType; }>()
 );
-
-const all = union({ request, response });
-
-export type ActionType = typeof all;
