@@ -23,8 +23,8 @@ export class ConverterViewComponent implements OnChanges {
   @Output() convertToBtc = new EventEmitter<ConvertToBTC>();
   @Input() selectedCurrency = '';
   @Output() selectCurrency = new EventEmitter<string>();
-  @ViewChild('value') inputValue: ElementRef;
-  @ViewChild('currency') inputCurrency: ElementRef;
+  @ViewChild('value', { static: true }) inputValue: ElementRef;
+  @ViewChild('currency', { static: true }) inputCurrency: ElementRef;
 
   currencySymbol = '';
 

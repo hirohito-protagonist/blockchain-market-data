@@ -9,7 +9,7 @@ describe('UI reducer store state', () => {
     it('should return default state', () => {
 
       // Given
-      const action = { type: void(0) } as fromUIActions.ActionType;
+      const action = { type: void(0) };
 
       // When
       const result = reducer(void(0), action);
