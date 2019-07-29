@@ -1,5 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createSelector,
+  combineReducers,
+  Action
+} from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
 import { StatisticsInfo } from './../statistics.type';
@@ -14,10 +19,12 @@ export function featureVersion() {
   return '1.0.0';
 }
 
-export const reducers = {
-  version: featureVersion,
-  ui: fromUIReducer.reducer
-};
+export function reducers(state: StatisticsState | undefined, action: Action) {
+  return combineReducers({
+    version: featureVersion,
+    ui: fromUIReducer.reducer
+  })(state, action);
+}
 
 const statisticsNode = fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Stats);
 const chartsNode = fromBlockchainDataSelectors.getServiceDataNode(DataServiceType.Charts);

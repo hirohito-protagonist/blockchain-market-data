@@ -1,6 +1,6 @@
 import { environment } from './../environments/environment';
 
-
+import { InjectionToken } from '@angular/core';
 import {
   ActionReducerMap,
   ActionReducer,
@@ -20,6 +20,8 @@ export function appVersion(): string {
 export const reducers: ActionReducerMap<State> = {
   version: appVersion
 };
+
+export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<State>>('root reducer');
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {

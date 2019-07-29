@@ -10,18 +10,24 @@ import { ExchangeRatesModule } from '@bmd/exchange-rates';
 import { BlockchainDataModule } from '@bmd/blockchain-data';
 import { StatisticsModule } from './statistics/statistics.module';
 
-import { reducers, metaReducers } from './store';
+import { reducers, metaReducers, REDUCER_TOKEN } from './store';
 
 
 @NgModule({
   imports: [
     BrowserModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(REDUCER_TOKEN, { metaReducers }),
     EffectsModule.forRoot([]),
     CoreModule.forRoot(),
     ExchangeRatesModule.forRoot(),
     BlockchainDataModule.forRoot(),
     StatisticsModule.forRoot()
+  ],
+  providers: [
+    {
+      provide: REDUCER_TOKEN,
+      useValue: reducers
+    }
   ],
   bootstrap: [ CoreAppContainerComponent ]
 })

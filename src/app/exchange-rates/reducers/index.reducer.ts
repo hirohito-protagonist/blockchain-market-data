@@ -1,7 +1,11 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createSelector,
+  combineReducers,
+  Action
+} from '@ngrx/store';
 
 import { fromBlockchainDataSelectors, DataServiceType, BTCQuery } from '@bmd/blockchain-data';
-import { MarketPrices } from './../exchange-rates.type';
 import * as fromUIReducer from './ui.reducer';
 
 export interface ExchangeRatesState {
@@ -13,10 +17,12 @@ export function featureVersion() {
   return '1.0.0';
 }
 
-export const reducers = {
-  version: featureVersion,
-  ui: fromUIReducer.reducer
-};
+export function reducers(state: ExchangeRatesState | undefined, action: Action) {
+  return combineReducers({
+    version: featureVersion,
+    ui: fromUIReducer.reducer
+  })(state, action);
+}
 
 const getExchangeRatesState = createFeatureSelector('exchangeRates');
 const getUIState = createSelector(getExchangeRatesState, (s: ExchangeRatesState) => s.ui);

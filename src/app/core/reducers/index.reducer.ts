@@ -1,4 +1,9 @@
-import { createSelector, createFeatureSelector} from '@ngrx/store';
+import {
+  createSelector,
+  createFeatureSelector,
+  combineReducers,
+  Action
+} from '@ngrx/store';
 import * as fromLayoutReducer from './layout.reducer';
 
 export {
@@ -15,10 +20,12 @@ export function featureVersion() {
   return '1.0.0';
 }
 
-export const reducers = {
-  version: featureVersion,
-  layout: fromLayoutReducer.reducer
-};
+export function reducers(state: CoreState | undefined, action: Action) {
+  return combineReducers({
+    version: featureVersion,
+    layout: fromLayoutReducer.reducer
+  })(state, action);
+}
 
 
 const getCoreState = createFeatureSelector('core');
