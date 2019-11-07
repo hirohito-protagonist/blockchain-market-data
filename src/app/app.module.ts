@@ -16,7 +16,15 @@ import { reducers, metaReducers, REDUCER_TOKEN } from './store';
 @NgModule({
   imports: [
     BrowserModule,
-    StoreModule.forRoot(REDUCER_TOKEN, { metaReducers }),
+    StoreModule.forRoot(REDUCER_TOKEN, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+      }
+    }),
     EffectsModule.forRoot([]),
     CoreModule.forRoot(),
     ExchangeRatesModule.forRoot(),
