@@ -26,10 +26,14 @@ export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<State>>('root r
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {
 
-    console.log('state', state);
+    const result = reducer(state, action);
+    console.groupCollapsed(action.type);
+    console.log('prev state', state);
     console.log('action', action);
+    console.log('next state', result);
+    console.groupEnd();
 
-    return reducer(state, action);
+    return result;
   };
 }
 
