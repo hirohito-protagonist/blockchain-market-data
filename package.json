@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "jest": "jest",
     "ci:test": "jest",
-    "cm": "ng add @angular/localize"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +45,7 @@
     "@types/jest": "24.0.18",
     "@types/node": "12.7.3",
     "codelyzer": "5.1.0",
+    "conventional-changelog-cli": "2.0.31",
     "husky": "3.0.5",
     "jest": "24.9.0",
     "jest-marbles": "2.4.1",
