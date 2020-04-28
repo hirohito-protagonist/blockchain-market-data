@@ -17,13 +17,7 @@ import { reducers, metaReducers, REDUCER_TOKEN } from './store';
   imports: [
     BrowserModule,
     StoreModule.forRoot(REDUCER_TOKEN, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictStateSerializability: true,
-        strictActionSerializability: true,
-      }
+      metaReducers
     }),
     EffectsModule.forRoot([]),
     CoreModule.forRoot(),

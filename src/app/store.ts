@@ -6,7 +6,6 @@ import {
   ActionReducer,
   MetaReducer
 } from '@ngrx/store';
-import { storeFreeze } from 'ngrx-store-freeze';
 
 
 export interface State {
@@ -39,6 +38,6 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? [logger, storeFreeze]
+  ? [logger]
   : [];
 
