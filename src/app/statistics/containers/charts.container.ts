@@ -4,15 +4,12 @@ import {
 } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import {
-  StatisticsState,
-  viewChartModel,
-  getChartQuery
-} from './../reducers/index.reducer';
+import { StatisticsState } from './../store/store';
+import { viewChartModel, getChartQuery } from './../store/selectors';
 import { ChartQuery } from './../statistics.type';
 import { ChartViewModel } from './../model.view';
 import { Observable } from 'rxjs';
-import { fromUIActions } from './../actions/index.action';
+import { updateUIState } from './../store/actions';
 
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
@@ -61,7 +58,7 @@ export class ChartsContainerComponent implements OnInit {
     };
 
     this.requestChart(this.chartQuery);
-    this.store.dispatch(fromUIActions.updateUIState({
+    this.store.dispatch(updateUIState({
       key: 'chartsView',
       value: {
         selectedChartTimeSpan: timespan
@@ -77,7 +74,7 @@ export class ChartsContainerComponent implements OnInit {
     };
 
     this.requestChart(this.chartQuery);
-    this.store.dispatch(fromUIActions.updateUIState({
+    this.store.dispatch(updateUIState({
       key: 'chartsView',
       value: {
         selectedChart: name

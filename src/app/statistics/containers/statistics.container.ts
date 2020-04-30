@@ -4,10 +4,8 @@ import {
 } from '@angular/core';
 
 import { Store, select } from '@ngrx/store';
-import {
-  StatisticsState,
-  statisticViewModel
-} from './../reducers/index.reducer';
+import { StatisticsState } from './../store/store';
+import { statisticViewModel } from './../store/selectors';
 import { Observable } from 'rxjs';
 
 import { StatisticViewModel } from './../model.view';

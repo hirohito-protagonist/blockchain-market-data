@@ -1,4 +1,4 @@
-import { createAction, props, union } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
 export const updateUIState = createAction(
   '[Statistics Feature] Update UI state',

@@ -5,7 +5,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './reducers/index.reducer';
+import { store } from './store/store';
 
 import { StatisticsContainerComponent } from './containers/statistics.container';
 import { StatisticsViewComponent } from './views/statistics.view';
@@ -17,7 +17,7 @@ import { ChartsViewComponent } from './views/charts.view';
     CommonModule,
     FormsModule,
     NgxEchartsModule,
-    StoreModule.forFeature('statistics', reducers),
+    StoreModule.forFeature('statistics', store),
   ],
   declarations: [
     StatisticsContainerComponent,

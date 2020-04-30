@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { fromUIActions } from './../actions/index.action';
+import { updateUIState } from './actions';
 
 export interface UIState {
   chartsView: {
@@ -18,7 +18,7 @@ const initialState: UIState = {
 export const reducer = createReducer(
   initialState,
   on(
-    fromUIActions.updateUIState,
+    updateUIState,
     (state, { key, value }) => {
 
       if (state[key]) {

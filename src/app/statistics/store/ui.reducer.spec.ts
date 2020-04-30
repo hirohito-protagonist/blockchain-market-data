@@ -1,4 +1,4 @@
-import { fromUIActions } from './../actions/index.action';
+import { updateUIState } from './actions';
 import { reducer } from './ui.reducer';
 
 
@@ -24,7 +24,7 @@ describe('UI reducer store state', () => {
     it('should not add new property to the store', () => {
 
       // Given
-      const action = fromUIActions.updateUIState({
+      const action = updateUIState({
         key: 'test', value: 'test'
       });
 
@@ -38,11 +38,11 @@ describe('UI reducer store state', () => {
     it('should partial update state for provided key', () => {
 
       // Given
-      const changeChartViewAction1 = fromUIActions.updateUIState({
+      const changeChartViewAction1 = updateUIState({
         key: 'chartsView', value: { selectedChart: 'test' }
       });
 
-      const changeChartViewAction2 = fromUIActions.updateUIState({
+      const changeChartViewAction2 = updateUIState({
         key: 'chartsView', value: { selectedChartTimeSpan: '20days' }
       });
 
