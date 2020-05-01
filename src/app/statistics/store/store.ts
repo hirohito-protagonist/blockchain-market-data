@@ -1,13 +1,8 @@
-import { DatePipe } from '@angular/common';
 import {
-  createFeatureSelector,
-  createSelector,
+  StoreModule,
   combineReducers,
   Action
 } from '@ngrx/store';
-
-import { fromBlockchainDataSelectors, DataServiceType } from '@bmd/blockchain-data';
-import { StatisticsInfo } from './../statistics.type';
 import * as fromUIReducer from './ui.reducer';
 
 export interface StatisticsState {
@@ -19,9 +14,11 @@ export function featureVersion() {
   return '1.0.0';
 }
 
-export function store(state: StatisticsState | undefined, action: Action) {
+function reducers(state: StatisticsState | undefined, action: Action) {
   return combineReducers({
     version: featureVersion,
     ui: fromUIReducer.reducer
   })(state, action);
 }
+
+export const Store = StoreModule.forFeature('statistics', reducers);
