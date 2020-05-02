@@ -13,7 +13,7 @@ export {
   CoreAppContainerComponent
 };
 
-import { reducers } from './reducers/index.reducer';
+import { reducers } from './store/store';
 
 @NgModule({
   imports: [

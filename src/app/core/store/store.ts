@@ -1,6 +1,4 @@
 import {
-  createSelector,
-  createFeatureSelector,
   combineReducers,
   Action
 } from '@ngrx/store';
@@ -26,8 +24,3 @@ export function reducers(state: CoreState | undefined, action: Action) {
     layout: fromLayoutReducer.reducer
   })(state, action);
 }
-
-
-const getCoreState = createFeatureSelector('core');
-const getLayoutState = createSelector(getCoreState, (s: CoreState) => s.layout);
-export const getActiveLayoutView = createSelector(getLayoutState, (s: fromLayoutReducer.LayoutState) => s.activeView);

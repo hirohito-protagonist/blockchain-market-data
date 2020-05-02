@@ -5,8 +5,9 @@ import {
 
 import { Store, select } from '@ngrx/store';
 
-import { fromLayoutActions } from './../actions/index.action';
-import { fromLayoutReducer, CoreState, getActiveLayoutView } from './../reducers/index.reducer';
+import { changeView } from './../store/actions';
+import { fromLayoutReducer, CoreState } from './../store/store';
+import { getActiveLayoutView } from './../store/selectors';
 import { Observable } from 'rxjs';
 
 
@@ -36,6 +37,6 @@ export class CoreAppContainerComponent {
 
   changeView(view: fromLayoutReducer.LayoutView) {
 
-    this.store.dispatch(fromLayoutActions.changeView({ view }));
+    this.store.dispatch(changeView({ view }));
   }
 }

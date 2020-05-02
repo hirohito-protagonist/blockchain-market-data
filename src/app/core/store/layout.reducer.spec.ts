@@ -1,4 +1,4 @@
-import { fromLayoutActions } from './../actions/index.action';
+import { changeView } from './actions';
 import { reducer, LayoutView } from './layout.reducer';
 
 describe('Core layout store state', () => {
@@ -23,10 +23,10 @@ describe('Core layout store state', () => {
     it('should change active view state', () => {
 
       // Given
-      const action1 = fromLayoutActions.changeView({
+      const action1 = changeView({
         view: LayoutView.Statistic
       });
-      const action2 = fromLayoutActions.changeView({
+      const action2 = changeView({
         view: LayoutView.ExchangeRate
       });
 

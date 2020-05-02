@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { fromLayoutActions } from './../actions/index.action';
+import { changeView } from './actions';
 
 export enum LayoutView {
   ExchangeRate = 'Exchange rate',
@@ -18,7 +18,7 @@ const initialState: LayoutState = {
 export const reducer = createReducer(
   initialState,
   on(
-    fromLayoutActions.changeView,
+    changeView,
     (state, { view }) => {
 
       return {
