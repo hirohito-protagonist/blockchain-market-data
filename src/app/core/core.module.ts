@@ -1,7 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StoreModule } from '@ngrx/store';
 
 import { CoreAppContainerComponent } from './containers/app.container';
 import { CoreContentViewComponent } from './views/content.view';
@@ -13,7 +12,7 @@ export {
   CoreAppContainerComponent
 };
 
-import { reducers } from './store/store';
+import { Store } from './store/store';
 
 @NgModule({
   imports: [
@@ -21,7 +20,7 @@ import { reducers } from './store/store';
     NgbModule,
     ExchangeRatesModule,
     StatisticsModule,
-    StoreModule.forFeature('core', reducers)
+    Store
   ],
   declarations: [
     CoreAppContainerComponent,

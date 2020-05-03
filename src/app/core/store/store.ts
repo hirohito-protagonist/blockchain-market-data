@@ -1,6 +1,7 @@
 import {
   combineReducers,
-  Action
+  Action,
+  StoreModule
 } from '@ngrx/store';
 import * as fromLayoutReducer from './layout.reducer';
 
@@ -18,9 +19,11 @@ export function featureVersion() {
   return '1.0.0';
 }
 
-export function reducers(state: CoreState | undefined, action: Action) {
+function reducers(state: CoreState | undefined, action: Action) {
   return combineReducers({
     version: featureVersion,
     layout: fromLayoutReducer.reducer
   })(state, action);
 }
+
+export const Store = StoreModule.forFeature('core', reducers);
