@@ -7,7 +7,7 @@ import { cold, hot } from 'jest-marbles';
 import { Observable } from 'rxjs';
 
 import { MarketPricesEffects } from './market-prices.effect';
-import { fromMarketPricesAction } from './../actions/index.action';
+import { fetchData } from './../store/actions';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 
@@ -33,7 +33,7 @@ describe('MarketPricesEffects', () => {
   it('should dispatch action on fetch market prices data action', () => {
 
     // Given
-    const action = fromMarketPricesAction.fetchData();
+    const action = fetchData();
     const completion = fromBlockchainDataAction.fetchData({
       key: DataServiceType.Ticker,
       query: null

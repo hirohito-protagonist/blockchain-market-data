@@ -6,7 +6,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers } from './reducers/index.reducer';
+import { reducers } from './store/store';
 
 import { ExchangeRatesContainerComponent } from './containers/exchange-rates.container';
 import { MarketPricesViewComponent } from './views/market-prices.view';

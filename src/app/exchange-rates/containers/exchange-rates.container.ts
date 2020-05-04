@@ -6,12 +6,12 @@ import {
 import { Store, select } from '@ngrx/store';
 import {
   viewExchangeRatesModel,
-  ExchangeRatesState
-} from './../reducers/index.reducer';
-import {  ConvertToBTC } from './../exchange-rates.type';
+} from './../store/selectors';
+import { ExchangeRatesState } from './../store/store';
+import { ConvertToBTC } from './../exchange-rates.type';
 import { ExchangeRatesViewModel } from './../model.view';
 
-import { fromMarketPricesAction, fromConvertBtcAction, fromUIAction } from './../actions/index.action';
+import { convert, updateUIState, fetchData } from './../store/actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -35,8 +35,8 @@ export class ExchangeRatesContainerComponent implements OnInit {
     this.requestMarkerPrices();
   }
 
-  convertToBtc(convert: ConvertToBTC) {
-    this.store.dispatch(fromConvertBtcAction.convert({ convert }));
+  convertToBtc(cvrt: ConvertToBTC) {
+    this.store.dispatch(convert({ convert: cvrt }));
   }
 
   handleViewActions(viewAction: { type: string; e: any; }): void {
@@ -57,7 +57,7 @@ export class ExchangeRatesContainerComponent implements OnInit {
 
       case 'selectCurrency': {
 
-        this.store.dispatch(fromUIAction.updateUIState({
+        this.store.dispatch(updateUIState({
           key: 'activeCurrency',
           value: viewAction.e
         }));
@@ -67,6 +67,6 @@ export class ExchangeRatesContainerComponent implements OnInit {
   }
 
   requestMarkerPrices() {
-    this.store.dispatch(fromMarketPricesAction.fetchData());
+    this.store.dispatch(fetchData());
   }
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { fromUIAction } from './../actions/index.action';
+import { updateUIState } from './actions';
 
 export interface UIState {
   activeCurrency: string;
@@ -12,7 +12,7 @@ const initialState: UIState = {
 export const  reducer = createReducer(
   initialState,
   on(
-    fromUIAction.updateUIState,
+    updateUIState,
     (state, { key, value }) => {
 
       if (typeof state[key] !== 'undefined') {

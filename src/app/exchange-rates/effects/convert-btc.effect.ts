@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { fromConvertBtcAction } from './../actions/index.action';
+import { convert } from './../store/actions';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
@@ -11,7 +11,7 @@ export class ConvertBtcEffects {
 
 
   convertToBTC$: Observable<Action> = createEffect(() => this.action$.pipe(
-    ofType(fromConvertBtcAction.convert),
+    ofType(convert),
     map((action) => fromBlockchainDataAction.fetchData({
       key: DataServiceType.ToBTC,
       query: action.convert

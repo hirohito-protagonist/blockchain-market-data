@@ -7,7 +7,7 @@ import { cold, hot } from 'jest-marbles';
 import { Observable } from 'rxjs';
 
 import { ConvertBtcEffects } from './convert-btc.effect';
-import { fromConvertBtcAction } from './../actions/index.action';
+import { convert } from './../store/actions';
 import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
 
 
@@ -33,7 +33,7 @@ describe('ConvertBtcEffects', () => {
   it('should dispatch action to fetch data on convert action', () => {
 
     // Given
-    const action = fromConvertBtcAction.convert({
+    const action = convert({
       convert: { currency: 'USD', value: 200 }
     });
     const completion = fromBlockchainDataAction.fetchData({

@@ -3,9 +3,9 @@ import {
   getConvertBtcState,
   getCurrencies,
   viewExchangeRatesModel
-} from './index.reducer';
+} from './selectors';
 
-describe('Exchange rates reducer', () => {
+describe('Exchange rates', () => {
 
   describe('Selectors', () => {
 
