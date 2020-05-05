@@ -13,14 +13,13 @@ import { MarketPricesViewComponent } from './views/market-prices.view';
 import { ConverterViewComponent } from './views/converter.view';
 import { ExchangeRatesViewComponent } from './views/exchange-rates.view';
 
-import { MarketPricesEffects } from './effects/market-prices.effect';
-import { ConvertBtcEffects } from './effects/convert-btc.effect';
+import { Effects } from './store/effects';
 
 
 @NgModule({
   imports: [
     StoreModule.forFeature('exchangeRates', reducers),
-    EffectsModule.forFeature([MarketPricesEffects, ConvertBtcEffects])
+    EffectsModule.forFeature([Effects])
   ]
 })
 export class RootExchangeRateModule {}
