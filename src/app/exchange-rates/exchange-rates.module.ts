@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk/table';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-
-import { reducers } from './store/store';
+import { Store } from './store/store';
 
 import { ExchangeRatesContainerComponent } from './containers/exchange-rates.container';
 import { MarketPricesViewComponent } from './views/market-prices.view';
@@ -18,8 +15,7 @@ import { Effects } from './store/effects';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature('exchangeRates', reducers),
-    EffectsModule.forFeature([Effects])
+    ...Store
   ]
 })
 export class RootExchangeRateModule {}
