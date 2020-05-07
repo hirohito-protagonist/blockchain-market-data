@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { fromDataServiceAction } from './../actions/index.action';
+import { request, response } from './../store/actions';
 import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
 interface DataServiceNode<R, Q> {
@@ -43,7 +43,7 @@ const initialState: DataServiceState = {
 export const reducer = createReducer(
   initialState,
   on(
-    fromDataServiceAction.request,
+    request,
     (state, { key, query }) => {
 
       if (state[key]) {
@@ -62,7 +62,7 @@ export const reducer = createReducer(
     }
   ),
   on(
-    fromDataServiceAction.response,
+    response,
     (state, { key, response }) => {
 
       if (state[key]) {

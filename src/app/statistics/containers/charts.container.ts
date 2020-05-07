@@ -11,7 +11,7 @@ import { ChartViewModel } from './../model.view';
 import { Observable } from 'rxjs';
 import { updateUIState } from './../store/actions';
 
-import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
+import { fetchData, DataServiceType } from '@bmd/blockchain-data';
 
 
 @Component({
@@ -84,7 +84,7 @@ export class ChartsContainerComponent implements OnInit {
 
   requestChart(query: ChartQuery): void {
 
-    this.store.dispatch(fromBlockchainDataAction.fetchData({
+    this.store.dispatch(fetchData({
       key: DataServiceType.Charts,
       query: query
     }));

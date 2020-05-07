@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 import { Effects } from './effects';
 import { convert, fetchData } from './../store/actions';
-import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
+import { fetchData as fd, DataServiceType } from '@bmd/blockchain-data';
 
 describe('Effects', () => {
 
@@ -37,7 +37,7 @@ describe('Effects', () => {
       const action = convert({
         convert: { currency: 'USD', value: 200 }
       });
-      const completion = fromBlockchainDataAction.fetchData({
+      const completion = fd({
         key: DataServiceType.ToBTC,
         query: {
           currency: 'USD',
@@ -78,7 +78,7 @@ describe('Effects', () => {
 
       // Given
       const action = fetchData();
-      const completion = fromBlockchainDataAction.fetchData({
+      const completion = fd({
         key: DataServiceType.Ticker,
         query: null
       });

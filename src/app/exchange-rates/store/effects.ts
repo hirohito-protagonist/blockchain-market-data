@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { convert, fetchData } from './../store/actions';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
+import { fetchData as fd, DataServiceType } from '@bmd/blockchain-data';
 
 @Injectable()
 export class Effects {
@@ -12,7 +12,7 @@ export class Effects {
 
   convertToBTC$: Observable<Action> = createEffect(() => this.action$.pipe(
     ofType(convert),
-    map((action) => fromBlockchainDataAction.fetchData({
+    map((action) => fd({
       key: DataServiceType.ToBTC,
       query: action.convert
     }))
@@ -20,7 +20,7 @@ export class Effects {
 
   requestData$: Observable<Action> = createEffect(() => this.action$.pipe(
     ofType(fetchData),
-    map(() => fromBlockchainDataAction.fetchData({
+    map(() => fd({
       key: DataServiceType.Ticker,
       query: null
     }))

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { fromDataServiceAction, fromBlockchainDataAction } from './../actions/index.action';
+import { request, response, fetchData } from './../store/actions';
 import { map, filter, switchMap, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { DataServiceType, DataResponseType, ChartsQuery, BTCQuery } from './../blockchain-data.type';
@@ -12,8 +12,8 @@ import { StatisticsService } from './../services/statistics.service';
 export class DataServiceEffects {
 
   requestData$: Observable<Action> = createEffect(() => this.action$.pipe(
-    ofType(fromBlockchainDataAction.fetchData),
-    map((action) => fromDataServiceAction.request({
+    ofType(fetchData),
+    map((action) => request({
       key: action.key,
       query: action.query
     }))
@@ -69,14 +69,14 @@ export class DataServiceEffects {
 
   responseData$(serviceType: DataServiceType, fn: Function): Observable<Action> {
     return this.action$.pipe(
-      ofType(fromBlockchainDataAction.fetchData),
+      ofType(fetchData),
       filter((action) => action.key === serviceType),
       switchMap((action) => fn(action)),
       filter(([action, response]) => response.status === 200),
-      map(([action, response]) => {
-        return fromDataServiceAction.response({
+      map(([action, rsp]) => {
+        return response({
           key: action.key,
-          response: (response.response as DataResponseType)
+          response: (rsp.response as DataResponseType)
         });
       })
     );

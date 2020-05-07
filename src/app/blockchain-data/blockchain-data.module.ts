@@ -9,14 +9,14 @@ import { reducers, lastUpdate, response, getServiceDataNode } from './reducers/i
 import { ExchangeRatesService } from './services/exchange-rates.service';
 import { StatisticsService } from './services/statistics.service';
 
-import { fromBlockchainDataAction } from './actions/index.action';
+import { fetchData } from './store/actions';
 import { DataServiceType, BTCQuery, ChartsQuery } from './blockchain-data.type';
 import { DataServiceEffects } from './effects/data-service.effect';
 
 const fromBlockchainDataSelectors = { lastUpdate, response, getServiceDataNode };
 
 export {
-  fromBlockchainDataAction,
+  fetchData,
   fromBlockchainDataSelectors,
   DataServiceType,
   BTCQuery,

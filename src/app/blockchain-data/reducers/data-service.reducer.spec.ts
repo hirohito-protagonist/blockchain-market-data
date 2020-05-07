@@ -1,6 +1,6 @@
 import { reducer } from './data-service.reducer';
 import { DataServiceType } from './../blockchain-data.type';
-import { fromDataServiceAction } from './../actions/index.action';
+import { request, response } from './../store/actions';
 
 describe('Data service reducer', () => {
 
@@ -39,7 +39,7 @@ describe('Data service reducer', () => {
       it(`should set isFetching as true and update query for ${testData.serviceType}`, () => {
 
         // Given
-        const action = fromDataServiceAction.request({
+        const action = request({
           key: testData.serviceType, query: testData.query
         });
 
@@ -55,7 +55,7 @@ describe('Data service reducer', () => {
     it('should not update state for undefined node', () => {
 
       // Given
-      const action = fromDataServiceAction.request({
+      const action = request({
         key: '' as any, query: { currency: 'USD', value: 200 }
       });
 
@@ -92,10 +92,10 @@ describe('Data service reducer', () => {
         spyOn(Date, 'now').and.returnValue(123);
 
         // Given
-        const requestAction = fromDataServiceAction.request({
+        const requestAction = request({
           key: testData.serviceType, query: testData.query
         });
-        const responseAction = fromDataServiceAction.response({
+        const responseAction = response({
           key: testData.serviceType, response: testData.response
         });
 
@@ -112,10 +112,10 @@ describe('Data service reducer', () => {
     it('should not update state for undefined node', () => {
 
       // Given
-      const requestAction = fromDataServiceAction.request({
+      const requestAction = request({
         key: DataServiceType.ToBTC, query: { currency: 'USD', value: 200 }
       });
-      const responseAction = fromDataServiceAction.response({
+      const responseAction = response({
         key: '' as any, response: 123
       });
 

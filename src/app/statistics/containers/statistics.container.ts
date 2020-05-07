@@ -9,7 +9,7 @@ import { statisticViewModel } from './../store/selectors';
 import { Observable } from 'rxjs';
 
 import { StatisticViewModel } from './../model.view';
-import { fromBlockchainDataAction, DataServiceType } from '@bmd/blockchain-data';
+import { fetchData, DataServiceType } from '@bmd/blockchain-data';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class StatisticsContainerComponent implements OnInit {
   }
 
   requestStatistics() {
-    this.store.dispatch(fromBlockchainDataAction.fetchData({
+    this.store.dispatch(fetchData({
       key: DataServiceType.Stats, query: null
     }));
   }

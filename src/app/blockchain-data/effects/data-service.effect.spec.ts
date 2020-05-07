@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 import { DataServiceEffects } from './data-service.effect';
 import { ExchangeRatesService } from './../services/exchange-rates.service';
 import { StatisticsService } from './../services/statistics.service';
-import { fromBlockchainDataAction, fromDataServiceAction } from './../actions/index.action';
+import { fetchData, response, request } from './../store/actions';
 import { DataServiceType } from '../blockchain-data.type';
 
 
@@ -41,10 +41,10 @@ describe('DataServiceEffects', () => {
   it('should dispatch request data action on fetch action', () => {
 
     // Given
-    const action = fromBlockchainDataAction.fetchData({
+    const action = fetchData({
       key: DataServiceType.Ticker, query: null
     });
-    const completion = fromDataServiceAction.request({
+    const completion = request({
       key: DataServiceType.Ticker,
       query: null
     });
@@ -64,14 +64,14 @@ describe('DataServiceEffects', () => {
       status: 200,
       response: 0.12331
     };
-    const action = fromBlockchainDataAction.fetchData({
+    const action = fetchData({
       key: DataServiceType.ToBTC,
       query: {
         currency: 'USD',
         value: 200
       }
     });
-    const completion = fromDataServiceAction.response({
+    const completion = response({
       key: DataServiceType.ToBTC,
       response: responseData.response
     });
@@ -92,11 +92,11 @@ describe('DataServiceEffects', () => {
       status: 200,
       response: {}
     };
-    const action = fromBlockchainDataAction.fetchData({
+    const action = fetchData({
       key: DataServiceType.Ticker,
       query: null
     });
-    const completion = fromDataServiceAction.response({
+    const completion = response({
       key: DataServiceType.Ticker,
       response: responseData.response
     });
@@ -117,11 +117,11 @@ describe('DataServiceEffects', () => {
       status: 200,
       response: {}
     };
-    const action = fromBlockchainDataAction.fetchData({
+    const action = fetchData({
       key: DataServiceType.Stats,
       query: null
     });
-    const completion = fromDataServiceAction.response({
+    const completion = response({
       key: DataServiceType.Stats,
       response: responseData.response
     });
