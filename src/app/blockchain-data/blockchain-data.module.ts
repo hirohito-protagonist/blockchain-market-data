@@ -11,7 +11,7 @@ import { StatisticsService } from './services/statistics.service';
 
 import { fetchData } from './store/actions';
 import { DataServiceType, BTCQuery, ChartsQuery } from './blockchain-data.type';
-import { DataServiceEffects } from './effects/data-service.effect';
+import { DataServiceEffects } from './store/effects';
 
 const fromBlockchainDataSelectors = { lastUpdate, response, getServiceDataNode };
 
