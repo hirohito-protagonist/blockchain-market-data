@@ -1,4 +1,4 @@
-import * as fromDataService from './data-service.reducer';
+import * as fromDataService from './../store/data-service.reducer';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DataServiceType } from './../blockchain-data.type';
 
