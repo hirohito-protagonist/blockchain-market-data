@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers, lastUpdate, response, getServiceDataNode } from './reducers/index.reducer';
+import { reducers } from './reducers/index.reducer';
+import { lastUpdate, response, getServiceDataNode } from './store/selectors';
 
 import { ExchangeRatesService } from './services/exchange-rates.service';
 import { StatisticsService } from './services/statistics.service';
