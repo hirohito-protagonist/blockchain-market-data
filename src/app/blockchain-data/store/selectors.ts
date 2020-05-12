@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DataServiceType } from './../blockchain-data.type';
-import { DataServiceState } from './../reducers/index.reducer';
+import { DataServiceState } from './store';
 import * as fromDataService from './data-service.reducer';
 
 const getFeatureRootState = createFeatureSelector('blockchain-data');

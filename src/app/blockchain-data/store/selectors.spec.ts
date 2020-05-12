@@ -3,7 +3,7 @@ import {
   lastUpdate,
   response
 } from './selectors';
-import { reducers } from './../reducers/index.reducer';
+import { reducers } from './store';
 import { DataServiceType } from './../blockchain-data.type';
 
 

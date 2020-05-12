@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers } from './reducers/index.reducer';
+import { Store } from './store/store';
 import { lastUpdate, response, getServiceDataNode } from './store/selectors';
 
 import { ExchangeRatesService } from './services/exchange-rates.service';
@@ -28,8 +28,7 @@ export {
 @NgModule({
   imports: [
     HttpClientModule,
-    StoreModule.forFeature('blockchain-data', reducers),
-    EffectsModule.forFeature([ DataServiceEffects ])
+    Store,
   ]
 })
 export class BlockchainDataModule {
