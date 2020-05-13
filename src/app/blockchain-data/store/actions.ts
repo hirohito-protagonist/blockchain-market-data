@@ -2,16 +2,16 @@ import { createAction, props } from '@ngrx/store';
 import { DataServiceType, QueryType, DataResponseType } from './../blockchain-data.type';
 
 export const fetchData = createAction(
-  '[Blockchain Data Feature API] Fetch data',
+  '@blockchain-data/fetch',
   props<{ key: DataServiceType; query: QueryType; }>()
 );
 
 export const request = createAction(
-  '[Blockchain Data Feature API] Data service request',
+  '@blockchain-data/request',
   props<{ key: DataServiceType; query: QueryType; }>()
 );
 
 export const response = createAction(
-  '[Blockchain Data Feature API] Data service response',
+  '@blockchain-data/response',
   props<{ key: DataServiceType; response: DataResponseType; }>()
 );
