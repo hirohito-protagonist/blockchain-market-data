@@ -3,6 +3,6 @@ import { LayoutView } from './layout.reducer';
 
 
 export const changeView = createAction(
-  '[Core Feature] Change Layout View',
+  '@core/layout-view',
   props<{ view: LayoutView }>()
 );

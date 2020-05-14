@@ -2,15 +2,15 @@ import { createAction, props } from '@ngrx/store';
 import { ConvertToBTC } from './../exchange-rates.type';
 
 export const convert = createAction(
-  '[Exchange Rates Feature] Convert to BTC',
+  '@exchange-rates/convert',
   props<{ convert: ConvertToBTC }>()
 );
 
 export const fetchData = createAction(
-  '[Exchange Rates Feature] Market prices fetch data'
+  '@exchange-rates/market-prices'
 );
 
 export const updateUIState = createAction(
-  '[Exchange Rates Feature] Update UI state',
+  '@exchange-rates/ui',
   props<{ key: string; value: any }>()
 );
