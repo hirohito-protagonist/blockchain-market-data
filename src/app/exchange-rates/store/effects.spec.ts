@@ -2,8 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { TestBed } from '@angular/core/testing';
-import { cold, hot } from 'jest-marbles';
-
+import { TestScheduler } from 'rxjs/testing';
 import { Observable } from 'rxjs';
 
 import { Effects } from './effects';
@@ -33,24 +32,31 @@ describe('Effects', () => {
 
     it('should dispatch action to fetch data on convert action', () => {
 
-      // Given
-      const action = convert({
-        convert: { currency: 'USD', value: 200 }
-      });
-      const completion = fd({
-        key: DataServiceType.ToBTC,
-        query: {
-          currency: 'USD',
-          value: 200
-        }
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
       });
 
-      // When
-      actions$ = hot('-a', { a: action });
-      const expected = cold('-b', { b: completion });
+      testScheduler.run(({ hot, cold, expectObservable }) => {
+        // Given
+        const action = convert({
+          convert: { currency: 'USD', value: 200 }
+        });
+        const completion = fd({
+          key: DataServiceType.ToBTC,
+          query: {
+            currency: 'USD',
+            value: 200
+          }
+        });
 
-      // Then
-      expect(effects.convertToBTC$).toBeObservable(expected);
+        // When
+        actions$ = hot('-a', { a: action });
+
+        // Then
+        expectObservable(effects.convertToBTC$).toBe('-b', {
+          b: completion
+        });
+      });
     });
   });
 
@@ -76,19 +82,27 @@ describe('Effects', () => {
 
     it('should dispatch action on fetch market prices data action', () => {
 
-      // Given
-      const action = fetchData();
-      const completion = fd({
-        key: DataServiceType.Ticker,
-        query: null
+      const testScheduler = new TestScheduler((actual, expected) => {
+        expect(actual).toEqual(expected);
       });
 
-      // When
-      actions$ = hot('-a', { a: action });
-      const expected = cold('-b', { b: completion });
+      testScheduler.run(({ hot, cold, expectObservable }) => {
+        // Given
+        const action = fetchData();
+        const completion = fd({
+          key: DataServiceType.Ticker,
+          query: null
+        });
 
-      // Then
-      expect(effects.requestData$).toBeObservable(expected);
+        // When
+        actions$ = hot('-a', { a: action });
+        const expected = cold('-b', { b: completion });
+
+        // Then
+        expectObservable(effects.requestData$).toBe('-b', {
+          b: completion
+        });
+      });
     });
   });
 });
